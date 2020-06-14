@@ -1,0 +1,132 @@
+/* pages/Myself/Myself.wxss */
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-top: 2rpx;
+} 
+.bgImage{
+max-width: 750rpx;
+max-height: 300rpx;
+position: absolute;
+top: 0rpx;
+}
+.userInfoOut{
+
+  width: 750rpx;
+  height: 300rpx;
+  display: flex;
+}
+.userInfo{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  border-radius:30rpx ;
+  box-shadow: -8px -1px 10px 2px #eee,8px -1px 10px 2px #eee,-8px 1px 10px 2px #eee,8px -1px 10px 2px #eee ;
+}
+.detailInfo{
+display: flex;
+flex-direction: column;
+width: max-content;
+border-radius: 20rpx;
+}
+.infoItem{
+display: flex;
+flex-direction: row;
+padding-bottom: 10rpx;
+}
+.infoItemImage{
+  max-width: 25px;
+  max-height:25px ;
+  
+}
+.infoItemText{
+  padding-left: 20rpx;
+
+}
+.userImage{
+height: 160rpx;
+width: 160rpx;
+border-radius: 50%;
+border: 2px solid #00c758;
+background-size: cover;
+margin-top:30rpx ;
+}
+.userId{
+font-size: 20px;
+
+}
+.login{
+padding-top: 12rpx;
+height: inherit;
+padding-left: 60rpx;
+}
+.loginNow{
+
+position: absolute;
+left: 350rpx;
+top: 50rpx;
+text-align: center;
+font-size: 22px;
+}
+
+.userinfoStr{
+height: inherit;
+width: inherit;
+}
+
+.studyStatus{
+  font-size: 20px;
+  display: flex; 
+  border-top:5rpx solid  rgba(237, 237, 237, 0.546);
+  height: 150rpx;
+  width: 750rpx;
+  flex-direction: row;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+  box-shadow: -3px -1px 4px 0px #00c758;
+}
+
+.statusItem{
+padding-top: 20rpx;
+padding-bottom: 20rpx;
+width: 187rpx;
+text-align: center;
+}
+
+.itemValue{
+border-left: 4rpx solid #eeeeeec1;
+padding: 5rpx;
+}
+.space1
+{
+height: 25rpx;
+width:100%;
+background-color:#eeeeeec1;
+}
+.space2{
+height: 5rpx;
+width: 100%;
+background-color: #eeeeeec1;
+}
+
+.menuItem {
+  width: 750rpx;
+  height: 104rpx;
+  padding: 0 32rpx;
+  background:#ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.studyPlanPage{
+height: 500rpx;
+width: 600rpx;
+background-color: #fff;
+border-radius: 30rpx;
+}
+.stepsContainer{
+  border-radius:20rpx ;
+  background-color: #fff;
+}

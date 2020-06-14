@@ -1,0 +1,23 @@
+<!--pages/myClass.wxml-->
+<view class="navaContainer">
+<view class="title">
+<view style="font-size:20px">课程</view>
+<image class="titleImage" style="right:120rpx" src="/images/plan.png"></image>
+<image class="titleImage"  style="right:12rpx" src="/images/download.png"></image>
+</view>
+<view class="subtitle">
+<view>我的课程（{{myClassNum}}）</view>
+<van-icon name="arrow-down" />
+</view>
+</view>
+<view class="container" >
+<view class="classItemContainer">
+<view class="classItem" wx:for="{{myClass}}" wx:key="item">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:18px">{{item.title}}</view>
+<view style="font-size:14px;color:#808080">{{item.origin}}</view>
+</view>
+</view>
+</view>
+</view>

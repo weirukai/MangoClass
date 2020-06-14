@@ -1,0 +1,62 @@
+/* pages/myClass.wxss */
+.container{
+width: 750rpx;
+display: flex;
+flex-direction: column;
+background-color: #eee;
+padding: 30rpx;
+}
+.navaContainer{
+width: inherit;
+background-color:#fff;
+position: inherit;
+top: 0rpx;
+height: fit-content;
+}
+.title{
+width: inherit;
+height: 75rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+color: #00c758;
+padding-left: 30rpx;
+}
+
+.subtitle{
+  height: 75rpx;
+  width: 700rpx;
+  border-top: 2rpx solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10rpx;
+}
+.titleImage{
+max-width: 50rpx;
+max-height: 50rpx;
+position: absolute;
+}
+.classItemContainer{
+background-color: #fff;
+border-radius: 40rpx;
+padding: 20rpx;
+}
+.classItem{
+  height: 250rpx;
+  width: 600rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+border-bottom: 2rpx solid #eee;
+}
+.classImage{
+max-height: 200rpx;
+max-width: 250rpx;
+border-radius: 10rpx;
+}
+.classIntroduce{
+align-items: center;
+padding-left: 50rpx;
+padding-left: 10rpx;
+}

@@ -1,0 +1,90 @@
+/**index.wxss**/
+.container{
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+  padding: 30rpx;
+  }
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.swiperContainer{
+  width: 750;
+  height: 375rpx;
+  position: relative;
+  background-color: rosybrown;
+
+}
+.searchClass{
+  position: absolute;
+  top:32rpx;
+  left: 75rpx;
+  width: 600rpx;
+  height: 66rpx;
+  display: block;
+}
+.input{
+box-sizing: border-box;
+border-radius: 30rpx;
+border: 1rpx solid #e3e3e3;
+padding-left: 32rpx;
+height: 66rpx;
+}
+
+.swiper{
+  height: inherit;
+}
+.classOutContainer{
+
+border-top: 10rpx solid #eee;
+background-color: #eee;
+}
+.classInContainer
+{
+border-radius: 15rpx;
+background-color: #fff;
+box-shadow: -1px  -1px 1px 1px #eee ;
+padding-top: 10rpx;
+
+}
+.classItemContainer{
+  background-color: #fff;
+  border-radius: 40rpx;
+  padding: 20rpx;
+  }
+  .classItem{
+    height: 250rpx;
+    width: 600rpx;
+    padding: 20rpx;
+    display: flex;
+    flex-direction: row;
+  border-bottom: 2rpx solid #eee;
+  }
+  .classImage{
+    max-height: 200rpx;
+    max-width: 250rpx;
+    border-radius: 10rpx;
+    }
+    .classIntroduce{
+      align-items: center;
+      padding-left: 50rpx;
+      padding-left: 10rpx;
+      }

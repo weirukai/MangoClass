@@ -1,0 +1,81 @@
+<!--pages/Myself/Myself.wxml-->
+<view class="container">
+<view class="userInfoOut ">
+<view class="userInfo">
+
+<image class="userImage" wx:if="{{hasLogin}}" src="{{myInfo.userImageSrc}}"></image>
+<image class="userImage" wx:if="{{!hasLogin}}" src="../../images/nologin.png"></image>
+<view class="login">
+<!---没有登录提示登录，登录之后这里提示学生相关信息--->
+<view wx:if="{{!hasLogin}}" class="loginNow">立即登录</view>
+<view wx:if="{{hasLogin}}>" class="detailInfo">
+<view class="infoItem userId"><image src="/images/id.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.id}}</view></view>
+<view class="infoItem"><image src="/images/motto.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.motto}}</view></view>
+<!---年级和教材版本-->
+<view class="infoItem" >
+<image src="../../images/grade.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.grade}}</view> 
+<view style="width:50rpx"></view>
+<image src="../../images/book2.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.bookType}}</view>
+</view>
+<view class="infoItem"><image src="/images/school.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.School}}</view>
+</view>
+</view>
+</view>
+</view>
+</view>
+
+
+<!---学习状态-->
+<view class="studyStatus">
+<view  wx:for="{{studyStatus}}" wx:for-item="item" class="statusItem">
+<view class="itemValue">{{item.value}}</view>
+<view class="itemValue">{{item.name}}</view>
+</view>
+</view>
+<view>
+<view class="space1"></view>
+<!---我的课程-->
+<navigator url="/pages/myClass/myClass">
+<view class="menuItem"><view>我的课程</view><van-icon name="arrow" color="#00c758"/></view>
+</navigator>
+<view class="space2"></view>
+<!---学习计划-->
+
+<view class="menuItem" bindtap="showStudyPlan"><view>学习计划</view><van-icon name="arrow" color="#00c758"/>
+</view>
+<!---这里是学习计划弹出页-->
+<van-popup show="{{showStudyPlan}}"   bind:close="closeStudyPlan">
+<view class="studyPlanPage">
+<view  class="stepsContainer" style="border-radius:20rpx">
+
+<van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
+</view>
+<!---->
+</view>
+</van-popup>
+<!--学习计划弹出页结束--->
+<view class="space2"></view>
+<!---收藏课程-->
+<navigator>
+<view class="menuItem"><view>收藏课程</view><van-icon name="arrow" color="#00c758"/></view>
+</navigator>
+<view class="space2"></view>
+<!---上传课程-->
+<navigator>
+<view class="menuItem"><view>上传课程</view><van-icon name="arrow" color="#00c758" /></view>
+</navigator>
+<view class="space1"></view>
+<!---课程管理-->
+<view class="menuItem"><view>课程管理</view><van-icon name="arrow" color="#00c758"/></view>
+<!--隐私设置-->
+<view class="space2"></view>
+<view class="menuItem"><view>隐私设置</view><van-icon name="arrow" color="#00c758"/></view>
+<view class="space2"></view>
+<view class="menuItem"><view>手机绑定</view><van-icon name="arrow" color="#00c758"/></view>
+
+<view class="space1"></view>
+<view class="menuItem"><view>联系我们</view><van-icon name="arrow" color="#00c758"/></view>
+<view class="space2"></view>
+
+</view>
+</view>

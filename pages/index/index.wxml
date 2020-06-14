@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<!--<view class="container">-->
+<!--这里是滚动推荐课程-->
+<view class=".swiperContainer">
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activecolor}}" class="swiper">
+  <swiper-item wx:for="{{testSwiperUrls}}" wx:key ="*this">
+    <image src="{{item}}"style="width:100%;height:200px" class="slide-image" mode="widthFix"></image>
+  </swiper-item>
+</swiper>
+<view class="searchClass">
+<input placeholder="SearchClass" class="input"></input>
+</view>
+</view>
+<view class="classOutContainer">
+<view class="classInContainer">
+<van-tab2s color="#00c758" style="border-radius:30rpx">
+<van-tab2 title="推荐课程" bintap="" name="recommandedClass">
+
+
+<view class="container" >
+<view class="classItemContainer">
+<view class="classItem" wx:for="{{myClass}}" wx:key="item">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:18px">{{item.title}}</view>
+<view style="font-size:14px;color:#808080">{{item.origin}}</view>
+</view>
+</view>
+</view>
+</view>
+
+
+</van-tab2>
+<van-tab2 title="初中课程" name="juniorClass">
+
+</van-tab2>
+<van-tab2 title="高中课程" name="highClass">  
+
+</van-tab2>
+</van-tab2s>
+</view>
+</view>
+
+
