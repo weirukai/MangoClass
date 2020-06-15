@@ -185,4 +185,6 @@ border-radius: 30rpx;
   width:300rpx ;
   height: 200rpx;
   border: 1rpx solid #858282
+
+  
 }
