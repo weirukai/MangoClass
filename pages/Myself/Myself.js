@@ -59,12 +59,20 @@ Page({
       showStudyPlan:false
     })
   },
-
-
+  gotoModifyInfo:function()
+  {
+    if(!this.data.hasLogin )
+    {
+      //提示用户登录toast轻提示
+    }else{
+      wx.navigateTo({
+        url: '/pages/modifyInfo/modifyInfo',
+      })
+    }
+  },
   /***
    * 用户点击登录
   */
-
    loginNow:function(e){
      if(this.data.hasLogin)
        return
@@ -97,7 +105,6 @@ Page({
             }
           }
         })
-        
       }
    },
 
@@ -115,6 +122,7 @@ Page({
       this.setData({
         [userImageSrc]:myAPP.globalData.userInfo.avatarUrl
       })
+      //可以拉取所有的学生信息
     }else  if(this.data.canIUse){
       myAPP.userInfoReadyCallback= res=>{
         var userImageSrc='myInfo.userImageSrc'
@@ -125,16 +133,6 @@ Page({
       }
     }
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    myAPP.globalData.userInfo = e.detail.userInfo
-    var userImageSrc='myInfo.userImageSrc'
-    this.setData({
-     [userImageSrc] : e.detail.userInfo.avatarUrl,
-      hasLogin: true
-    })
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

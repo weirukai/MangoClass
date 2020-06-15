@@ -1,0 +1,42 @@
+/* pages/modifyInfo.wxss */
+.containerOut{
+width: 750rpx;
+height: 100vh;
+display: flex;
+background-color: #eee;
+flex-direction: column;
+}
+.modifyItem{
+width: 750rpx;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+background-color: #fff;
+min-height: 100rpx;
+align-items: center;
+}
+.detail{
+display: flex;
+flex-direction: row;
+align-items: center;
+padding-right: 20rpx;
+}
+.userImage{
+  height: 160rpx;
+  width: 160rpx;
+  border-radius: 50%;
+  border: 2px solid #00c758;
+  background-size: cover;
+
+  }
+  .space2{
+    height: 5rpx;
+    width: 100%;
+    background-color: #eee;
+    }
+  .itemValue{
+    color: #808080;
+    padding-right:10rpx;
+    font-size: 14px;
+
+  }
