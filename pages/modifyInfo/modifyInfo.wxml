@@ -1,0 +1,56 @@
+<!--pages/modifyInfo.wxml-->
+<view  class="containerOut">
+<view class="modifyItem">
+<!--头像-->
+<view>头像</view>
+<view class="detail">
+<image class="userImage" src="{{myInfo.userImageSrc}}"></image>
+<van-icon name="arrow" color="#00c758" />
+</view>
+</view>
+<view class="space2"></view>
+<view class="modifyItem" >
+<!--ID-->
+<view>昵称</view>
+<view class="detail">
+<view class="itemValue">{{myInfo.id}}</view>
+<van-icon name="arrow" color="#00c758" />
+</view>
+</view>
+<view class="space2"></view>
+<view class="modifyItem">
+<!---motto-->
+<view>学习格言</view>
+<view class="detail">
+<view class="itemValue">{{myInfo.motto}}</view>
+<van-icon name="arrow" color="#00c758" />
+</view>
+</view>
+<view class="space2"></view>
+<view class="modifyItem">
+<!---年级-->
+<view>年级</view>
+<view class="detail">
+<view class="itemValue">{{myInfo.grade}}</view>
+<van-icon name="arrow" color="#00c758" />
+</view>
+</view>
+<view class="space2"></view>
+<view class="modifyItem">
+<!--教材版本-->
+<view>教材版本</view>
+<view class="detail">
+<view class="itemValue">{{myInfo.bookType}}</view>
+<van-icon name="arrow" color="#00c758" />
+</view>
+</view>
+<view class="space2"></view>
+<view class="modifyItem">
+<!--学校-->
+<view>学校</view>
+<view class="detail">
+<view class="itemValue">{{myInfo.School}}</view>
+<van-icon name="arrow" color="#00c758" />
+</view>
+</view>
+</view>

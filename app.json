@@ -4,8 +4,8 @@
     "pages/community/community",
     "pages/Myself/Myself",
     "pages/logs/logs",
-    "pages/myClass/myClass"
-    
+    "pages/myClass/myClass",
+    "pages/modifyInfo/modifyInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
