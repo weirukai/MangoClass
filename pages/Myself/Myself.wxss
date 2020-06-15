@@ -64,10 +64,8 @@ height: inherit;
 padding-left: 60rpx;
 }
 .loginNow{
-
-position: absolute;
-left: 350rpx;
-top: 50rpx;
+margin-top: 20rpx;
+padding-right: 30rpx;
 text-align: center;
 font-size: 22px;
 }

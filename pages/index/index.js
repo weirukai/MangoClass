@@ -53,8 +53,6 @@ Page({
         length:18,
         hasLearn:9
       }
-
-
     ]
   },
 
