@@ -7,10 +7,10 @@
 <image class="userImage" wx:if="{{!hasLogin}}" src="../../images/nologin.png"></image>
 <view class="login">
 <!---没有登录提示登录，登录之后这里提示学生相关信息--->
-<view wx:if="{{!hasLogin}}" class="loginNow">立即登录</view>
-<view wx:if="{{hasLogin}}>" class="detailInfo">
+<button wx:if="{{!hasLogin}}" class="loginNow"  open-type="getUserInfo" bindgetuserinfo="loginNow">立即登录</button>
+<view wx:if="{{hasLogin}}" class="detailInfo">
 <view class="infoItem userId"><image src="/images/id.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.id}}</view></view>
-<view class="infoItem"><image src="/images/motto.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.motto}}</view></view>
+<view class="infoItem"><image src="/images/motto2.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.motto}}</view></view>
 <!---年级和教材版本-->
 <view class="infoItem" >
 <image src="../../images/grade.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.grade}}</view> 
@@ -96,7 +96,7 @@ color="#00c758" />
 
 <view class="space1"></view>
 <!---课程管理-->
-<view class="menuItem"><view>课程管理</view><van-icon name="arrow" color="#00c758"/></view>
+<view class="menuItem" bindtap="gotoModifyInfo"><view>修改信息</view><van-icon name="arrow" color="#00c758"/></view>
 <!--隐私设置-->
 <view class="space2"></view>
 <view class="menuItem"><view>隐私设置</view><van-icon name="arrow" color="#00c758"/></view>
