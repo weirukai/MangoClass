@@ -128,3 +128,62 @@ border-radius: 30rpx;
   border-radius:20rpx ;
   background-color: #fff;
 }
+
+
+.block {
+  width: 280px;
+  height: 400px;
+  background-color: rgba(250, 250, 250);
+  border-radius: 30rpx 30rpx 30rpx 30rpx;
+}
+
+.updateInfoContainer{
+  height: 700rpx;
+}
+
+.updateSpace{
+  height: 55rpx;
+  
+}
+.updateTitle{
+  display: flex;
+  justify-content: center;
+}
+
+.uploader{
+  padding-left: 30rpx;
+}
+
+.updateName{
+ flex-direction: row;
+ display: flex;
+}
+
+.updateText{
+  margin-left: 30rpx;
+  width: 200rpx;
+}
+
+.updateInput{
+  margin-left: 10rpx;
+  width: 300rpx;
+  border: 1rpx solid #858282
+   
+}
+.radioGroup{
+  display: flex;
+  flex-direction: row;
+}
+.radio{
+     padding-left: 30rpx
+     
+}
+
+.updateTextArea{
+  margin-left: 10rpx;
+  width:300rpx ;
+  height: 200rpx;
+  border: 1rpx solid #858282
+
+  
+}
