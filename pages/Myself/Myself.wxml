@@ -62,8 +62,38 @@
 <view class="space2"></view>
 <!---上传课程-->
 <navigator>
-<view class="menuItem"><view>上传课程</view><van-icon name="arrow" color="#00c758" /></view>
+<view class="menuItem" bindtap="onTapShow" ><view>上传课程</view><van-icon name="arrow" 
+color="#00c758" />
+</view>
+<van-popup show="{{ show }}" bind:close="onClose" duration="1">
+ <view class="wrapper">
+    <view class="block" >
+      <view class="updateInfoContainer">
+         <view class="updateSpace"></view>
+         <view class="updateTitle">上传课程</view>
+         <view class="updateSpace"></view>
+         <view class="updateName"><view class="updateText">课程名称</view><input class="updateInput"></input></view>
+         <view class="updateSpace"></view>
+         <view class ="updateName"><view class="updateText">上传人</view><input class="updateInput"></input></view>
+         <view class="updateSpace"></view>
+          <van-radio-group value="{{ radio }}" bind:change="onChange" class="radioGroup">
+            <van-radio name="1" shape="square" class="radio" label-position="left">初中课程</van-radio>
+            <van-radio name="2" shape="square" class="radio" label-position="left">高中课程</van-radio>
+          </van-radio-group>
+        <view class="updateSpace"></view>
+        <view class="updateName"><view class="updateText">课程简介</view>
+        <textarea class="updateTextArea"></textarea>
+        </view>
+      </view>
+      <van-uploader class="uploader">
+        <van-button icon="video" type="primary" >上传文件</van-button>
+      </van-uploader>
+    </view>
+  </view>
+</van-popup>
 </navigator>
+
+
 <view class="space1"></view>
 <!---课程管理-->
 <view class="menuItem"><view>课程管理</view><van-icon name="arrow" color="#00c758"/></view>

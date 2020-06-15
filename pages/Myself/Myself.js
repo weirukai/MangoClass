@@ -43,7 +43,10 @@ Page({
         desc:"12:00",
         text:"吃中饭"
       }
-    ]
+    ],
+    show: false,
+    radio: '1',
+    
   },
   showStudyPlan:function()
   {
@@ -120,5 +123,21 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  
+  onTapShow() {
+    this.setData({ show: true });
+  },
+
+  onClose() {
+    this.setData({ show: false });
+  },
+  
+  onChange(event) {
+    this.setData({
+      radio: event.detail,
+    });
   }
+
+
 })
