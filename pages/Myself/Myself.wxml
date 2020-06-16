@@ -69,25 +69,22 @@ color="#00c758" />
  <view class="wrapper">
     <view class="block" >
       <view class="updateInfoContainer">
-         <view class="updateSpace"></view>
-         <view class="updateTitle">上传课程</view>
-         <view class="updateSpace"></view>
+         <view class="updateTitle updateName">上传课程</view>   
          <view class="updateName"><view class="updateText">课程名称</view><input class="updateInput"></input></view>
-         <view class="updateSpace"></view>
-         <view class ="updateName"><view class="updateText">上传人</view><input class="updateInput"></input></view>
-         <view class="updateSpace"></view>
-          <van-radio-group value="{{ radio }}" bind:change="onChange" class="radioGroup">
+          <van-radio-group value="{{ radio }}" bind:change="onChange" color="#00c758" class="radioGroup updateName">
             <van-radio name="1" shape="square" class="radio" label-position="left">初中课程</van-radio>
             <van-radio name="2" shape="square" class="radio" label-position="left">高中课程</van-radio>
           </van-radio-group>
-        <view class="updateSpace"></view>
         <view class="updateName"><view class="updateText">课程简介</view>
         <textarea class="updateTextArea"></textarea>
         </view>
       </view>
-      <van-uploader class="uploader">
+      <view class="uploader">
+      
+         <van-uploader >
         <van-button icon="video" type="primary" >上传文件</van-button>
-      </van-uploader>
+      </van-uploader></view>
+   
     </view>
   </view>
 </van-popup>
