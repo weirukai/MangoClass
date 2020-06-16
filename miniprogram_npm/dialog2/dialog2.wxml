@@ -1,0 +1,4 @@
+<!--miniprogram_npm/dialog2.wxml-->
+<view bindtap="close" class="weui-mask {{!show ? 'weui-mask_hidden' : '' }}" wx:if="{{mask}}"></view>
+<view wx:if="{{show}}" bindtap="close" class="weui-dialog__wrp {{extClass}}"><view class="weui-dialog" catchtap="stopEvent"><slot></slot></view></view>
+

@@ -1,37 +1,18 @@
-// pages/modifyInfo.js
-
-
-
+// miniprogram_npm/dialog2.js
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    showDialog:false,
-    dialogTitle:"",
-    myInfo:{
-      id:"一叶知秋",
-      grade:"高三",
-      bookType:"人教版",
-      motto:"操千曲而后晓声，观千剑而后识器",
-      userImageSrc:"",
-      School:"清华大学"
-    },
+
   },
 
-  showDialog:function(e)
-  {
-    var selected=e.target.id
-    this.setData({
-      showDialog:true,
-      dialogTitle:selected
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**

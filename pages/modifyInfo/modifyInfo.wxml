@@ -9,7 +9,7 @@
 </view>
 </view>
 <view class="space2"></view>
-<view class="modifyItem" >
+<view class="modifyItem" id="昵称" bindtap="showDialog">
 <!--ID-->
 <view>昵称</view>
 <view class="detail">
@@ -18,7 +18,7 @@
 </view>
 </view>
 <view class="space2"></view>
-<view class="modifyItem">
+<view class="modifyItem" id="学习格言" bindtap="showDialog">
 <!---motto-->
 <view>学习格言</view>
 <view class="detail">
@@ -27,7 +27,7 @@
 </view>
 </view>
 <view class="space2"></view>
-<view class="modifyItem">
+<view class="modifyItem" id="年级" bindtap="showDialog">
 <!---年级-->
 <view>年级</view>
 <view class="detail">
@@ -36,7 +36,7 @@
 </view>
 </view>
 <view class="space2"></view>
-<view class="modifyItem">
+<view class="modifyItem" id="教材版本" bindtap="showDialog">
 <!--教材版本-->
 <view>教材版本</view>
 <view class="detail">
@@ -45,7 +45,7 @@
 </view>
 </view>
 <view class="space2"></view>
-<view class="modifyItem">
+<view class="modifyItem"  id="学校" bindtap="showDialog">
 <!--学校-->
 <view>学校</view>
 <view class="detail">
@@ -53,4 +53,9 @@
 <van-icon name="arrow" color="#00c758" />
 </view>
 </view>
+
+<van-dialog2 show="{{showDialog}}"  bindtap="closeDialog">
+<input  class="input"></input>
+</van-dialog2>
+
 </view>

@@ -152,7 +152,7 @@ border-radius: 30rpx;
 
 .uploader{
   padding-left: 220rpx;
-  padding-left: 220rpx;
+  padding-left: 220rpx; 
   padding-top: 30rpx;
   padding-bottom: 20rpx;
 }

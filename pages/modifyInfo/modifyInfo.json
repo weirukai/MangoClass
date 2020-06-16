@@ -2,6 +2,8 @@
   "navigationBarTitleText": "编辑资料",
   "usingComponents": {
     "van-icon":"/miniprogram_npm/vant-weapp/icon/index",
-    "van-popup":"/miniprogram_npm/vant-weapp/popup/index"
+    "van-popup":"/miniprogram_npm/vant-weapp/popup/index",
+    "van-dialog":"/miniprogram_npm/vant-weapp/dialog/index",
+    "van-dialog2":"/miniprogram_npm/dialog2/dialog2"
   }
 }
