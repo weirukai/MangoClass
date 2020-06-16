@@ -27,6 +27,15 @@ Page({
       dialogTitle:selected
     })
   },
+  closeDialog:function()
+  {
+    this.setData(
+      {
+        showDialog:false,
+        dialogTitle:""
+      }
+    )
+  },
   /**
    * 生命周期函数--监听页面加载
    */
