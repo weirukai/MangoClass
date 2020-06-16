@@ -1,6 +1,6 @@
 // pages/modifyInfo.js
 
-
+import {Toast} from "../../miniprogram_npm/vant-weapp/toast/toast"
 
 Page({
   /**
@@ -9,6 +9,7 @@ Page({
   data: {
     showDialog:false,
     dialogTitle:"",
+    inputValue:"",
     myInfo:{
       id:"一叶知秋",
       grade:"高三",
@@ -17,6 +18,7 @@ Page({
       userImageSrc:"",
       School:"清华大学"
     },
+
   },
 
   showDialog:function(e)
@@ -32,10 +34,45 @@ Page({
     this.setData(
       {
         showDialog:false,
-        dialogTitle:""
+        dialogTitle:"",
+        inputValue:""
       }
     )
   },
+  bindInput:function(e)
+  {
+    var inputValue=e.detail.valude
+    this.setData({
+      inputValue:inputValue
+    })
+  },
+
+  changeGrade:function(e)
+  {
+    wx.setStorage({
+      data: this.data.inputValue,
+      key: '年级',
+      success:res=>
+      {
+        Toast.success("更改成功")
+      }
+    })
+    
+
+    
+  },
+  changeBookType:function(e){
+
+
+  },
+changeInfo:function(e)
+{
+  if(this.data.dialogTitle="年级")
+  {
+    this.changeGrade()
+  }
+},
+
   /**
    * 生命周期函数--监听页面加载
    */
