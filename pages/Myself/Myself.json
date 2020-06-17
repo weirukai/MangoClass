@@ -7,8 +7,8 @@
     "van-steps":"/miniprogram_npm/vant-weapp/steps/index",
     "van-step":"/miniprogram_npm/vant-weapp/steps/index",
     "van-uploader": "/miniprogram_npm/vant-weapp/uploader/index",
-    "van-button": "/miniprogram_npm/vant-weapp/button/index",
     "van-radio-group": "/miniprogram_npm/vant-weapp/radio-group/index",
-    "van-radio": "/miniprogram_npm/vant-weapp/radio/index"
+    "van-radio": "/miniprogram_npm/vant-weapp/radio/index",
+    "van-dialog2":"/miniprogram_npm/dialog2/dialog2"
   }
 }

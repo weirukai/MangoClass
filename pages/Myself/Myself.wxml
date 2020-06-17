@@ -46,8 +46,8 @@
 <!---这里是学习计划弹出页-->
 <van-popup show="{{showStudyPlan}}"   bind:close="closeStudyPlan">
 <view class="studyPlanPage">
+<image src='/images/editGreen.png' class="editPlan"></image>
 <view  class="stepsContainer" style="border-radius:20rpx">
-
 <van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
 </view>
 <!---->
@@ -98,11 +98,27 @@ color="#00c758" />
 <view class="space2"></view>
 <view class="menuItem"><view>隐私设置</view><van-icon name="arrow" color="#00c758"/></view>
 <view class="space2"></view>
-<view class="menuItem"><view>手机绑定</view><van-icon name="arrow" color="#00c758"/></view>
+<view class="menuItem" bindtap="showPhoneDialog"><view>手机绑定</view><van-icon name="arrow" color="#00c758"/></view>
 
 <view class="space1"></view>
 <view class="menuItem"><view>联系我们</view><van-icon name="arrow" color="#00c758"/></view>
 <view class="space2"></view>
 
 </view>
+
+
+<van-dialog2 show="{{showPhoneDialog}}"  bindtap="closePhoneDialog">
+<view class="inputContainer">
+<view class="dialogFlexItem"><view class="dialogTitle">修改手机号码</view></view>
+<view class="dialogFlexItem"><input  class="input" placeholder="请输入" ></input></view>
+<view class="dialogFlexItem">
+<view class="dialogButtonContainer">
+<view class="dialogButton" bindtap="closePhoneDialog">取消</view>
+<view class="dialogButton" style="color:#00c758">确定</view>
+</view>
+</view>
+</view>
+</van-dialog2>
+
+
 </view>

@@ -5,7 +5,9 @@
     "pages/Myself/Myself",
     "pages/logs/logs",
     "pages/myClass/myClass",
-    "pages/modifyInfo/modifyInfo"
+    "pages/modifyInfo/modifyInfo",
+    "miniprogram_npm/dialog2",
+    "pages/classShow/classShow"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +28,7 @@
         "text": "课程"
       },
       {
-        "pagePath": "pages/community/community",
+        "pagePath": "pages/classShow/classShow",
         "iconPath": "images/community.png",
         "selectedIconPath": "images/communitySelected.png",
         "text": "社区"

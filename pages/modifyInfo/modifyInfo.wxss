@@ -40,3 +40,36 @@ padding-right: 20rpx;
     font-size: 14px;
 
   }
+  .inputContainer{
+    width: 600rpx;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 20rpx;
+  }
+  .input{
+    height: 80rpx;
+    background-color: #eee;
+    font-size: 18px;
+  }
+  .dialogTitle{
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20rpx;
+  }
+  .dialogButton{
+    border-radius: 20rpx;
+    font-size: 18px;
+    width: 300rpx;
+    height: 80rpx;
+    border-left: 2rpx solid #eee;
+    margin-top: 30rpx;
+  }
+  .dialogFlexItem{
+    min-height: 100rpx;
+  }
+  .dialogButtonContainer{
+display: flex;
+flex-direction: row;
+  }
