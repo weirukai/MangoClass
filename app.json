@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/myClass/myClass",
     "pages/modifyInfo/modifyInfo",
-    "miniprogram_npm/dialog2"
+    "miniprogram_npm/dialog2",
+    "pages/classShow/classShow"
   ],
   "window": {
     "backgroundTextStyle": "light",
