@@ -1,1 +1,61 @@
 /* pages/classShow/classShow.wxss */
+.classContainer{
+width: 750rpx;
+border-bottom: 3rpx solid #eee;
+}
+.othersContainer{
+  display: flex;
+  flex-direction: column;
+}
+.videoContainer{
+  width: 750rpx;
+}
+.video{
+width: 750rpx;
+}
+.actions{
+  width: 750rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  padding-top: 20rpx;
+}
+.imageContainer{
+  display: flex;
+  min-width: 187rpx;
+  flex-direction: column;
+}
+.actionImage{
+  max-width: 60rpx;
+  max-height: 60rpx;
+  margin: auto;
+}
+.actionCount{
+  margin: auto;
+  font-size: 12px;
+  color: #808080;
+}
+.commentsContainer{
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+}
+.commentItem{
+display: flex;
+flex-direction: row;
+min-height: 130rpx;
+align-items: center;
+}
+.commentItemImage{
+  max-height: 100rpx;
+  max-width: 100rpx;
+  border-radius: 50%;
+  border: 2rpx solid #00c758;
+}
+.content{
+display: flex;
+flex-direction: column;
+margin-left: 30rpx;
+width: 650rpx;
+border-bottom: 3rpx solid #eee;
+}

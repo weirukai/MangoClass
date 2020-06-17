@@ -5,6 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    comments:[
+      {
+        id:"熊大",
+        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=1951682926,1045257043&fm=26&gp=0.jpg",
+        content:"这个课程稚得推荐，非常好看的一个课程",
+        date:"2020-06-10",
+      },
+      {
+        id:"熊二",
+        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=3426116655,1196736030&fm=26&gp=0.jpg",
+        content:"课程不错，推荐一波",
+        date:"2019-08-10",
+      },
+    ]
 
   },
 

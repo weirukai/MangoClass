@@ -1,2 +1,53 @@
 <!--pages/classShow/classShow.wxml-->
-<text>pages/classShow/classShow.wxml</text>
+<view class="classContainer">
+<view class="videoContainer"><video class="video" 
+enable-progress-gesture="true"
+enable-play-gesture="true"
+vslide-gesture="true"
+src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400">
+</video>
+</view>
+
+<view  class="othersContainer">
+
+<view class="actions">
+<view class="imageContainer">
+<image src="/images/download.png" class="actionImage" ></image>
+<view class="actionCount">下载</view>
+</view>
+<view class="imageContainer">
+<image src="/images/comments.png" class="actionImage" ></image>
+<view class="actionCount">123</view>
+</view>
+<view class="imageContainer">
+<image src="/images/likes.png" class="actionImage" ></image>
+<view class="actionCount">34</view>
+</view>
+<view class="imageContainer">
+<image src="/images/share.png" class="actionImage" ></image>
+<view class="actionCount">分享</view>
+</view>
+</view>
+
+<van-tabs color="#00c758">
+<van-tab title="简介"> 
+
+</van-tab>
+<van-tab  title="评论">
+<view class="commentsContainer">
+<view wx:for="{{comments}}" wx:key="item" class="commentItem">
+<image class="commentItemImage" src="{{item.masterImageSrc}}"></image>
+<view class="content">
+<view style="color:#808080">{{item.id}}</view>
+<view>{{item.content}}</view>
+<view style="color:#808080;font-size:12px">{{item.date}}</view>
+</view>
+</view>
+
+</view>
+</van-tab>
+</van-tabs>
+
+
+</view>
+</view>
