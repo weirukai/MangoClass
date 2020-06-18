@@ -2,7 +2,6 @@
 //获取应用实例
 //搜索课程，查看课程推荐，课程排行等等功能
 const app = getApp()
-
 Page({
   data: {
     userInfo: {},

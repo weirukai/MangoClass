@@ -152,7 +152,7 @@ border-radius: 30rpx;
 
 .uploader{
   padding-left: 220rpx;
-  padding-left: 220rpx;
+  padding-left: 220rpx; 
   padding-top: 30rpx;
   padding-bottom: 20rpx;
 }
@@ -188,4 +188,42 @@ border-radius: 30rpx;
   width:300rpx ;
   height: 200rpx;
   background-color: #eee;
+}
+.inputContainer{
+  width: 600rpx;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.input{
+  height: 80rpx;
+  background-color: #eee;
+  font-size: 18px;
+}
+.dialogTitle{
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20rpx;
+}
+.dialogButton{
+  border-radius: 20rpx;
+  font-size: 18px;
+  width: 300rpx;
+  height: 80rpx;
+  border-left: 2rpx solid #eee;
+  margin-top: 30rpx;
+}
+.dialogFlexItem{
+  min-height: 100rpx;
+}
+.dialogButtonContainer{
+display: flex;
+flex-direction: row;
+}
+.editPlan{
+  max-width: 30rpx;
+  max-height: 30rpx;
+  margin-left: 275rpx;
 }

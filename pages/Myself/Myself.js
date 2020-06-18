@@ -7,6 +7,7 @@ Page({
   data: {
     hasLogin:false,//判断用户是否登录，登录后请修改
     showStudyPlan:false,
+    showPhoneDialog:false,
     canIUse:wx.canIUse('button.open-type.getUserInfo'),
     //模拟一个myInfo
     myInfo:{
@@ -66,6 +67,22 @@ Page({
       showStudyPlan:false
     })
   },
+  showPhoneDialog:function(e)
+  {
+    var selected=e.target.id
+    this.setData({
+      showPhoneDialog:true,
+    })
+  },
+  closePhoneDialog:function()
+  {
+    this.setData(
+      {
+        showPhoneDialog:false,
+      }
+    )
+  },
+
   gotoModifyInfo:function()
   {
     if(!this.data.hasLogin )
