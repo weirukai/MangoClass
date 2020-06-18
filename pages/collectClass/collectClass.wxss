@@ -1,0 +1,88 @@
+/* pages/collectClass/collectClass.wxss */
+.navContainer{
+width: inherit;
+background-color:#fff;
+position: inherit;
+top: 0rpx;
+height: fit-content;
+}
+
+.title{
+width: inherit;
+height: 75rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+color: #00c758;
+padding-left: 30rpx;
+}
+
+.titleImage{
+  max-width: 50rpx;
+  max-height: 50rpx;
+  position: absolute;
+  }
+
+  .subtitle{
+    height: 75rpx;
+    width: 700rpx;
+    border-top: 2rpx solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10rpx;
+  }
+
+  .container{
+    width: 750rpx;
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    padding: 30rpx;
+    }
+
+    .classItemContainer{
+      background-color: #fff;
+      border-radius: 40rpx;
+      padding: 20rpx;
+      
+      }
+
+      .classItem{
+        
+        display: flex;
+        flex-direction: row;
+    
+      }
+      .classImage{
+        max-height: 200rpx;
+        max-width: 250rpx;
+        border-radius: 10rpx;
+        }
+        .classIntroduce{
+        align-items: center;
+        padding-left: 50rpx;
+        padding-left: 10rpx;
+        }
+
+        .swipeCell{
+          height: 250rpx;
+          width: inherit;
+          padding: 20rpx;
+          display: flex;
+          flex-direction: row;
+          border-bottom: 2rpx solid #eee;
+        }
+        
+        .slotItem{
+          height: 250rpx;
+          width: 150rpx;
+          background-color: red;
+          padding-top: 100rpx;
+          
+        }
+
+        .slotText{
+          align-items: center;
+          color: #fff
+        }
