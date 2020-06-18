@@ -5,7 +5,8 @@
     "pages/Myself/Myself",
     "pages/logs/logs",
     "pages/myClass/myClass",
-    "pages/modifyInfo/modifyInfo"
+    "pages/modifyInfo/modifyInfo",
+    "pages/collectClass/collectClass"
   ],
   "window": {
     "backgroundTextStyle": "light",

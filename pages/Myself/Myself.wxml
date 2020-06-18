@@ -56,7 +56,7 @@
 <!--学习计划弹出页结束--->
 <view class="space2"></view>
 <!---收藏课程-->
-<navigator>
+<navigator url="/pages/collectClass/collectClass">
 <view class="menuItem"><view>收藏课程</view><van-icon name="arrow" color="#00c758"/></view>
 </navigator>
 <view class="space2"></view>
@@ -81,8 +81,8 @@ color="#00c758" />
       </view>
       <view class="uploader">
       
-         <van-uploader >
-        <van-button icon="video" type="primary" >上传文件</van-button>
+         <van-uploader  file-list="{{ fileList }}" bind:after-read="afterRead" >
+       
       </van-uploader></view>
    
     </view>
@@ -98,7 +98,7 @@ color="#00c758" />
 <view class="space2"></view>
 <view class="menuItem"><view>隐私设置</view><van-icon name="arrow" color="#00c758"/></view>
 <view class="space2"></view>
-<view class="menuItem"><view>手机绑定</view><van-icon name="arrow" color="#00c758"/></view>
+<view class="menuItem" ><view>手机绑定</view><button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button ><van-icon name="arrow" color="#00c758"/></view>
 
 <view class="space1"></view>
 <view class="menuItem"><view>联系我们</view><van-icon name="arrow" color="#00c758"/></view>

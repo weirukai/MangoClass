@@ -1,0 +1,31 @@
+<!--pages/collectClass/collectClass.wxml-->
+<view class="navContainer">
+<view class="title"> 
+<view style="font-size:20px">课程</view>
+<image class="titleImage" style="right:120rpx" src="/images/plan.png"></image>
+<image class="titleImage"  style="right:12rpx" src="/images/download.png"></image>
+</view>
+<view class="subtitle">
+<view>收藏课程（{{collectClassNum}}）</view>
+<van-icon name="arrow-down" />
+</view>
+</view>
+
+<view class="container">
+<view class="classItemContainer">
+
+
+<van-swipe-cell class="swipeCell" right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onClose" wx:for="{{myClass}}" wx:key="item">
+<view class="classItem">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:18px">{{item.title}}</view>
+<view style="font-size:14px;color:#808080">{{item.origin}}</view>
+</view>
+</view>
+<view slot="right" class="slotItem"><view class="slotText">取消收藏</view></view>
+</van-swipe-cell>
+
+
+</view>
+</view>
