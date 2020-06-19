@@ -32,7 +32,10 @@ Page({
         classId:options.id
       }
     )
-    console.log(this.data.classId)
+    //确定是能够识别到那个页面传进来的
+    
+
+
   },
 
   /**
