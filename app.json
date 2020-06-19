@@ -28,7 +28,7 @@
         "text": "课程"
       },
       {
-        "pagePath": "pages/classShow/classShow",
+        "pagePath": "pages/community/community",
         "iconPath": "images/community.png",
         "selectedIconPath": "images/communitySelected.png",
         "text": "社区"
