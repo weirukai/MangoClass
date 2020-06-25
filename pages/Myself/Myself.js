@@ -106,7 +106,18 @@ Page({
           success(res){
             //发送给后台进行一个解析，并且返回相应的用户的其他的数据
             wx.request({
-              url: 'url',
+              url: 'https://192.168.2.101:8080/userLogin2',
+              data:{
+                code:res.code
+              },
+              method:'POST',
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success:res=>
+              {
+                console.log(res.data)
+              }
             })
           },
         })

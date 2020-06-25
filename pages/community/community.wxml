@@ -1,2 +1,4 @@
 <!--pages/community.wxml-->
 <text>pages/community.wxml</text>
+<button bindtap="loginTest">登录</button>
+<button  bindtap="testfun">测试 </button>

@@ -1,6 +1,7 @@
 //app.js
 App({
   globalData: {
+    hasLogin:false,
     userInfo: null
   },
   onLaunch: function () {
@@ -9,7 +10,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-
+    
     // 登录
     wx.login({
       success: res => {

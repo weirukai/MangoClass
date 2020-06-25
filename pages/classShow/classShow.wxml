@@ -16,8 +16,8 @@ src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=3028020101042
 <view class="actionCount">下载</view>
 </view>
 <view class="imageContainer">
-<image src="/images/comments.png" class="actionImage" ></image>
-<view class="actionCount">123</view>
+<image src="/images/collection.png" class="actionImage" ></image>
+<view class="actionCount">收藏</view>
 </view>
 <view class="imageContainer">
 <image src="/images/likes.png" class="actionImage" ></image>
@@ -43,11 +43,15 @@ src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=3028020101042
 <view style="color:#808080;font-size:12px">{{item.date}}</view>
 </view>
 </view>
-
 </view>
 </van-tab>
 </van-tabs>
 
 
+</view>
+<view class="docommentsCon">
+<input class="writeCom"></input>
+<image class="writeImage" src="/images/editGreen.png"></image>
+<view class="writeComButton" ><view style="text-align:center">发送</view></view>
 </view>
 </view>
