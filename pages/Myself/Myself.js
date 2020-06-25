@@ -112,36 +112,39 @@ Page({
                   }
                 }
               })
+
+              wx.login({
+                success(res){
+                  //发送给后台进行一个解析，并且返回相应的用户的其他的数据
+                  var that=this
+                  wx.request({
+                    url: 'http://192.168.2.100:8080/user/login',
+                    data:{
+                      code:res.code,
+                      roles:"common_user"
+                    },
+                    method:'POST',
+                    header: {
+                      'content-type': 'application/json' // 默认值
+                    },
+                    success:res=>
+                    {
+                      if(res.statusCode==200)
+                      {
+                        myAPP.globalData.hasLogin=true
+                        var token=res.data.token
+                        that.setData({
+                          hasLogin:myAPP.globalData.hasLogin
+                        })
+                      }
+                    }
+                  })
+                },
+              })
             }
           }
         })
-        wx.login({
-          success(res){
-            //发送给后台进行一个解析，并且返回相应的用户的其他的数据
-            var that=this
-            wx.request({
-              url: 'http://192.168.2.100:8080/user/login',
-              data:{
-                code:res.code,
-              },
-              method:'POST',
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success:res=>
-              {
-                if(res.statusCode==200)
-                {
-                  myAPP.globalData.hasLogin=true
-                  console.log(res.data.token)
-                  that.setData({
-                    hasLogin:myAPP.globalData.hasLogin
-                  })
-                }
-              }
-            })
-          },
-        })
+       
         //获取用户的信息
         
       }
@@ -170,7 +173,6 @@ Page({
       }
     })
   },
-
 
   /**
    * 生命周期函数--监听页面加载

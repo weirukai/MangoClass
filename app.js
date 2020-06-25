@@ -16,8 +16,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -34,30 +32,37 @@ App({
               }
             }
           })
+          //假如获得了授权就直接登录
+          var that=this
+          wx.login({
+            success(res){
+              wx.request({
+                url: 'http://192.168.2.100:8080/user/login',
+                data:{
+                  code:res.code,
+                  roles:"commom_user"
+                },
+                method:'POST',
+                header: {
+                  'content-type': 'application/json' // 默认值
+                },
+                success:res=>
+              {
+                //网络请求发送成功
+                if(res.statusCode==200)
+                {
+                  //登录成功
+                  that.globalData.hasLogin=true;
+                  //解析token
+                }
+              }
+              })
+            }
+          })
+
         }
-      }
-    })
-    wx.login({
-      success: res => {
-        wx.request({
-          url: 'http:192.168.2.100:8080/user/login',
-          data:{
-            code:res.code
-          },
-          success:res=>
-        {
-          //网络请求发送成功
-          if(res.statusCode=200)
-          {
-            //登录成功
-            this.globalData.hasLogin=true;
-            //解析token
-            console.log(res.data.token)
-          }
-        }
-        })
       }
     })
   },
-  
+
 })
