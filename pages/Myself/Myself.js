@@ -5,18 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hasLogin:false,//判断用户是否登录，登录后请修改
+    hasLogin:false,
     showStudyPlan:false,
     showPhoneDialog:false,
     canIUse:wx.canIUse('button.open-type.getUserInfo'),
     //模拟一个myInfo
     myInfo:{
-      id:"一叶知秋",
-      grade:"高三",
-      bookType:"人教版",
-      motto:"书山有路勤为径",
-      userImageSrc:"",
-      School:"华中科技大学"
+      
     },
     studyStatus:[
       {name:"课程",
@@ -85,7 +80,7 @@ Page({
 
   gotoModifyInfo:function()
   {
-    if(!this.data.hasLogin )
+    if(!myAPP.globalData.hasLogin )
     {
       //提示用户登录toast轻提示
     }else{
@@ -98,7 +93,7 @@ Page({
    * 用户点击登录
   */
    loginNow:function(e){
-     if(this.data.hasLogin)
+     if(myAPP.globalData.hasLogin)
        return
       else
       {
@@ -137,10 +132,13 @@ Page({
    */
   onLoad: function (options) {
     /**用户登录*/
+    this.setData({hasLogin:myAPP.globalData.hasLogin})
+    this.setData({myInfo:myAPP.globalData.myInfo})
     if(myAPP.globalData.userInfo)
     {
+      myAPP.globalData.hasLogin=true
       this.setData({
-        hasLogin:true
+        hasLogin:myAPP.globalData.hasLogin
       })
       var userImageSrc='myInfo.userImageSrc'
       this.setData({
@@ -150,9 +148,10 @@ Page({
     }else  if(this.data.canIUse){
       myAPP.userInfoReadyCallback= res=>{
         var userImageSrc='myInfo.userImageSrc'
+        myAPP.globalData.hasLogin=true
         this.setData({
           [userImageSrc]:myAPP.globalData.userInfo.avatarUrl,
-          hasLogin:true
+          hasLogin: myAPP.globalData.hasLogin
         })
       }
     }

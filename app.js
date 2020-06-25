@@ -1,7 +1,15 @@
 //app.js
 App({
   globalData: {
-    userInfo: null
+    userInfo: null,
+    haslogin : false,
+    myInfo:{
+    id:"一叶知秋",
+    grade:"高三",
+    bookType:"人教版",
+    motto:"书山有路勤为径",
+    userImageSrc:"",
+    School:"华中科技大学"}
   },
   onLaunch: function () {
     // 展示本地存储能力
