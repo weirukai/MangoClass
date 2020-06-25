@@ -54,6 +54,14 @@ App({
                   //登录成功
                   that.globalData.hasLogin=true;
                   //解析token
+                  console.log(res.data)
+                  var jsonstr=JSON.stringify(res.data)
+                  var jsonObj=JSON.parse(jsonstr)
+                  var token=jsonObj.data.token
+                  wx.setStorage({
+                    data: token,
+                    key: 'token',
+                  })
                 }
               }
               })
