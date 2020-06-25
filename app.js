@@ -1,6 +1,7 @@
 //app.js
 App({
   globalData: {
+
     userInfo: null,
     haslogin : false,
     myInfo:{
@@ -10,6 +11,8 @@ App({
     motto:"书山有路勤为径",
     userImageSrc:"",
     School:"华中科技大学"}
+
+
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -17,7 +20,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-
+    
     // 登录
     wx.login({
       success: res => {
