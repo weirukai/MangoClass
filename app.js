@@ -1,9 +1,8 @@
 //app.js
 App({
   globalData: {
-
     userInfo: null,
-    haslogin : false,
+    hasLogin : false,
     myInfo:{
     id:"一叶知秋",
     grade:"高三",
@@ -11,8 +10,6 @@ App({
     motto:"书山有路勤为径",
     userImageSrc:"",
     School:"华中科技大学"}
-
-
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -21,12 +18,6 @@ App({
     wx.setStorageSync('logs', logs)
 
     
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -44,6 +35,27 @@ App({
             }
           })
         }
+      }
+    })
+    wx.login({
+      success: res => {
+        wx.request({
+          url: 'http:192.168.2.100:8080/user/login',
+          data:{
+            code:res.code
+          },
+          success:res=>
+        {
+          //网络请求发送成功
+          if(res.statusCode=200)
+          {
+            //登录成功
+            this.globalData.hasLogin=true;
+            //解析token
+            console.log(res.data.token)
+          }
+        }
+        })
       }
     })
   },

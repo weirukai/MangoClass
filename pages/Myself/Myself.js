@@ -97,26 +97,6 @@ Page({
        return
       else
       {
-        wx.login({
-          success(res){
-            //发送给后台进行一个解析，并且返回相应的用户的其他的数据
-            wx.request({
-              url: 'https://192.168.2.101:8080/userLogin2',
-              data:{
-                code:res.code
-              },
-              method:'POST',
-              header: {
-                'content-type': 'application/json' // 默认值
-              },
-              success:res=>
-              {
-                console.log(res.data)
-              }
-            })
-          },
-        })
-        //获取用户的信息
         wx.getSetting({
           success: res => {
             if (res.authSetting['scope.userInfo']) {
@@ -135,19 +115,74 @@ Page({
             }
           }
         })
+        wx.login({
+          success(res){
+            //发送给后台进行一个解析，并且返回相应的用户的其他的数据
+            var that=this
+            wx.request({
+              url: 'http://192.168.2.100:8080/user/login',
+              data:{
+                code:res.code,
+              },
+              method:'POST',
+              header: {
+                'content-type': 'application/json' // 默认值
+              },
+              success:res=>
+              {
+                if(res.statusCode==200)
+                {
+                  myAPP.globalData.hasLogin=true
+                  console.log(res.data.token)
+                  that.setData({
+                    hasLogin:myAPP.globalData.hasLogin
+                  })
+                }
+              }
+            })
+          },
+        })
+        //获取用户的信息
+        
       }
    },
+   /**
+    * 向服务器拉取全部的用户信息
+    * **/
+   getUserAllInfo:function()
+  {
+    var token=wx.getStorage({
+      key: 'token',
+    })
+    wx.request({
+      url: 'http://192.168.2.100:8080/user/getUserAllInfo',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization':token
+      },
+      success:res=>
+      {
+        //获取成功
+        if(res.statusCode==200)
+        {
+          var body=res.data
+        }
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     /**用户登录*/
+    console.log("onload")
     this.setData({hasLogin:myAPP.globalData.hasLogin})
     this.setData({myInfo:myAPP.globalData.myInfo})
     if(myAPP.globalData.userInfo)
     {
-      myAPP.globalData.hasLogin=true
+      //说明其app.js中已经获得登陆了
       this.setData({
         hasLogin:myAPP.globalData.hasLogin
       })
@@ -171,6 +206,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    console.log("onready")
 
   },
 
@@ -179,6 +215,7 @@ Page({
    */
   onShow: function () {
 
+    console.log("onshow")
 
   },
 
