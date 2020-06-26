@@ -10,12 +10,12 @@ Page({
     dialogTitle:"",
     inputValue:"",
     myInfo:{
-      id:"一叶知秋",
-      grade:"高三",
-      bookType:"人教版",
-      motto:"操千曲而后晓声，观千剑而后识器",
+      id:"",
+      grade:"",
+      bookType:"",
+      motto:"",
       userImageSrc:"",
-      School:"清华大学"
+      School:""
     },
   },
   showDialog:function(e)
@@ -121,7 +121,8 @@ changeNickName:function(e){
   }
 })
       wx.request({
-        url: 'http://192.168.0.106:8080/user/changeNickName',
+
+        url: 'http://192.168.2.100:8080/user/changeNickName',
          header:{
           'content-type': 'application/json' ,
           'Authorization': this.token
@@ -132,12 +133,20 @@ changeNickName:function(e){
          },
          success:res=>{
              if(res.statusCode==200){
-               that.closeDialog()
+              wx.showToast({
+                title: '成功',
+              })
              }
+         },
+         finally:res=>
+         {
+           that.closeDialog()
          }
       })
+
       
 },
+
 changeMotto:function(e){
   var token
   var that =this
@@ -148,7 +157,7 @@ changeMotto:function(e){
   }
 })
       wx.request({
-        url: 'http://192.168.0.106:8080/user/changeMotto',
+        url: 'http://192.168.2.100:8080/user/changeMotto',
          header:{
           'content-type': 'application/json' ,
           'Authorization': this.token
@@ -159,8 +168,14 @@ changeMotto:function(e){
          },
          success:res=>{
              if(res.statusCode==200){
-               that.closeDialog()
+              wx.showToast({
+                title: '成功',
+              })
              }
+         },
+         finally:res=>
+         {
+           that.closeDialog()
          }
       })
 },
@@ -174,9 +189,11 @@ changeShool:function(){
     that.token = res.data
   }
 })
-      wx.request({
-        url: 'http://192.168.0.106:8080/user/changeSchool',
-         header:{
+
+
+wx.request({
+    url: 'http://192.168.2.100:8080/user/changeSchool',
+    header:{
           'content-type': 'application/json' ,
           'Authorization': this.token
          },
@@ -186,18 +203,66 @@ changeShool:function(){
          },
          success:res=>{
              if(res.statusCode==200){
-               that.closeDialog()
+              wx.showToast({
+                title: '成功',
+              })
              }
+         },
+         finally:res=>
+         {
+           that.closeDialog()
          }
       })
 },
+
 refreshMyInfo:function()
 {
   //跟新教材版本和年级
   var grade=this.data.myInfo.grade
   var bookType=this.data.myInfo.bookType
+  var nickName=this.data.myInfo.id
+  var motto=this.data.myInfo.motto
+  var school=this.data.myInfo.School
+  var userImageSrc=this.data.myInfo.userImageSrc
   var gradePath='myInfo.grade'
   var bookTypePath='myInfo.bookType'
+  var token
+  var that=this
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+  wx.request({
+    url: 'http://192.168.2.100:8080/user/getUserAllInfo',
+    header: {
+      'content-type': 'application/json', // 默认值
+      'Authorization':token
+    },
+    success:res=>
+    {
+      //获取成功
+      if(res.statusCode==200)
+      {
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        that.setData({
+          
+
+
+        })
+      }
+    },
+    failed:res=>{
+      console.log("cuowu")
+    },
+    complete:res=>
+    {
+    }
+  })
+
   wx.getStorage({
     key: 'grade',
     success:res=>{
@@ -211,19 +276,27 @@ refreshMyInfo:function()
       bookType=res.data
     }
   })
+
+
   this.setData({
     [bookTypePath]:bookType,
     [gradePath]:grade
   })
   //跟新其他的信息，需要网络请求
-
 },
+
+
+
+
+
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     this.refreshMyInfo()
-    
+     
   },
 
   /**
@@ -237,7 +310,7 @@ refreshMyInfo:function()
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.refreshMyInfo()
   },
 
   /**
@@ -258,7 +331,7 @@ refreshMyInfo:function()
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+   
   },
 
   /**

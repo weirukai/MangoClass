@@ -4,12 +4,10 @@
 enable-progress-gesture="true"
 enable-play-gesture="true"
 vslide-gesture="true"
-src="http://192.168.2.100:8080/class/getPlayResource/123">
+src="http://192.168.2.100:8080/class/getPlayResource/3">
 </video>
 </view>
-
 <view  class="othersContainer">
-
 <view class="actions">
 <view class="imageContainer">
 <image src="/images/download.png" class="actionImage" ></image>
@@ -28,10 +26,8 @@ src="http://192.168.2.100:8080/class/getPlayResource/123">
 <view class="actionCount">分享</view>
 </view>
 </view>
-
 <van-tabs color="#00c758">
 <van-tab title="简介"> 
-
 </van-tab>
 <van-tab  title="评论">
 <view class="commentsContainer">
@@ -46,8 +42,6 @@ src="http://192.168.2.100:8080/class/getPlayResource/123">
 </view>
 </van-tab>
 </van-tabs>
-
-
 </view>
 <view class="docommentsCon">
 <input class="writeCom"></input>

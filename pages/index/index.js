@@ -62,42 +62,14 @@ Page({
 
   toClassShow:function(e)
   {
-
     wx.navigateTo({
       url: '/pages/classShow/classShow?id='+e.currentTarget.dataset.id
     })
-
   },
 
+  
 
 
-
-  //事件处理函数
-  /*bindViewTap: function() {
-    // wx.navigateTo({
-    //   url: '../logs/logs'
-    // })
-    /*var that=this
-    wx.request({
-      url:'http://111.173.220.16:8080/Login_war_exploded/getString',
-      success(res){
-        console.log(res.data)
-        console.log(1)
-         that.setData(
-           {motto: res.data}
-         )
-      },
-      fail(res)
-      {
-        console.log(12)
-      },
-      finally(res){
-        console.log(11)
-      }
-    })
-    
-   
-  },*/
 
   onLoad: function () {
     if (app.globalData.userInfo) {

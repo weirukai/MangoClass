@@ -178,7 +178,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://192.168.0.106:8080/user/getUserAllInfo',
+      url: 'http://192.168.2.100:8080/user/getUserAllInfo',
       header: {
         'content-type': 'application/json', // 默认值
         'Authorization':this.token
