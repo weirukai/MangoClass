@@ -15,13 +15,13 @@ Page({
     },
     studyStatus:[
       {name:"课程",
-       value:3},
+       value:'0'},
        {name:"时长",
-       value:3},
+       value:''},
       {name:"积分",
-      value:3},
+      value:''},
       {name:"余额",
-      value:3}
+      value:''}
     ],
     studyPlan:[
       {
@@ -189,9 +189,20 @@ Page({
         if(res.statusCode==200)
         {
           var body=res.data
+          if(body.data.nickname=='<null>'){
+            myAPP.globalData.myInfo.id=myAPP.globalData.userInfo.nickName
+          }else{
           myAPP.globalData.myInfo.id =body.data.nickname
-          myAPP.globalData.myInfo.school = body.data.school
-          myAPP.globalData.myInfo.motto  = body.data.motto
+          }
+          myAPP.globalData.myInfo.School = body.data.school
+          myAPP.globalData.myInfo.motto  = body.data.signature
+          if(body.data.study_time==0){
+            console.log(this.data.studyStatus[1].value)
+            var numpath ='this.data.studyStatus[1].value'
+            this.setData({
+              [numpath]:'0'}
+            )
+          }
           this.updateInfo()
         }
       }
@@ -201,8 +212,19 @@ Page({
    * 更新页面信息
    */
   updateInfo:function(e){
-
-        this.setData({myInfo:myAPP.globalData.myInfo})
+    wx.getStorage({
+      key: 'grade',
+      success:res=>{
+        myAPP.globalData.myInfo.grade = res.data
+      }
+    })
+    wx.getStorage({
+      key: 'bookType',
+      success:res=>{
+        myAPP.globalData.myInfo.bookType = res.data
+      }
+    })
+      this.setData({myInfo:myAPP.globalData.myInfo})
   },
 
   /**
