@@ -101,10 +101,96 @@ changeInfo:function(e)
   else if(this.data.dialogTitle=="教材版本")
   {
     this.changeBookType()
+  }else if(this.data.dialogTitle=="昵称"){
+     this.changeNickName()
+  }else if(this.data.dialogTitle=="学习格言"){
+     this.changeMotto()
+  }else if(this.data.dialogTitle=="学习格言"){
+     this.changeShool()
   }
 //更改最后应该刷新页面
 },
 
+changeNickName:function(e){
+  var token
+  var that =this
+  wx.getStorage({
+  key: 'token',
+  success:res=>{
+    that.token = res.data
+  }
+})
+      wx.request({
+        url: 'http://192.168.0.106:8080/user/changeNickName',
+         header:{
+          'content-type': 'application/json' ,
+          'Authorization': this.token
+         },
+         method:'POST',
+         data:{
+            'nickName':that.data.inputValue
+         },
+         success:res=>{
+             if(res.statusCode==200){
+               that.closeDialog()
+             }
+         }
+      })
+      
+},
+changeMotto:function(e){
+  var token
+  var that =this
+  wx.getStorage({
+  key: 'token',
+  success:res=>{
+    that.token = res.data
+  }
+})
+      wx.request({
+        url: 'http://192.168.0.106:8080/user/changeMotto',
+         header:{
+          'content-type': 'application/json' ,
+          'Authorization': this.token
+         },
+         method:'POST',
+         data:{
+            'motto':that.data.inputValue
+         },
+         success:res=>{
+             if(res.statusCode==200){
+               that.closeDialog()
+             }
+         }
+      })
+},
+
+changeShool:function(){
+  var token
+  var that =this
+  wx.getStorage({
+  key: 'token',
+  success:res=>{
+    that.token = res.data
+  }
+})
+      wx.request({
+        url: 'http://192.168.0.106:8080/user/changeSchool',
+         header:{
+          'content-type': 'application/json' ,
+          'Authorization': this.token
+         },
+         method:'POST',
+         data:{
+            'school':that.data.inputValue
+         },
+         success:res=>{
+             if(res.statusCode==200){
+               that.closeDialog()
+             }
+         }
+      })
+},
 refreshMyInfo:function()
 {
   //跟新教材版本和年级

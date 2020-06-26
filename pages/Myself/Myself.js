@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hasLogin:false,
+    haslogin:false,
     showStudyPlan:false,
     showPhoneDialog:false,
     canIUse:wx.canIUse('button.open-type.getUserInfo'),
@@ -80,7 +80,7 @@ Page({
 
   gotoModifyInfo:function()
   {
-    if(!myAPP.globalData.hasLogin )
+    if(!myAPP.globalData.haslogin )
     {
       //提示用户登录toast轻提示
     }else{
@@ -93,20 +93,28 @@ Page({
    * 用户点击登录
   */
    loginNow:function(e){
-     if(myAPP.globalData.hasLogin)
-       return
+     if(myAPP.globalData.haslogin){
+         console.log("已经登陆")
+         return 
+     }
       else
       {
         wx.getSetting({
           success: res => {
             if (res.authSetting['scope.userInfo']) {
               // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+              console.log("已获取授权")
               wx.getUserInfo({
                 success: res => {
+                  console.log("获取信息")
                   // 可以将 res 发送给后台解码出 unionId
                   myAPP.globalData.userInfo = res.userInfo
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                   // 所以此处加入 callback 以防止这种情况
+                  myAPP.globalData.haslogin=true
+                  this.setData({
+                    haslogin:myAPP.globalData.haslogin=true
+                  })
                   if (myAPP.userInfoReadyCallback) {
                     myAPP.userInfoReadyCallback(res)
                   }
@@ -118,7 +126,7 @@ Page({
                   //发送给后台进行一个解析，并且返回相应的用户的其他的数据
                   var that=this
                   wx.request({
-                    url: 'http://192.168.2.100:8080/user/login',
+                    url: 'http://192.168.0.106:8080/user/login',
                     data:{
                       code:res.code,
                       roles:"common_user"
@@ -131,7 +139,7 @@ Page({
                     {
                       if(res.statusCode==200)
                       {
-                        myAPP.globalData.hasLogin=true
+                        myAPP.globalData.haslogin=true
                         console.log(res.data)
                         var jsonstr=JSON.stringify(res.data)
                         var jsonObj=JSON.parse(jsonstr)
@@ -140,9 +148,9 @@ Page({
                           data: token,
                           key: 'token',
                         })
-                        that.setData({
-                          hasLogin:myAPP.globalData.hasLogin
-                        })
+                        // that.setData({
+                        //   haslogin:myAPP.globalData.haslogin
+                        // })
                       }
                     }
                   })
@@ -160,15 +168,20 @@ Page({
     * 向服务器拉取全部的用户信息
     * **/
    getUserAllInfo:function()
-  {
-    var token=wx.getStorage({
+  {   
+      var token
+      var that =this
+      wx.getStorage({
       key: 'token',
+      success:res=>{
+        that.token = res.data
+      }
     })
     wx.request({
-      url: 'http://192.168.2.100:8080/user/getUserAllInfo',
+      url: 'http://192.168.0.106:8080/user/getUserAllInfo',
       header: {
         'content-type': 'application/json', // 默认值
-        'Authorization':token
+        'Authorization':this.token
       },
       success:res=>
       {
@@ -176,9 +189,20 @@ Page({
         if(res.statusCode==200)
         {
           var body=res.data
+          myAPP.globalData.myInfo.id =body.data.nickname
+          myAPP.globalData.myInfo.school = body.data.school
+          myAPP.globalData.myInfo.motto  = body.data.motto
+          this.updateInfo()
         }
       }
     })
+  },
+  /**
+   * 更新页面信息
+   */
+  updateInfo:function(e){
+
+        this.setData({myInfo:myAPP.globalData.myInfo})
   },
 
   /**
@@ -187,13 +211,14 @@ Page({
   onLoad: function (options) {
     /**用户登录*/
     console.log("onload")
-    this.setData({hasLogin:myAPP.globalData.hasLogin})
+    this.setData({haslogin:myAPP.globalData.haslogin})
     this.setData({myInfo:myAPP.globalData.myInfo})
     if(myAPP.globalData.userInfo)
     {
       //说明其app.js中已经获得登陆了
+      myAPP.globalData.haslogin=true
       this.setData({
-        hasLogin:myAPP.globalData.hasLogin
+        haslogin:myAPP.globalData.haslogin
       })
       var userImageSrc='myInfo.userImageSrc'
       this.setData({
@@ -203,14 +228,16 @@ Page({
     }else  if(this.data.canIUse){
       myAPP.userInfoReadyCallback= res=>{
         var userImageSrc='myInfo.userImageSrc'
-        myAPP.globalData.hasLogin=true
+        myAPP.globalData.haslogin=true
         this.setData({
           [userImageSrc]:myAPP.globalData.userInfo.avatarUrl,
-          hasLogin: myAPP.globalData.hasLogin
+          haslogin: myAPP.globalData.haslogin
         })
       }
     }
+    
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -223,7 +250,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserAllInfo()
     console.log("onshow")
 
   },
