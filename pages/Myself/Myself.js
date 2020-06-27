@@ -17,11 +17,11 @@ Page({
       {name:"课程",
        value:'0'},
        {name:"时长",
-       value:''},
+       value:'0'},
       {name:"积分",
-      value:''},
+      value:'0'},
       {name:"余额",
-      value:''}
+      value:'0'}
     ],
     studyPlan:[
       {
@@ -126,7 +126,7 @@ Page({
                   //发送给后台进行一个解析，并且返回相应的用户的其他的数据
                   var that=this
                   wx.request({
-                    url: 'http://192.168.0.106:8080/user/login',
+                    url: 'http://192.168.2.100:8080/user/login',
                     data:{
                       code:res.code,
                       roles:"common_user"
@@ -174,14 +174,14 @@ Page({
       wx.getStorage({
       key: 'token',
       success:res=>{
-        that.token = res.data
+        token = res.data
       }
     })
     wx.request({
       url: 'http://192.168.2.100:8080/user/getUserAllInfo',
       header: {
         'content-type': 'application/json', // 默认值
-        'Authorization':this.token
+        'Authorization':token
       },
       success:res=>
       {
@@ -189,23 +189,22 @@ Page({
         if(res.statusCode==200)
         {
           var body=res.data
-          if(body.data.nickname=='<null>'){
-            myAPP.globalData.myInfo.id=myAPP.globalData.userInfo.nickName
-          }else{
-          myAPP.globalData.myInfo.id =body.data.nickname
-          }
-          myAPP.globalData.myInfo.School = body.data.school
-          myAPP.globalData.myInfo.motto  = body.data.signature
-          //此处用来更新studyStatus
-          if(body.data.study_time==0){
-            console.log(this.data.studyStatus[1].value)
-            var numpath ='this.data.studyStatus[1].value'
-            this.setData({
-              [numpath]:'0'}
-            )
-          }
-          this.updateInfo()
+          myAPP.globalData.myInfo.id=(body.data.nickname==""||body.data.nickname==null)?myAPP.globalData.userInfo.nickName:res.data.nickname
+          myAPP.globalData.myInfo.School=(body.data.school==null)?"":body.data.body.data.school
+          myAPP.globalData.myInfo.motto  = (body.data.signature==null)?"":body.data.signature
+          this.setData({
+            studyStatus:[ 
+              {name:"课程",value:(res.data.classNum==null)?0:res.data.classNum},
+              {name:"时长",value:(res.data.studyTime==null)?0:res.data.studyTime},
+              {name:"积分",value:(res.data.integral==null)?0:res.data.integral},
+              {name:"余额",value:(res.data.balance==null)?0:res.data.balance}
+          ]
+          })
         }
+      },
+      complete:res=>
+      {
+        that.updateInfo()
       }
     })
   },

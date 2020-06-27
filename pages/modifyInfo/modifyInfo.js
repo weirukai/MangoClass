@@ -139,9 +139,12 @@ changeNickName:function(e){
               })
              }
          },
-         finally:res=>
+         complete:res=>
          {
            that.closeDialog()
+           that.setData({
+             inputValue:""
+           })
          }
       })
 
@@ -177,6 +180,9 @@ changeMotto:function(e){
          complete:res=>
          {
            that.closeDialog()
+           that.setData({
+            inputValue:""
+          })
          }
       })
 },
@@ -187,14 +193,14 @@ changeShool:function(){
   wx.getStorage({
   key: 'token',
   success:res=>{
-    that.token = res.data
+    token = res.data
   }
 })
 wx.request({
     url: 'http://192.168.2.100:8080/user/changeSchool',
     header:{
           'content-type': 'application/json' ,
-          'Authorization': this.token
+          'Authorization': token
          },
          method:'POST',
          data:{
@@ -210,6 +216,9 @@ wx.request({
          complete:res=>
          {
            that.closeDialog()
+           that.setData({
+            inputValue:""
+          })
          }
       })
 },
