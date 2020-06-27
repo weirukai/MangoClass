@@ -174,7 +174,7 @@ changeMotto:function(e){
               })
              }
          },
-         finally:res=>
+         complete:res=>
          {
            that.closeDialog()
          }
@@ -190,8 +190,6 @@ changeShool:function(){
     that.token = res.data
   }
 })
-
-
 wx.request({
     url: 'http://192.168.2.100:8080/user/changeSchool',
     header:{
@@ -209,19 +207,18 @@ wx.request({
               })
              }
          },
-         finally:res=>
+         complete:res=>
          {
            that.closeDialog()
          }
       })
 },
-
 refreshMyInfo:function()
 {
   //跟新教材版本和年级
   var grade=this.data.myInfo.grade
   var bookType=this.data.myInfo.bookType
-  var nickName='myInfo.nickName'
+  var nickName='myInfo.id'
   var motto='myInfo.motto'
   var school='myInfo.school'
   var userImageSrc="myInfo.userImageSrc"
@@ -235,6 +232,37 @@ refreshMyInfo:function()
     {
       token=res.data
     }
+  })
+  
+  wx.request({
+    url: 'http://192.168.2.100:8080/user/getUserAllInfo',
+    header: {
+      'content-type': 'application/json', // 默认值
+      'Authorization':token
+    },
+    success:res=>
+    {
+      //获取成功
+      if(res.statusCode==200)
+      {
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        that.setData({
+          [nickName]:jsonObj.data.nickname==""?myAPP.globalData.userInfo.nickName:jsonObj.data.nickname,
+          [motto]:jsonObj.data.signature==null?'':jsonObj.data.signature,
+          [school]:jsonObj.data.school==null?'':jsonObj.data.school,
+          //注意头像信息需要额外进行申请，目前后台还没有处理头像的逻辑
+        })
+      }
+    },
+    failed:res=>{
+
+    },
+    complete:res=>
+    {
+
+    }
+    
   })
   wx.getStorage({
     key: 'grade',
@@ -253,54 +281,18 @@ refreshMyInfo:function()
     [gradePath]:grade,
     [bookTypePath]:bookType,
   })
-  wx.request({
-    url: 'http://192.168.2.100:8080/user/getUserAllInfo',
-    header: {
-      'content-type': 'application/json', // 默认值
-      'Authorization':token
-    },
-    success:res=>
-    {
-      //获取成功
-      if(res.statusCode==200)
-      {
-        var jsonStr=JSON.stringify(res.data)
-        var jsonObj=JSON.parse(jsonStr)
-        that.setData({
-          [nickName]:jsonObj.data.nickname==""?myAPP.globaldata.userInfo.nickName:jsonObj.data.nickname,
-          [motto]:jsonObj.data.signature==null?'':jsonObj.data.signature,
-          [school]:jsonObj.data.school==null?'':jsonObj.data.school,
-          //注意头像信息需要额外进行申请，目前后台还没有处理头像的逻辑
-        })
-      }
-    },
-    failed:res=>{
-      
-    },
-    complete:res=>
-    {
-    }
-  })
-  // this.setData({
-  //   [bookTypePath]:bookType,
-  //   [gradePath]:grade
-  // })
-
 },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
