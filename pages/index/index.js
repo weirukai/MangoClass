@@ -19,16 +19,7 @@ Page({
     autoplay: true,
     seniorClasses:[],
     juniorClasses:[],
-    RecommendedClasses:[
-      // {
-      //   ImagePath:"http://edu-image.nosdn.127.net/9F990399C7DDB0F19396B0E0D5872923.png?imageView&thumbnail=510y288&quality=100",
-      //   title:"大学体育（二）",
-      //   origin:"华中科技大学",
-      //   length:18,
-      //   hasLearn:9,
-      //   id:1234
-      // },
-    ]
+    RecommendedClasses:[],
   },
   toClassShow:function(e)
   {
@@ -41,8 +32,49 @@ Page({
   requestForRecommendClass:function()
   {
     //
+    var that=this
+    var token
+    wx.getStorage({
+      key: 'token',
+      success:res=>
+      {
+        token=res.data
+      }
+    })
     wx.request({
       url: myApp.globalData.host+'/class/getRecommendClasses',
+      header: {
+          'content-type': 'application/json', // 默认值
+          'Authorization':token
+        },
+      method:"GET",
+      success:res=>{
+        if(res.statusCode==200)
+        {
+          var tempClasses=[]
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          if(jsonObj.data==null)
+          {return}
+          for( var index=0 ,max=jsonObj.data.length;index<max;index++)
+          {
+            var seniorClass=jsonObj.data[index]
+            var classItem={
+              ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
+              title:seniorClass.name,
+              origin:seniorClass.origin,
+              id:seniorClass.id
+            }
+            tempClasses.push(classItem)
+        }
+        }
+        that.setData({
+          RecommendedClasses:tempClasses
+        })
+      },
+      complete:res=>
+      {
+      }
     })
 
   },
@@ -86,22 +118,59 @@ Page({
   },
 /**获取初中课程的请求*/
 requestForJuniorClasses:function(){
-
+  var that=this
+  wx.request({
+    url: myApp.globalData.host+'/class/getJuniorClasses',
+    header: {
+        'content-type': 'application/json' // 默认值
+      },
+    method:"GET",
+    success:res=>{
+      if(res.statusCode==200)
+      {
+        var tempClasses=[]
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        for( var index=0 ,max=jsonObj.data.length;index<max;index++)
+        {
+          var seniorClass=jsonObj.data[index]
+          var classItem={
+            ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
+            title:seniorClass.name,
+            origin:seniorClass.origin,
+            id:seniorClass.id
+          }
+          tempClasses.push(classItem)
+      }
+      }
+      that.setData({
+        juniorClasses:tempClasses
+      })
+    },
+    complete:res=>
+    {
+    }
+  })
 },
-
 
 /**van-tabs的切换点击事件**/
 clickForSwitchClass:function(title)
 {
+  //这里实际上有一点浪费网络资源
   this.requestForJuniorClasses()
   this.requestForRecommendClass()
   this.requestForSeniorClass()
 },
+refreshAllClasses:function()
+{
+  //跟新课程
+  this.requestForRecommendClass()
+  this.requestForSeniorClass()
+  this.requestForJuniorClasses()
+},
 
-
-
-
-  onLoad: function () {
+onLoad: function () {
+  this.refreshAllClasses()
 
   },
   onShow()
