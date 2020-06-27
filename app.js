@@ -4,12 +4,12 @@ App({
     userInfo: null,
     hasLogin : false,
     myInfo:{
-    id:"一叶知秋",
-    grade:"高三",
-    bookType:"人教版",
-    motto:"书山有路勤为径",
+    id:"",
+    grade:"",
+    bookType:"",
+    motto:"",
     userImageSrc:"",
-    School:"华中科技大学"}
+    School:""}
   },
   onLaunch: function () {
     // 展示本地存储能力
