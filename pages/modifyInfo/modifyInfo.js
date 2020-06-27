@@ -106,7 +106,7 @@ changeInfo:function(e)
      this.changeNickName()
   }else if(this.data.dialogTitle=="学习格言"){
      this.changeMotto()
-  }else if(this.data.dialogTitle=="学习格言"){
+  }else if(this.data.dialogTitle=="学校"){
      this.changeShool()
   }
 //更改最后应该刷新页面
@@ -226,10 +226,10 @@ refreshMyInfo:function()
 {
   //跟新教材版本和年级
   var grade=this.data.myInfo.grade
-  var bookType=this.data.myInfo.bookType
+  var bookType=this.data.myInfo.bookTypeS
   var nickName='myInfo.id'
   var motto='myInfo.motto'
-  var school='myInfo.school'
+  var school='myInfo.School'
   var userImageSrc="myInfo.userImageSrc"
   var gradePath='myInfo.grade'
   var bookTypePath='myInfo.bookType'

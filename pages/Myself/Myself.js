@@ -11,7 +11,6 @@ Page({
     canIUse:wx.canIUse('button.open-type.getUserInfo'),
     //模拟一个myInfo
     myInfo:{
-      
     },
     studyStatus:[
       {name:"课程",
@@ -46,8 +45,6 @@ Page({
     data: {
       fileList: [],
     },
-    
-    
   },
   showStudyPlan:function()
   {
@@ -159,9 +156,7 @@ Page({
             }
           }
         })
-       
         //获取用户的信息
-        
       }
    },
    /**
@@ -188,18 +183,21 @@ Page({
         //获取成功
         if(res.statusCode==200)
         {
-          var body=res.data
+          var jsonStr=JSON.stringify(res.data)
+          var body=JSON.parse(jsonStr)
           myAPP.globalData.myInfo.id=(body.data.nickname==""||body.data.nickname==null)?myAPP.globalData.userInfo.nickName:res.data.nickname
-          myAPP.globalData.myInfo.School=(body.data.school==null)?"":body.data.body.data.school
+          myAPP.globalData.myInfo.School=(body.data.school==null)?"":body.data.school
           myAPP.globalData.myInfo.motto  = (body.data.signature==null)?"":body.data.signature
-          this.setData({
+          console.log(myAPP.globalData.myInfo.motto)
+          that.setData({
             studyStatus:[ 
-              {name:"课程",value:(res.data.classNum==null)?0:res.data.classNum},
-              {name:"时长",value:(res.data.studyTime==null)?0:res.data.studyTime},
-              {name:"积分",value:(res.data.integral==null)?0:res.data.integral},
-              {name:"余额",value:(res.data.balance==null)?0:res.data.balance}
+              {name:"课程",value:(body.data.classNum==null)?"0":body.data.classNum},
+              {name:"时长",value:(body.data.studyTime==null)?0:body.data.studyTime},
+              {name:"积分",value:(body.data.integral==null)?0:body.data.integral},
+              {name:"余额",value:(body.data.balance==null)?0:body.data.balance}
           ]
           })
+          console.log(that.data.studyStatus)
         }
       },
       complete:res=>
