@@ -63,7 +63,8 @@ Page({
               ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
               title:seniorClass.name,
               origin:seniorClass.origin,
-              id:seniorClass.id
+              id:seniorClass.id,
+              date:seniorClass.joinTime.split("T")[0]
             }
             tempClasses.push(classItem)
         }
@@ -101,7 +102,8 @@ Page({
               ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
               title:seniorClass.name,
               origin:seniorClass.origin,
-              id:seniorClass.id
+              id:seniorClass.id,
+              date:seniorClass.joinTime.split("T")[0]
             }
             tempClasses.push(classItem)
         }
@@ -138,7 +140,8 @@ requestForJuniorClasses:function(){
             ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
             title:seniorClass.name,
             origin:seniorClass.origin,
-            id:seniorClass.id
+            id:seniorClass.id,
+            date:seniorClass.joinTime.split("T")[0]
           }
           tempClasses.push(classItem)
       }
