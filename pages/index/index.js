@@ -4,6 +4,7 @@
 var myApp = getApp()
 Page({
   data: {
+    tabActiveName:0,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -41,40 +42,61 @@ Page({
   {
     //
     wx.request({
-      url: myAPP.globalData.host+'/class/getRecommendClasses',
+      url: myApp.globalData.host+'/class/getRecommendClasses',
     })
 
   },
   /*获取高中课程的请求*/
   requestForSeniorClass:function()
   {
+    var that=this
     wx.request({
-      url: myAPP.globalData.host+'/class/getSeniorClasses',
+      url: myApp.globalData.host+'/class/getSeniorClasses',
       header: {
           'content-type': 'application/json' // 默认值
         },
       method:"GET",
       success:res=>{
-        var jsonStr=JSON.stringify(res.data)
-        var jsonObj=JSON.parse(jsonStr)
-        for(seniorClass in jsonObj.data)
+        if(res.statusCode==200)
         {
-          var classItem={
-            ImagePath:myAPP.globalData.host+"/getClassImage/"+seniorClass.data.id,
-            title:seniorClass.data.name,
-            origin:seniorClass.data.origin,
-            id:seniorClass.data.id
-          }
-          this.data.seniorClasses.push(classItem)
+          var tempClasses=[]
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          for( var index=0 ,max=jsonObj.data.length;index<max;index++)
+          {
+            var seniorClass=jsonObj.data[index]
+            var classItem={
+              ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
+              title:seniorClass.name,
+              origin:seniorClass.origin,
+              id:seniorClass.id
+            }
+            tempClasses.push(classItem)
         }
+        }
+        console.log(tempClasses)
+        that.setData({
+          seniorClasses:tempClasses
+        })
       },
       complete:res=>
       {
-
       }
-    
     })
   },
+/**获取初中课程的请求*/
+requestForJuniorClasses:function(){
+
+},
+
+
+/**van-tabs的切换点击事件**/
+clickForSwitchClass:function(title)
+{
+  this.requestForJuniorClasses()
+  this.requestForRecommendClass()
+  this.requestForSeniorClass()
+},
 
 
 
@@ -86,8 +108,4 @@ Page({
   {
 
   },
-    
-
-
-
 })
