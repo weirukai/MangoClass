@@ -123,7 +123,7 @@ changeNickName:function(e){
 })
       wx.request({
 
-        url: 'http://192.168.2.100:8080/user/changeNickName',
+        url: myAPP.globalData.host+'/user/changeNickName',
          header:{
           'content-type': 'application/json' ,
           'Authorization': this.token
@@ -161,7 +161,7 @@ changeMotto:function(e){
   }
 })
       wx.request({
-        url: 'http://192.168.2.100:8080/user/changeMotto',
+        url: myAPP.globalData.host+'/user/changeMotto',
          header:{
           'content-type': 'application/json' ,
           'Authorization': this.token
@@ -197,7 +197,7 @@ changeShool:function(){
   }
 })
 wx.request({
-    url: 'http://192.168.2.100:8080/user/changeSchool',
+    url: myAPP.globalData.host+'/user/changeSchool',
     header:{
           'content-type': 'application/json' ,
           'Authorization': token
@@ -244,7 +244,7 @@ refreshMyInfo:function()
   })
   
   wx.request({
-    url: 'http://192.168.2.100:8080/user/getUserAllInfo',
+    url: myAPP.globalData.host+'/user/getUserAllInfo',
     header: {
       'content-type': 'application/json', // 默认值
       'Authorization':token

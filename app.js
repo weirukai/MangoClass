@@ -1,6 +1,7 @@
 //app.js
 App({
   globalData: {
+    host:"http://192.168.2.100:8080",
     userInfo: null,
     hasLogin : false,
     myInfo:{
@@ -37,7 +38,7 @@ App({
           wx.login({
             success(res){
               wx.request({
-                url: 'http://192.168.2.100:8080/user/login',
+                url: that.globalData.host+'/user/login',
                 data:{
                   code:res.code,
                   roles:"commom_user"

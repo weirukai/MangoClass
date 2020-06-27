@@ -100,11 +100,11 @@ Page({
           success: res => {
             if (res.authSetting['scope.userInfo']) {
               // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-              console.log("已获取授权")
+             
               wx.getUserInfo({
                 success: res => {
-                  console.log("获取信息")
-                  // 可以将 res 发送给后台解码出 unionId
+                
+                  // 可以将 res 发送给后台解码出 openId
                   myAPP.globalData.userInfo = res.userInfo
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                   // 所以此处加入 callback 以防止这种情况
@@ -123,7 +123,7 @@ Page({
                   //发送给后台进行一个解析，并且返回相应的用户的其他的数据
                   var that=this
                   wx.request({
-                    url: 'http://192.168.2.100:8080/user/login',
+                    url: myAPP.globalData.host+'/user/login',
                     data:{
                       code:res.code,
                       roles:"common_user"
@@ -173,7 +173,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://192.168.2.100:8080/user/getUserAllInfo',
+      url: myAPP.globalData.host+'/user/getUserAllInfo',
       header: {
         'content-type': 'application/json', // 默认值
         'Authorization':token
