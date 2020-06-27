@@ -1,6 +1,7 @@
 // pages/modifyInfo.js
 
 import Toast from "../../miniprogram_npm/vant-weapp/toast/toast"
+var myAPP=getApp()
 Page({
   /**
    * 页面的初始数据
@@ -220,10 +221,10 @@ refreshMyInfo:function()
   //跟新教材版本和年级
   var grade=this.data.myInfo.grade
   var bookType=this.data.myInfo.bookType
-  var nickName=this.data.myInfo.id
-  var motto=this.data.myInfo.motto
-  var school=this.data.myInfo.School
-  var userImageSrc=this.data.myInfo.userImageSrc
+  var nickName='myInfo.nickName'
+  var motto='myInfo.motto'
+  var school='myInfo.school'
+  var userImageSrc="myInfo.userImageSrc"
   var gradePath='myInfo.grade'
   var bookTypePath='myInfo.bookType'
   var token
@@ -234,6 +235,23 @@ refreshMyInfo:function()
     {
       token=res.data
     }
+  })
+  wx.getStorage({
+    key: 'grade',
+    success:res=>{
+      grade=res.data
+    }
+  })
+  wx.getStorage({
+    key: 'bookType',
+    success:res=>
+    {
+      bookType=res.data
+    }
+  })
+  this.setData({
+    [gradePath]:grade,
+    [bookTypePath]:bookType,
   })
   wx.request({
     url: 'http://192.168.2.100:8080/user/getUserAllInfo',
@@ -249,47 +267,26 @@ refreshMyInfo:function()
         var jsonStr=JSON.stringify(res.data)
         var jsonObj=JSON.parse(jsonStr)
         that.setData({
-          
-
-
+          [nickName]:jsonObj.data.nickname==""?myAPP.globaldata.userInfo.nickName:jsonObj.data.nickname,
+          [motto]:jsonObj.data.signature==null?'':jsonObj.data.signature,
+          [school]:jsonObj.data.school==null?'':jsonObj.data.school,
+          //注意头像信息需要额外进行申请，目前后台还没有处理头像的逻辑
         })
       }
     },
     failed:res=>{
-      console.log("cuowu")
+      
     },
     complete:res=>
     {
     }
   })
+  // this.setData({
+  //   [bookTypePath]:bookType,
+  //   [gradePath]:grade
+  // })
 
-  wx.getStorage({
-    key: 'grade',
-    success:res=>{
-      grade=res.data
-    }
-  })
-  wx.getStorage({
-    key: 'bookType',
-    success:res=>
-    {
-      bookType=res.data
-    }
-  })
-
-
-  this.setData({
-    [bookTypePath]:bookType,
-    [gradePath]:grade
-  })
-  //跟新其他的信息，需要网络请求
 },
-
-
-
-
-
-
 
 
   /**
@@ -331,7 +328,7 @@ refreshMyInfo:function()
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   
+    this.refreshMyInfo()
   },
 
   /**
