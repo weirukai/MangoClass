@@ -6,6 +6,7 @@ Page({
    */
   data: {
     classId:null,
+    commentInput:null,
     comments:[
       {
         id:"熊大",
@@ -32,7 +33,6 @@ Page({
         date:"2019-08-10",
       },
     ]
-
   },
 /**根据课程id拉取对应得评论*/
 getClassComments:function()
@@ -56,7 +56,7 @@ getClassComments:function()
         var commentsResp=[]
         for (let index = 0; index < jsonObj.data.length; index++) {
           var comment={
-            'nickName': jsonObj.data[index].nickName,
+            'nickName': (jsonObj.data[index].nickName=='')?'匿名用户':jsonObj.data[index].nickName,
             'content': jsonObj.data[index].classComments.content,
             'date': jsonObj.data[index].classComments.joinTime.split("T")[0],
             'masterImageSrc':myApp.globalData.host+'/user/getUserImage'+ jsonObj.data[index].classComments.userId
@@ -71,8 +71,59 @@ getClassComments:function()
   })
 },
 
+getInputValue:function(e)
+{
+  var inputValuetemp=e.detail.value
+  this.setData({
+    commentInput:inputValuetemp
+  })
+},
+doComment:function()
+{
+  //首先判断用户是否登录
+  var that=this
+  var token=null
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+  if(myApp.globalData.hasLogin)
+  {
+    if(this.data.commentInput!=''&&this.data.commentInput!=null)
+    {
+      wx.request({
+        url: myApp.globalData.host+'/class/doComments',
+        method:'POST',
+        header:{
+          'content-type': 'application/json' ,
+          'Authorization': token
+        },
+        data:{
+          'content':that.data.commentInput,
+          'classID':that.data.classId
+        },
+        success:res=>
+        {
+          if(res.statusCode==200)
+          {
+            //刷新评论
+            that.setData({
+              commentInput:null
+            })
+            that.getClassComments()
+          }
 
-
+        }
+      })
+    }
+  }
+  else{
+    //请先登录
+  }
+},
 
   /**
    * 生命周期函数--监听页面加载

@@ -44,8 +44,8 @@ src="http://192.168.2.100:8080/class/getPlayResource/3">
 </van-tabs>
 </view>
 <view class="docommentsCon">
-<input class="writeCom"></input>
+<input class="writeCom" bindinput="getInputValue"></input>
 <image class="writeImage" src="/images/editGreen.png"></image>
-<view class="writeComButton" ><view style="text-align:center">发送</view></view>
+<view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
 </view>
 </view>
