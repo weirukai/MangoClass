@@ -62,7 +62,7 @@ Page({
           {
             var seniorClass=jsonObj.data[index]
             var classItem={
-              ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
+              ImagePath:myApp.globalData.host+"/class/getClassImage/"+seniorClass.id,
               title:seniorClass.name,
               origin:seniorClass.origin,
               id:seniorClass.id,
@@ -97,11 +97,13 @@ Page({
           var tempClasses=[]
           var jsonStr=JSON.stringify(res.data)
           var jsonObj=JSON.parse(jsonStr)
+          if(jsonObj.data==null)
+          {return}
           for( var index=0 ,max=jsonObj.data.length;index<max;index++)
           {
             var seniorClass=jsonObj.data[index]
             var classItem={
-              ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
+              ImagePath:myApp.globalData.host+"/class/getClassImage/"+seniorClass.id,
               title:seniorClass.name,
               origin:seniorClass.origin,
               id:seniorClass.id,
@@ -135,11 +137,13 @@ requestForJuniorClasses:function(){
         var tempClasses=[]
         var jsonStr=JSON.stringify(res.data)
         var jsonObj=JSON.parse(jsonStr)
+        if(jsonObj.data==null)
+          {return}
         for( var index=0 ,max=jsonObj.data.length;index<max;index++)
         {
           var seniorClass=jsonObj.data[index]
           var classItem={
-            ImagePath:myApp.globalData.host+"/getClassImage/"+seniorClass.id,
+            ImagePath:myApp.globalData.host+"/class/getClassImage/"+seniorClass.id,
             title:seniorClass.name,
             origin:seniorClass.origin,
             id:seniorClass.id,

@@ -16,32 +16,7 @@ Page({
     comments_num :0,
     description : '',
     joinTime:null,
-    comments:[
-      {
-        id:"熊大",
-        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=1951682926,1045257043&fm=26&gp=0.jpg",
-        content:"这个课程稚得推荐，非常好看的一个课程",
-        date:"2020-06-10",
-      },
-      {
-        id:"熊二",
-        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=3426116655,1196736030&fm=26&gp=0.jpg",
-        content:"课程不错，推荐一波",
-        date:"2019-08-10",
-      },
-      {
-        id:"熊二",
-        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=3426116655,1196736030&fm=26&gp=0.jpg",
-        content:"课程不错，推荐一波",
-        date:"2019-08-10",
-      },
-      {
-        id:"熊二",
-        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=3426116655,1196736030&fm=26&gp=0.jpg",
-        content:"课程不错，推荐一波",
-        date:"2019-08-10",
-      },
-    ]
+    comments:[]
   },
 /**根据课程id拉取对应得评论*/
 getClassComments:function()
@@ -67,7 +42,9 @@ getClassComments:function()
          {
             that.setData({
           comments:commentsResp
-        })}
+        })
+      return;
+    }
         for (let index = 0; index < jsonObj.data.length; index++) {
           var comment={
             'nickName': (jsonObj.data[index].nickName=='')?'匿名用户':jsonObj.data[index].nickName,
@@ -162,6 +139,7 @@ doComment:function()
           if(body.data==null)
           {
             //获取到的课程信息为空，做出相应的处理
+            return
           }
           else{
             this.setData({
@@ -178,6 +156,55 @@ doComment:function()
       }
     })
   },
+doCollectClass:function()
+{
+  var that=this
+  var token=null
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+if(myApp.globalData.hasLogin)
+  {
+
+    wx.request({
+      url: myApp.globalData.host+'/class/collectClass',
+      header:{
+        'content-type': 'applicatiaon/json',
+        'Authorization':token
+      },
+      method:"POST",
+      data:{
+        'classID':that.data.classId
+      },
+      success:res=>
+      {
+        if(res.statusCode==200&&res.data.code==200)
+        {
+          //提示成功
+          wx.showToast({
+            title: '已成功收藏',
+          })
+          console.log('成功收藏')
+        }
+      }
+    }) 
+  }else{
+    //轻提示，提示用户请先登录*****************待做****/
+    wx.showToast({
+      title: '请先登录',
+    })
+  }
+
+},
+
+shareClick:function()
+{
+  this.onShareAppMessage()
+},
 
   /**
    * 生命周期函数--监听页面加载
@@ -239,6 +266,11 @@ doComment:function()
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return {
+      title: '弹出分享时显示的分享标题',
+      desc: '分享页面的内容',
+      path: '/page/classShow' // 路径，传递参数到指定页面。
+     }
 
   }
 })

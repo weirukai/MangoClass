@@ -109,7 +109,11 @@ loginTest:function()
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '弹出分享时显示的分享标题',
+      desc: '分享页面的内容',
+      path: '/page/user?id=123' // 路径，传递参数到指定页面。
+     }
   },
  
 })
