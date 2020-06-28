@@ -18,6 +18,18 @@ Page({
         content:"课程不错，推荐一波",
         date:"2019-08-10",
       },
+      {
+        id:"熊二",
+        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=3426116655,1196736030&fm=26&gp=0.jpg",
+        content:"课程不错，推荐一波",
+        date:"2019-08-10",
+      },
+      {
+        id:"熊二",
+        masterImageSrc:"http://img5.imgtn.bdimg.com/it/u=3426116655,1196736030&fm=26&gp=0.jpg",
+        content:"课程不错，推荐一波",
+        date:"2019-08-10",
+      },
     ]
 
   },
