@@ -16,8 +16,9 @@
 <view class="classItem">
 <image src="{{item.ImagePath}}" class="classImage"></image>
 <view class="classIntroduce">
-<view style="font-size:18px">{{item.title}}</view>
-<view style="font-size:14px;color:#808080">{{item.origin}}</view>
+<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
+<view style="font-size:16px;color:#808080">{{item.origin}}</view>
+<view style="margin-top:80rpx">{{item.date}}</view>
 </view>
 </view>
 <view slot="right" class="slotItem"><view class="slotText">取消收藏</view></view>

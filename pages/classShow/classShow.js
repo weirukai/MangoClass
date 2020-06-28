@@ -102,7 +102,7 @@ doComment:function()
           {
             //刷新评论
             that.setData({
-              commentInput:null
+              commentInput:''
             })
             that.getClassComments()
           }

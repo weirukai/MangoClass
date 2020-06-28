@@ -161,7 +161,6 @@ requestForJuniorClasses:function(){
     }
   })
 },
-
 /**van-tabs的切换点击事件**/
 clickForSwitchClass:function(title)
 {
