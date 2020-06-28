@@ -4,7 +4,8 @@
 enable-progress-gesture="true"
 enable-play-gesture="true"
 vslide-gesture="true"
-src="http://192.168.2.100:8080/class/getPlayResource/3">
+src="{{videoSrc}}">
+
 </video>
 </view>
 <view  class="othersContainer">
@@ -28,17 +29,46 @@ src="http://192.168.2.100:8080/class/getPlayResource/3">
 </view>
 <van-tabs color="#00c758">
 <van-tab title="简介"> 
+<view class="info">
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/className.png"></image>
+<view class="infoText">{{className}}</view>
+</view>
+</view>
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/origin.png"></image>
+<view class="infoText">{{classOrigin}}</view>
+</view>
+</view>
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/classType.png"></image>
+<view class="infoText">{{classType}}</view>
+</view>
+</view>
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/description.png"></image>
+<view class="infoText">{{description}}</view>
+</view>
+</view>
+</view>
+<view class="infoContainer"></view>
+
 </van-tab>
 <van-tab  title="评论">
 <view class="commentsContainer">
 <view wx:for="{{comments}}" wx:key="item" class="commentItem">
 <image class="commentItemImage" src="{{item.masterImageSrc}}"></image>
 <view class="content">
-<view style="color:#808080">{{item.id}}</view>
+<view style="color:#808080">{{item.nickName}}</view>
 <view>{{item.content}}</view>
 <view style="color:#808080;font-size:12px">{{item.date}}</view>
 </view>
 </view>
+<view class="commentItem"></view>
 </view>
 </van-tab>
 </van-tabs>

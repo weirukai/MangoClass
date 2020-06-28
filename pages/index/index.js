@@ -19,7 +19,9 @@ Page({
     autoplay: true,
     seniorClasses:[],
     juniorClasses:[],
+
     RecommendedClasses:[],
+
   },
   toClassShow:function(e)
   {
@@ -31,7 +33,7 @@ Page({
   /**获取推荐视频的请求*/
   requestForRecommendClass:function()
   {
-    //
+
     var that=this
     var token
     wx.getStorage({
@@ -180,4 +182,5 @@ onLoad: function () {
   {
 
   },
+
 })

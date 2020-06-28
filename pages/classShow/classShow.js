@@ -7,6 +7,15 @@ Page({
   data: {
     classId:null,
     commentInput:null,
+    videoSrc:null,
+    className :'',//课程名称
+    classOrigin :'',
+    classType :'',
+    likes_num :0,
+    watch_num :0,
+    comments_num :0,
+    description : '',
+    joinTime:null,
     comments:[
       {
         id:"熊大",
@@ -54,12 +63,17 @@ getClassComments:function()
         var jsonStr=JSON.stringify(res.data)
         var jsonObj=JSON.parse(jsonStr)
         var commentsResp=[]
+        if(jsonObj.data==null)
+         {
+            that.setData({
+          comments:commentsResp
+        })}
         for (let index = 0; index < jsonObj.data.length; index++) {
           var comment={
             'nickName': (jsonObj.data[index].nickName=='')?'匿名用户':jsonObj.data[index].nickName,
             'content': jsonObj.data[index].classComments.content,
             'date': jsonObj.data[index].classComments.joinTime.split("T")[0],
-            'masterImageSrc':myApp.globalData.host+'/user/getUserImage'+ jsonObj.data[index].classComments.userId
+            'masterImageSrc':myApp.globalData.host+'/user/getUserImage/'+ jsonObj.data[index].classComments.userId
           }
           commentsResp.push(comment)
         }
@@ -125,17 +139,57 @@ doComment:function()
   }
 },
 
+/**
+ * 请求获取课程信息
+ */
+  getClassInfo:function(){
+    var that=this
+    wx.request({
+      url: myApp.globalData.host+'/class/getClassInfo',
+      header:{
+        'content-type': 'application/json'
+      },
+      method:'POST',
+      data:{
+        'classID':that.data.classId
+      },
+      success:res=>
+      {
+        if(res.statusCode==200){
+          //解析返回的数据
+          var jsonStr=JSON.stringify(res.data)
+          var body=JSON.parse(jsonStr)
+          if(body.data==null)
+          {
+            //获取到的课程信息为空，做出相应的处理
+          }
+          else{
+            this.setData({
+              className :body.data.name,
+              classType:body.data.classType,
+              classOrigin:body.data.origin,
+              likes_num:body.data.likesNum,
+              watch_num:body.data.watchNum,
+              description:(body.data.description==null)?'暂无介绍':body.data.description,
+              comments_num:body.data.commentsNum,
+          })
+          }
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData(
       {
-        classId:options.id
+        classId:options.id,
+        videoSrc:myApp.globalData.host+'/class/getPlayResource/'+options.id
       }
     )
     //确定是能够识别到那个页面传进来的
-    
   },
 
   /**
@@ -150,6 +204,7 @@ doComment:function()
    */
   onShow: function () {
     this.getClassComments()
+    this.getClassInfo()
   },
 
   /**
