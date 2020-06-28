@@ -1,4 +1,5 @@
 // pages/classShow/classShow.js
+var myApp=getApp()
 Page({
   /**
    * 页面的初始数据
@@ -33,6 +34,45 @@ Page({
     ]
 
   },
+/**根据课程id拉取对应得评论*/
+getClassComments:function()
+{
+  var that=this
+  wx.request({
+    url: myApp.globalData.host+'/class/getClassComments',
+    header:{
+      'content-type': 'application/json' // 默认值
+    },
+    method:"POST",
+    data:{
+      'classID':that.data.classId
+    },
+    success:res=>
+    {
+      if(res.statusCode==200)
+      {
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        var commentsResp=[]
+        for (let index = 0; index < jsonObj.data.length; index++) {
+          var comment={
+            'nickName': jsonObj.data[index].nickName,
+            'content': jsonObj.data[index].classComments.content,
+            'date': jsonObj.data[index].classComments.joinTime.split("T")[0],
+            'masterImageSrc':myApp.globalData.host+'/user/getUserImage'+ jsonObj.data[index].classComments.userId
+          }
+          commentsResp.push(comment)
+        }
+        that.setData({
+          comments:commentsResp
+        })
+      }
+    }
+  })
+},
+
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -44,6 +84,7 @@ Page({
       }
     )
     //确定是能够识别到那个页面传进来的
+    
   },
 
   /**
@@ -57,7 +98,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getClassComments()
   },
 
   /**
