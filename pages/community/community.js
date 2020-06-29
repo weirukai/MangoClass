@@ -5,53 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
-  },
+   message:[{
+   Text:'dwdwdewfewfewfewfewfewfewfewfefewfefewf',
+   imageSrc:[
+     "/images/messageTest.png",
+     "/images/messageTest2.png"
+   ]},
+   {
+    Text:'sdadsadsadsd',
+    imageSrc:[
+      "/images/messageTest.png",
+      "/images/messageTest2.png"
+    ]},
 
-testfun:function()
-{
-
-wx.request({
-  url: 'http://192.168.2.100:8080/test',
-  data:{
-    username:"wei",
-    password:123
-  },
-  method:'POST',
-  header: {
-    'content-type': 'application/json' // 默认值
-  },
-})
-
+  ]
 },
 
-loginTest:function()
-
-{
-  wx.login({
-    complete: (res) => {},
-    fail: (res) => {},
-    success: (res) => {
-      wx.request({
-        url: 'http://192.168.2.100:8080/user/login',
-        data:{
-          code:res.code,
-          username:"weirukai",
-          roles:"common_user"
-        },
-        method:'POST',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success:res=>
-        {
-          console.log(res.data)
-        }
-      })
-    },
-    timeout: 0,
-  })
-},
 
 
 

@@ -1,1 +1,65 @@
 /* pages/community.wxss */
+.messageContainer{
+display: flex;
+flex-direction: column;
+background-color :#eee;
+padding-left: 10rpx;
+padding-top: 20rpx;
+padding-right: 10rpx;
+}
+
+
+.messageItem{
+  background-color: #fff;
+ 
+  display: flex;
+  flex-direction: column;
+  border-bottom: 20rpx solid #eee;
+  padding: 10rpx;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 20rpx solid rgb(230, 71, 71);
+}
+
+
+.messageImg{
+  max-height: 100rpx;
+  max-width: 100rpx;
+  }
+
+  .messageInfo{
+    padding-left: 20rpx;
+    display: flex;
+    flex-direction: column;
+  }
+  .userName{
+    font-size: 35rpx;
+    margin-bottom: 5rpx
+  }
+  .userSchool{
+    font-size: 30rpx;
+    color: rgb(127, 126, 126);
+  }
+
+  .messageText{
+    padding-bottom: 10rpx;
+    word-break: keep-all;
+    word-wrap: break-word;
+    
+  }
+  .messagePhotoContainer{
+  display: flex;
+  flex-direction: row;
+  }
+  .messagePhotoItem{
+    padding: 10rpx;
+  }
+
+  .messagePhoto{
+   max-width: 200rpx;
+   max-height: 200rpx;
+   border-radius: 10rpx;
+  }
