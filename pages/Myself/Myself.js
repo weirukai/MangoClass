@@ -232,7 +232,7 @@ Page({
   onLoad: function (options) {
     /**用户登录*/
     console.log("onload")
-    this.setData({haslogin:myAPP.globalData.haslogin})
+    this.setData({haslogin:myAPP.globalData.hasLogin})
     this.setData({myInfo:myAPP.globalData.myInfo})
     if(myAPP.globalData.userInfo)
     {

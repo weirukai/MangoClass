@@ -1,9 +1,21 @@
 <!--pages/community.wxml-->
-
-
-<text>pages/community.wxml</text>
-<button open-type="share">登录</button>
-
-<navigator open-type="share"><button  bindtap="testfun">测试 </button></navigator>
-
-
+<view class="messageContainer">
+<view class="messageItem" wx:for="{{message}}" wx:key="item">
+<view class="title">
+<image class="messageImg" src="/images/fail.png"></image>
+<view class="messageInfo">
+<view class="userName">小王</view>
+<view class="userSchool">北京大学</view>
+</view>
+</view>
+<text class="messageText">{{item.Text}}</text>
+<view class="messagePhotoContainer"> 
+<view class="messagePhotoItem" wx:for="{{item.imageSrc}}" wx:key="item">
+<image src="" class="messagePhoto" src="{{item}}"></image>
+</view>
+</view>P
+</view>
+</view>
+<view class="addPost" bindtap="toEditPost">
+<image src="/images/add.png" class="addImage"></image>
+</view>

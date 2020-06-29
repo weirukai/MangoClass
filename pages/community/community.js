@@ -5,57 +5,40 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
-  },
+   message:[
 
-testfun:function()
+  {
+    id:0,
+    Text:'我先看一下《颈椎病康复指南》再给大家说怎么实现的这两个功能，毕竟只是一个新手，解决这种复杂点的问题（相对而言），还是需要花费大量时间的，这篇文章花了两天的时间才实现的功能，现在就记录一下使用springboot怎么实现文件上传下载的。',
+    date:"2020-0620",
+    imageSrc:[
+     "/images/messageTest.png",
+     "/images/messageTest2.png"
+   ],
+   master:{
+     masterId:0,
+     masterNickName:"小王",
+     masterSchool:"华中科技大学",
+     masterImageSrc:"",
+   }
+  },
+   {
+    Text:'sdadsadsadsd',
+    imageSrc:[
+      "/images/messageTest.png",
+      "/images/messageTest2.png"
+    ]},
+
+  ]
+},
+
+
+toEditPost:function()
 {
-
-wx.request({
-  url: 'http://192.168.2.100:8080/test',
-  data:{
-    username:"wei",
-    password:123
-  },
-  method:'POST',
-  header: {
-    'content-type': 'application/json' // 默认值
-  },
+wx.navigateTo({
+  url: '/pages/editPost/editPost',
 })
-
 },
-
-loginTest:function()
-
-{
-  wx.login({
-    complete: (res) => {},
-    fail: (res) => {},
-    success: (res) => {
-      wx.request({
-        url: 'http://192.168.2.100:8080/user/login',
-        data:{
-          code:res.code,
-          username:"weirukai",
-          roles:"common_user"
-        },
-        method:'POST',
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success:res=>
-        {
-          console.log(res.data)
-        }
-      })
-    },
-    timeout: 0,
-  })
-},
-
-
-
-
   /**
    * 生命周期函数--监听页面加载
    */
