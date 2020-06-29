@@ -6,9 +6,9 @@
 <image class="messageImg" src="/images/fail.png"></image>
 <view class="messageInfo">
 <view class="userName">小王</view>
-<view class="userSchool">北京大学</view>
-</view>
 <view class="date">{{item.date}}</view>
+</view>
+
 </view>
 
 <text class="messageText">{{item.Text}}</text>
@@ -33,6 +33,23 @@
 <text class="actionText">点赞</text>
 </view>
 </view>
-<view ><image class="postMessage" src="/images/postMessage.png"></image></view>
 </view>
 </view>
+<van-tabs class= color="#00c758">
+<van-tab title="点赞">
+
+</van-tab>
+<van-tab title="评论">
+<view class="commentItem">
+<view class="commentContainer">
+<image class="commentImg" src="/images/fail.png"></image>
+<view class="commentInfo">
+<view class="commentName">小李</view>
+<view class="commentDate">2020-6-17</view>
+</view>
+</view>
+<text class="commentText"></text>
+</view>
+</van-tab>
+</van-tabs>
+<view></view>

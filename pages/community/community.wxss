@@ -38,6 +38,12 @@ padding-right: 10rpx;
     color: rgb(127, 126, 126);
   }
 
+  .date{
+    font-size: 30rpx;
+    color: rgb(127, 126, 126);
+    
+  }
+
   .messageText{
     padding-bottom: 10rpx;
     word-break: keep-all;

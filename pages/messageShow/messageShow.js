@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    message:[{
+      id:0,
+      Text:'dwdwdewfewfewfewfewfewfewfewfefewfefewf',
+      date:'2020-06-28',
+      imageSrc:[
+        "/images/messageTest.png",
+        "/images/messageTest2.png"
+      ],
+      master:{
+        masterID:0,
+        masterNickName:'小王',
+        masterSchool:'',
+        masterImgSrc:''
+   
+      }
+     },
+    
+   
+     ]
   },
 
   /**

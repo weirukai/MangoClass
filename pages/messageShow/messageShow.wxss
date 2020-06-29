@@ -1,1 +1,130 @@
 /* pages/messageShow/messageShow.wxss */
+.messageContainer{
+  display: flex;
+  flex-direction: column;
+  background-color :#eee;
+  
+  
+  }
+  
+  
+  .messageItem{
+    background-color: #fff;
+   
+    display: flex;
+    flex-direction: column;
+    border-bottom: 20rpx solid #eee;
+    padding: 10rpx;
+  }
+  
+  .title{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 20rpx solid #fff;
+  }
+  
+  
+  .messageImg{
+    max-height: 100rpx;
+    max-width: 100rpx;
+    }
+  
+  
+    .messageInfo{
+      padding-left: 20rpx;
+      display: flex;
+      flex-direction: column;
+    }
+    .userName{
+      font-size: 35rpx;
+      margin-bottom: 5rpx
+    }
+
+  
+    .date{
+      font-size: 30rpx;
+      color: rgb(127, 126, 126);
+      
+    }
+  
+    .messageText{
+      padding-bottom: 10rpx;
+      word-break: keep-all;
+      word-wrap: break-word;
+      
+    }
+    .messagePhotoContainer{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 5rpx solid #eee;
+    }
+    .messagePhotoItem{
+      padding: 10rpx;
+    }
+  
+    .messagePhoto{
+     max-width: 200rpx;
+     max-height: 200rpx;
+     border-radius: 10rpx;
+    }
+    .subtitle{
+      display: flex;
+     flex-direction: row;
+     
+    }
+  
+    .actionContainer{
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+  
+  
+    .actionPhoto{
+      max-width: 40rpx;
+      max-height: 40rpx;
+      margin: auto;
+    }
+    .actionText{
+      font-size: 30rpx;
+      color: #808080;
+      margin: auto;
+    }
+    
+    .commentContainer{
+      display: flex;
+      flex-direction: row;
+      padding-left: 20rpx;
+    }
+
+    .commentImg{
+      max-height: 70rpx;
+      max-width: 70rpx;
+    }
+
+    .commentInfo{
+      padding-left: 20rpx;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .commentName{
+      font-size: 30rpx;
+      margin-bottom: 5rpx
+    }
+
+    .commentDate{
+      font-size: 25rpx;
+    color: rgb(127, 126, 126);
+    }
+    .commentText{
+      padding-bottom: 10rpx;
+      word-break: keep-all;
+      word-wrap: break-word;
+    }
+
+    .commentItem{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 5rpx solid #eee;
+    }
