@@ -7,7 +7,6 @@ padding-left: 10rpx;
 padding-top: 20rpx;
 padding-right: 10rpx;
 }
-
 .messageItem{
   background-color: #fff;
  
@@ -16,19 +15,15 @@ padding-right: 10rpx;
   border-bottom: 20rpx solid #eee;
   padding: 10rpx;
 }
-
 .title{
   display: flex;
   flex-direction: row;
-  border-bottom: 20rpx solid rgb(230, 71, 71);
+  border-bottom: 20rpx solid #fff;
 }
-
-
 .messageImg{
   max-height: 100rpx;
   max-width: 100rpx;
   }
-
   .messageInfo{
     padding-left: 20rpx;
     display: flex;
@@ -52,6 +47,7 @@ padding-right: 10rpx;
   .messagePhotoContainer{
   display: flex;
   flex-direction: row;
+  border-bottom: 5rpx solid #eee;
   }
   .messagePhotoItem{
     padding: 10rpx;
@@ -70,5 +66,34 @@ padding-right: 10rpx;
   .addImage{
     max-width: 120rpx;
     max-height: 120rpx;
+  }
+  .subtitle{
+    display: flex;
+   flex-direction: row;
+   
+  }
 
+  .actionContainer{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  }
+
+
+  .actionPhoto{
+    max-width: 40rpx;
+    max-height: 40rpx;
+    margin: auto;
+  }
+  .actionText{
+    font-size: 30rpx;
+    color: #808080;
+    margin: auto;
+  }
+  .postMessage{
+    position: fixed;
+    width: 100rpx;
+    height: 100rpx;
+    bottom: 70rpx;
+    right: 70rpx;
   }

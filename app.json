@@ -9,7 +9,8 @@
     "pages/collectClass/collectClass",
     "miniprogram_npm/dialog2",
     "pages/classShow/classShow",
-    "pages/editPost/editPost"
+    "pages/editPost/editPost",
+    "pages/messageShow/messageShow"
   ],
   "window": {
     "backgroundTextStyle": "light",
