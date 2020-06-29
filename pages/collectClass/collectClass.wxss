@@ -52,7 +52,7 @@ padding-left: 30rpx;
         
         display: flex;
         flex-direction: row;
-    
+        width: 600rpx;
       }
       .classImage{
         max-height: 200rpx;
@@ -77,12 +77,17 @@ padding-left: 30rpx;
         .slotItem{
           height: 250rpx;
           width: 150rpx;
-          background-color: red;
-          padding-top: 100rpx;
+          padding-top: 40px;
+          border-left: 2rpx solid #eee;
           
         }
 
         .slotText{
           align-items: center;
           color: #fff
+        }
+        .trash{
+          max-width: 80rpx;
+          max-height: 80rpx;
+          margin-left: 30rpx;
         }

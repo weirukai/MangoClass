@@ -41,7 +41,8 @@ Page({
               'ImagePath':myApp.globalData.host+'/class/getClassImage/'+jsonObj.data[index].id,
               'title':jsonObj.data[index].name,
               'origin':jsonObj.data[index].origin,
-              'date':jsonObj.data[index].joinTime.split("T")[0]
+              'date':jsonObj.data[index].joinTime.split("T")[0],
+              'id':jsonObj.data[index].id
             }
             tempClasses.push(classItem)
           }
@@ -53,6 +54,45 @@ Page({
       }
     })
   },
+
+deleteCollectedClass:function(e)
+{
+  //获取到的课程的id
+  var classID=e.currentTarget.dataset.id
+  var that=this
+  var  token=null
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+  wx.request({
+    url: myApp.globalData.host+'/class/cancelCollectedClass',
+    header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization':token
+      },
+      method:'POST',
+    data:
+    {
+      'classID':classID
+    },
+    success:res=>
+    {
+      if(res.statusCode==200&&res.data.code==200)
+      {
+        //删除成功
+        wx.showToast({
+          title: '已取消收藏',
+        })
+        that.requestForCollectedClasses()
+      }
+    }
+  })
+
+},
 
 
 

@@ -12,7 +12,8 @@
 </view>
 <view class="container">
 <view class="classItemContainer">
-<van-swipe-cell class="swipeCell" right-width="{{ 65 }}" left-width="{{ 0 }}" async-close bind:close="onClose" wx:for="{{myClass}}" wx:key="item">
+<view wx:for="{{myClass}}" wx:key="item">
+<van-swipe-cell class="swipeCell" right-width="{{ 65 }}" left-width="{{ 0 }}" async-close bind:close="onClose">
 <view class="classItem">
 <image src="{{item.ImagePath}}" class="classImage"></image>
 <view class="classIntroduce">
@@ -21,9 +22,11 @@
 <view style="margin-top:80rpx">{{item.date}}</view>
 </view>
 </view>
-<view slot="right" class="slotItem"><view class="slotText">取消收藏</view></view>
+<view slot="right" class="slotItem" data-id="{{item.id}}" bindtap="deleteCollectedClass"><!--<view class="slotText">取消收藏</view>-->
+<image class="trash" src="/images/trash.png"></image>
+</view>
 </van-swipe-cell>
-
+</view>
 
 </view>
 </view>

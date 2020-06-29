@@ -236,8 +236,8 @@ Page({
     this.setData({myInfo:myAPP.globalData.myInfo})
     if(myAPP.globalData.userInfo)
     {
-      //说明其app.js中已经获得登陆了
-      myAPP.globalData.haslogin=true
+      //说明其app.js中已经获得登陆了。。。。错了
+      //myAPP.globalData.haslogin=true
       this.setData({
         haslogin:myAPP.globalData.haslogin
       })
