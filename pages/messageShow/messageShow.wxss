@@ -128,3 +128,45 @@
     flex-direction: column;
     border-bottom: 5rpx solid #eee;
     }
+
+    .docommentsCon{
+      position: fixed;
+      bottom: 0rpx;
+      width: 750rpx;
+      height: 100rpx;
+      background-color: #fff;
+    }
+    .writeCom{
+      width: 500rpx;
+      height: 60rpx;
+      border: 2rpx solid #eee;
+      background-color: #fff;
+      border-radius: 100rpx;
+      position: absolute;
+      top: 20rpx;
+      left: 20rpx;
+    
+    
+    }
+    .writeImage{
+      max-width: 50rpx;
+      max-height: 50rpx;
+      position: absolute;
+      top: 25rpx;
+      left: 40rpx;
+    
+    }
+    .writeComButton{
+      position: absolute;
+      top: 20rpx;
+      right: 30rpx;
+      height: 60rpx;
+      width: 130rpx;
+      background-color: #00c758;
+      border-radius: 20rpx;
+      padding-top: 10rpx;
+    
+    }
+    .commentTitle{
+       margin: auto;
+    }

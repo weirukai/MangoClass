@@ -6,9 +6,9 @@
 <image class="messageImg" src="/images/fail.png"></image>
 <view class="messageInfo">
 <view class="userName">小王</view>
-<view class="date">{{item.date}}</view>
+<view class="userSchool">北京大学</view>
 </view>
-
+<view class="date">{{item.date}}</view>
 </view>
 
 <text class="messageText">{{item.Text}}</text>
@@ -35,11 +35,7 @@
 </view>
 </view>
 </view>
-<van-tabs class= color="#00c758">
-<van-tab title="点赞">
-
-</van-tab>
-<van-tab title="评论">
+<view class="commentTitle"><view>评论</view></view>
 <view class="commentItem">
 <view class="commentContainer">
 <image class="commentImg" src="/images/fail.png"></image>
@@ -50,6 +46,9 @@
 </view>
 <text class="commentText"></text>
 </view>
-</van-tab>
-</van-tabs>
-<view></view>
+<view class="docommentsCon">
+<input class="writeCom" bindinput="getInputValue"></input>
+<image class="writeImage" src="/images/editGreen.png"></image>
+<view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
+</view>
+

@@ -1,6 +1,6 @@
 <!--pages/community.wxml-->
 <view class="messageContainer">
-<view class="messageItem" wx:for="{{message}}" wx:key="item" bindtap="tapMessage">
+<view class="messageItem" wx:for="{{message}}" wx:key="item" bindtap="tapMessage" data-id="{{item.id}}">
 
 <view class="title">
 <image class="messageImg" src="/images/fail.png"></image>

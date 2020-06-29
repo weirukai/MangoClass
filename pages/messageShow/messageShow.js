@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    postId:null,
     message:[{
       id:0,
       Text:'dwdwdewfewfewfewfewfewfewfewfefewfefewf',
@@ -21,16 +22,28 @@ Page({
    
       }
      },
-    
-   
      ]
+  },
+
+
+  /******向后台获取post****/
+
+  requestForPost:function()
+  {
+    
+
+
+
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      postId:options.id
+    })
   },
 
   /**
