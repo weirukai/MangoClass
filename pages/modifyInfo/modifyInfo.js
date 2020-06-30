@@ -55,9 +55,38 @@ Page({
         that.setData({
           userImageSrc:res.tempFilePaths
         })
+        var token=null
+        wx.getStorage({
+          key: 'token',
+          success:res=>
+         {
+            token=res.data
+          }
+        })
+        wx.showLoading({
+          title: '正在上传',
+        })
+          wx.uploadFile({
+            filePath: that.data.userImageSrc,
+            name: 'filename',
+            url: myAPP.globalData.host+'/user/imageFileUpload',
+            header:{
+              'Authorization':token
+            },
+            success:res=> {
+              if(res.statusCode==200&&res.data.code==200){
+                //成功后的回调函数
+                wx.hideLoading({
+                  complete: (res) => {
+                    //需要更新个人信息
+                    that.refreshMyInfo()
+                  },
+                })
+              }
+             },
+          })
         }
-       })
-       console.log(that.data.userImageSrc)
+       })   
   },
   changeGrade:function(e)
   {
@@ -237,9 +266,17 @@ wx.request({
          }
       })
 },
+
+
+
+
+
 refreshMyInfo:function()
 {
   //跟新教材版本和年级
+  wx.showLoading({
+    title: '正在加载',
+  })
   var grade=this.data.myInfo.grade
   var bookType=this.data.myInfo.bookTypeS
   var nickName='myInfo.id'
@@ -276,7 +313,19 @@ refreshMyInfo:function()
           [motto]:jsonObj.data.signature==null?'':jsonObj.data.signature,
           [school]:jsonObj.data.school==null?'':jsonObj.data.school,
           //注意头像信息需要额外进行申请，目前后台还没有处理头像的逻辑
+          
         })
+        if(jsonObj.data.imageUrl==null||jsonObj.data.imageUrl=='')
+        {
+          that.setData({
+            [userImageSrc]:myAPP.globalData.userInfo.avatarUrl
+          })
+        }
+        else{
+          that.setData({
+            [userImageSrc]:myAPP.globalData.host+'/getUserImage/'+jsonObj.data.id
+          })
+        }
       }
     },
     failed:res=>{
@@ -305,7 +354,15 @@ refreshMyInfo:function()
     [gradePath]:grade,
     [bookTypePath]:bookType,
   })
+  wx.hideLoading({
+    complete: (res) => {},
+  })
 },
+
+
+
+
+
 
   /**
    * 生命周期函数--监听页面加载

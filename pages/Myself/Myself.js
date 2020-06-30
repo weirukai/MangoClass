@@ -48,10 +48,7 @@ Page({
     postContentName:'',//上传的课程名称
     postContentType:'',//上传的课程类型
     postContentDes:'', //上传的课程描述
-<<<<<<< HEAD
-    videoUrl:''
-=======
-    videoUrl:[],
+    videoUrl:'',
     changePlan:true,
     inputTime:'',
     inputPlan:''
@@ -80,8 +77,11 @@ Page({
     })
     this.data.studyPlan.push({
       desc:this.data.inputTime,
-        text:this.data.inputPlan
->>>>>>> zhang
+
+      text:this.data.inputPlan
+    })
+    this.setData({
+      studyPlan:this.data.studyPlan,
 
     })
   },
