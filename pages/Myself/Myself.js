@@ -48,7 +48,7 @@ Page({
     postContentName:'',//上传的课程名称
     postContentType:'',//上传的课程类型
     postContentDes:'', //上传的课程描述
-    videoUrl:[]
+    videoUrl:''
 
   },
   showStudyPlan:function()
@@ -107,8 +107,7 @@ Page({
               // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
              
               wx.getUserInfo({
-                success: res => {
-                
+                success: res => {  
                   // 可以将 res 发送给后台解码出 openId
                   myAPP.globalData.userInfo = res.userInfo
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -122,7 +121,6 @@ Page({
                   }
                 }
               })
-
               wx.login({
                 success(res){
                   //发送给后台进行一个解析，并且返回相应的用户的其他的数据
@@ -253,15 +251,12 @@ inputClassDes:function(e){
 chooseVideo:function(){
   var that = this;
    wx.chooseVideo({
-    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有 
+    compressed:false,
     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
     success: function (res) {
-      let videoUrl=that.data.videoUrl
-      videoUrl.push(res.tempFilePath)
       that.setData({
-      videoUrl: videoUrl
+      videoUrl: res.tempFilePath
       })
-      console.log(videoUrl)
     }
    })
 },
@@ -270,8 +265,8 @@ chooseVideo:function(){
  */
 send:function(){
   this.contentRequest()
-
 },
+
 contentRequest:function(){
   var that=this
   var token=null
@@ -288,29 +283,76 @@ contentRequest:function(){
    })
 
   wx.request({
-    url: myApp.globalData.host+'',//这里待填
+    url: myAPP.globalData.host+'/class/addClass',//这里待填
     header: {
       'content-type': 'application/json', // 默认值
       'Authorization':token
     },
     method:'POST',
       data: {
-     postContentName:this.data.postContentName,
-     postContentType:this.data.postContentType,
-     postContentDes:this.data.postContentDes
+     name:that.data.postContentName,
+     classType:that.data.postContentType,
+     description:that.data.postContentDes
       },
       success:res=>{
         if(res.statusCode==200&&res.data.code==200)
         {
           //上传成功后的处理
-          
-
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          var classId=jsonObj.data.classId
+          that.uploadVideo(classId)
         }
       }
   })
-
-  
 },
+
+
+uploadVideo:function(classId){
+  let that = this;
+    wx.uploadFile({
+    //路径填你上传视频方法的地址
+    url:myAPP.globalData.host+'/class/fileUpload',
+    filePath: that.data.videoUrl,
+    name: 'filename',
+    formData: {
+    'classId':classId
+    },
+    success:res=>
+    {
+    wx.hideLoading()
+    wx.showModal({
+    title: '提交成功',
+    showCancel: false,
+    success:res=> {
+     if (res.confirm) {
+     wx.navigateTo({
+      url: '/pages/Myself/Myself',
+     })
+     }
+    }
+    })
+    }
+  })
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
