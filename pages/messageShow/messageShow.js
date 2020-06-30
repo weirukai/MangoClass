@@ -5,9 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+<<<<<<< HEAD
     showInput:false,
     postId:null,
     inputBottom:0,
+=======
+    postId:null,
+>>>>>>> zhang
     message:[{
       id:0,
       Text:'dwdwdewfewfewfewfewfewfewfewfefewfefewf',
@@ -32,6 +36,7 @@ Page({
 
   requestForPost:function()
   {
+<<<<<<< HEAD
     
 
 
@@ -54,6 +59,47 @@ Page({
       showInput:false
     })
   },
+=======
+    wx.request({
+      url:  myAPP.globalData.host+'/post/getAllPost',
+      header:{
+        'content-type': 'application/json', // 默认值
+      },
+      method:'POST',
+      data:{
+        postId:this.data.postId
+      },
+      success:res=>{
+        if(res.statusCode==200){
+          var jsonstr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonstr)
+          
+        }
+      }
+    })
+    
+  },
+  requestForAllPostComments:function(){
+    wx.request({
+      url:  myAPP.globalData.host+'/post/getAllPostComment',
+      header:{
+        'content-type': 'application/json', // 默认值
+      },
+      method:'POST',
+      data:{
+        postId:this.data,postId
+      },
+      success:res=>{
+        if(res.statusCode==200){
+          var jsonstr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonstr)
+          
+        }
+      }
+    })
+  },
+
+>>>>>>> zhang
   /**
    * 生命周期函数--监听页面加载
    */

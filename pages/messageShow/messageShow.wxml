@@ -46,6 +46,7 @@
 </view>
 <text class="commentText"></text>
 </view>
+<<<<<<< HEAD
 
 
 <view   wx:if="{{!showInput}}"   class="docommentsCon">
@@ -59,3 +60,11 @@
 <input type='text' class='textInput' value='{{inputText}}' placeholder-class='textInputPlaceHolder' placeholder='输入你想要说的...' bindinput='getInputText' bindfocus="foucus" bindblur="blur" bindconfirm='submit' adjust-position='{{false}}'></input>
 <text bindtap='submit' class='submit'>发送</text>
 </view>
+=======
+<view class="docommentsCon">
+<input class="writeCom" bindinput="getInputValue"></input>
+<image class="writeImage" src="/images/editGreen.png"></image>
+<view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
+</view>
+
+>>>>>>> zhang
