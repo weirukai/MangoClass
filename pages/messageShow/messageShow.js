@@ -1,4 +1,5 @@
 // pages/messageShow/messageShow.js
+var myApp=getApp()
 Page({
 
   /**
@@ -9,9 +10,9 @@ Page({
     showInput:false,
     postId:null,
     inputBottom:0,
-    postId:null,
     masterName:'',
     masterSchool:'',
+    masterImageSrc:'',
     content:'',
     commentsNum:'',
     likesNum:'',
@@ -20,31 +21,45 @@ Page({
     postComments:[]
   },
 
-
   /******向后台获取post****/
 
   requestForPost:function()
   {
+    var that=this
     wx.request({
-      url:  myAPP.globalData.host+'/post/getAllPost',
+      url:  myApp.globalData.host+'/post/getPostById',
       header:{
         'content-type': 'application/json', // 默认值
       },
       method:'POST',
       data:{
-        postId:this.data.postId
+        postId:that.data.postId
       },
       success:res=>{
         if(res.statusCode==200){
           var jsonstr=JSON.stringify(res.data)
           var jsonObj=JSON.parse(jsonstr)
-          
+          that.setData({
+            masterName:jsonObj.data.masterNickName,
+            masterSchool:jsonObj.data.masterSchool,
+            masterImageSrc:'',////////////待做
+            content:jsonObj.data.postData.content,
+            commentsNum:jsonObj.data.postData.commentsNum,
+            likesNum:jsonObj.data.postData.likesNum,
+            joinTime:jsonObj.data.postData.joinTime,
+          })
+          var images=[]
+          for (let index = 0; index < jsonObj.data.postImages.length; index++) {
+            const image = jsonObj.data.postImages[index];
+            images.push(myApp.globalData.host+'/post/getPostImage/'+image.id)
+          }
+          that.setData({
+            postImages:images
+          })
         }
       }
-    })
-  
+    })  
   },
-
 
   focused:function(e)
   {
@@ -64,7 +79,7 @@ Page({
   requestForAllPostComments:function(){
     var that=this
     wx.request({
-      url:  myAPP.globalData.host+'/post/getAllPostComment',
+      url:  myApp.globalData.host+'/post/getAllPostComment',
       header:{
         'content-type': 'application/json', // 默认值
       },
@@ -76,6 +91,25 @@ Page({
         if(res.statusCode==200){
           var jsonstr=JSON.stringify(res.data)
           var jsonObj=JSON.parse(jsonstr)
+          if(jsonObj.data==null)
+          {return}
+          {
+            var comment=null
+            var comments=[]
+            for (let index = 0; index < jsonObj.data.length; index++) {
+              const element = jsonObj.data[index];
+              comment={
+                ImageSrc='',////////头像待做
+                NickName=element.nickName,
+                joinTime=element.postComment.joinTime.split("T")[0],
+                content:element.postComment.content
+              }
+              comments.push(Comment)
+            }
+            that.setData({
+              postComments:comments
+            })
+          }
           
         }
       }
@@ -102,7 +136,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.requestForPost()
+    this.requestForAllPostComments()
   },
 
   /**
@@ -137,6 +172,5 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
   }
 })

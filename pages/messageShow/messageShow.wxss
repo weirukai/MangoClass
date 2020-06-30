@@ -214,7 +214,7 @@
       
       text-align: center;
       margin-top: 50rpx;
-      float: right;
+    
       margin-right: 20rpx;
       background: #00c758;
       border-radius: 10rpx;

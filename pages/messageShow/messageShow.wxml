@@ -3,7 +3,7 @@
 <view class="messageItem" >
 <view class="title">
 <!-- master的头像 -->
-<image class="messageImg" src=""></image>
+<image class="messageImg" src="{{masterImageSrc}}"></image>
 <view class="messageInfo">
 <view class="userName">{{masterName}}</view>
 <view class="userSchool">{{masterSchool}}</view>
@@ -37,13 +37,13 @@
 </view>
 <view class="commentItem" wx:for="{{postComments}}" wx:key="item">
 <view class="commentContainer">
-<image class="commentImg" src=''></image>
+<image class="commentImg" src='{{item.imagesSrc}}'></image>
 <view class="commentInfo">
-<view class="commentName">{{item.data.nickName}}</view>
-<view class="commentDate">{{item.data.joinTime}}</view>
+<view class="commentName">{{item.nickName}}</view>
+<view class="commentDate">{{item.joinTime}}</view>
 </view>
 </view>
-<text class="commentText">{{item.data.content}}</text>
+<text class="commentText">{{item.content}}</text>
 </view>
 
 
