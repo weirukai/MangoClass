@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userImageSrcPath:null,
     showDialog:false,
     dialogTitle:"",
     inputValue:"",
@@ -46,14 +47,14 @@ Page({
   },
 
   changeImg:function(){
-    var that =this
+        var that =this
        wx.chooseImage({
         count: 1, // 默认9 
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有 
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
         success: function (res) {
         that.setData({
-          userImageSrc:res.tempFilePaths
+          userImageSrcPath:res.tempFilePaths
         })
         var token=null
         wx.getStorage({
@@ -67,7 +68,7 @@ Page({
           title: '正在上传',
         })
           wx.uploadFile({
-            filePath: that.data.userImageSrc,
+            filePath: that.data.userImageSrcPath[0],
             name: 'filename',
             url: myAPP.globalData.host+'/user/imageFileUpload',
             header:{
@@ -313,7 +314,6 @@ refreshMyInfo:function()
           [motto]:jsonObj.data.signature==null?'':jsonObj.data.signature,
           [school]:jsonObj.data.school==null?'':jsonObj.data.school,
           //注意头像信息需要额外进行申请，目前后台还没有处理头像的逻辑
-          
         })
         if(jsonObj.data.imageUrl==null||jsonObj.data.imageUrl=='')
         {
@@ -323,7 +323,7 @@ refreshMyInfo:function()
         }
         else{
           that.setData({
-            [userImageSrc]:myAPP.globalData.host+'/getUserImage/'+jsonObj.data.id
+            [userImageSrc]:myAPP.globalData.host+'/user/getUserImage/'+jsonObj.data.id
           })
         }
       }

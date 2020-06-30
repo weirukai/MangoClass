@@ -116,7 +116,7 @@ Page({
 
   gotoModifyInfo:function()
   {
-    if(!myAPP.globalData.haslogin )
+    if(!myAPP.globalData.hasLogin )
     {
       //提示用户登录toast轻提示
     }else{
