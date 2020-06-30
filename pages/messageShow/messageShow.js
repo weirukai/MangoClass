@@ -10,6 +10,7 @@ Page({
     showInput:false,
     postId:null,
     inputBottom:0,
+    inputValue:'',
     masterName:'',
     masterSchool:'',
     masterImageSrc:'',
@@ -46,7 +47,7 @@ Page({
             content:jsonObj.data.postData.content,
             commentsNum:jsonObj.data.postData.commentsNum,
             likesNum:jsonObj.data.postData.likesNum,
-            joinTime:jsonObj.data.postData.joinTime,
+            joinTime:jsonObj.data.postData.joinTime.split("T")[0],
           })
           var images=[]
           for (let index = 0; index < jsonObj.data.postImages.length; index++) {
@@ -69,23 +70,30 @@ Page({
       showInput:true
     })
   },
-  blur:function()
+  blured:function()
   {
     this.setData({
       showInput:false
     })
   },
+getInputValue:function(e)
+{
+  this.setData({
+      inputValue:e.detail.value
+  })
+},
+
 
   requestForAllPostComments:function(){
     var that=this
     wx.request({
-      url:  myApp.globalData.host+'/post/getAllPostComment',
+      url:  myApp.globalData.host+'/post/getAllPostComments',
       header:{
         'content-type': 'application/json', // 默认值
       },
       method:'POST',
       data:{
-        postId:that.data,postId
+        postId:that.data.postId
       },
       success:res=>{
         if(res.statusCode==200){
@@ -98,13 +106,13 @@ Page({
             var comments=[]
             for (let index = 0; index < jsonObj.data.length; index++) {
               const element = jsonObj.data[index];
-              comment={
-                ImageSrc='',////////头像待做
-                NickName=element.nickName,
-                joinTime=element.postComment.joinTime.split("T")[0],
-                content:element.postComment.content
+             var comment={
+                NickName:element.nickName,
+                joinTime:element.postComment.joinTime.split("T")[0],
+                content:element.postComment.content,
+                ImageSrc:'',
               }
-              comments.push(Comment)
+              comments.push(comment)
             }
             that.setData({
               postComments:comments
@@ -116,6 +124,71 @@ Page({
     })
   },
 
+
+  doComment:function()
+{
+  if(this.data.inputValue=='')
+  {return}
+  var that=this
+  var token=null
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+  if(myApp.globalData.hasLogin)
+  {
+    wx.showLoading({
+      title: '正在发送',
+    })
+    wx.request({
+      url: myApp.globalData.host+'/post/doPostComment',
+      method:"POST",
+      header:{
+        'content-type': 'application/json', // 默认值
+        'Authorization':token
+      },
+      data:{
+        postId:that.data.postId,
+        content:that.data.inputValue
+      },
+      success:res=>
+      {
+        if(res.statusCode==200&&res.data.code==200)
+        {
+          that.requestForAllPostComments()
+          wx.hideLoading({
+            complete: (res) => {
+              this.setData({
+                inputValue:'',
+              })
+              wx.showToast({
+                title: '发送成功',
+              })
+            },
+          })
+        }
+      }
+    })
+  }
+  else{
+wx.showModal({
+  title:"请先登录",
+  showCancel:false,
+  success:res=>
+  {
+    if(res.confirm)
+    {
+      wx.navigateTo({
+        url: '/pages/Myself/Myself',
+      })
+    }
+  }
+})
+  }
+},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -123,6 +196,7 @@ Page({
     this.setData({
       postId:options.id
     })
+    console.log("onload")
   },
 
   /**
@@ -138,6 +212,7 @@ Page({
   onShow: function () {
     this.requestForPost()
     this.requestForAllPostComments()
+    console.log("onshow")
   },
 
   /**

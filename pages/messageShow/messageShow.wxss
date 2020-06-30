@@ -22,16 +22,23 @@
   
   
   .messageImg{
-    max-height: 100rpx;
-    max-width: 100rpx;
+    max-height: 150rpx;
+    max-width: 150rpx;
+    border-radius: 50%;
+    border: 1rpx  solid #eee;
     }
   
   
     .messageInfo{
-      padding-left: 20rpx;
+      padding-left: 60rpx;
       display: flex;
       flex-direction: column;
     }
+
+.infoItem{
+  min-height: 50rpx;
+}
+
     .userName{
       font-size: 35rpx;
       margin-bottom: 5rpx
@@ -45,15 +52,17 @@
     }
   
     .messageText{
-      padding-bottom: 10rpx;
       word-break: keep-all;
       word-wrap: break-word;
+      padding-top: 20rpx;
+      min-height: 100rpx;
       
     }
     .messagePhotoContainer{
     display: flex;
     flex-direction: row;
     border-bottom: 5rpx solid #eee;
+    min-height: 100rpx;
     }
     .messagePhotoItem{
       padding: 10rpx;
@@ -133,6 +142,14 @@
       height: 100rpx;
       background-color: #fff;
     }
+    .docommentsCon2{
+      position: fixed;
+      bottom: 0rpx;
+      width: 750rpx;
+      height: 200rpx;
+      background-color: #fff;
+      border-top: 1rpx solid #eee;
+    }
     .writeCom{
       width: 500rpx;
       height: 60rpx;
@@ -141,10 +158,22 @@
       border-radius: 100rpx;
       position: absolute;
       top: 20rpx;
-      left: 20rpx;
-    
-    
+      left: 20rpx;  
     }
+    .writeCom2{
+      width: 500rpx;
+      height: 120rpx;
+      border: 2rpx solid #eee;
+      background-color: #eee;
+      border-radius: 80rpx;
+      margin-left: 40rpx;
+      margin-top: 30rpx;
+    }
+
+
+
+
+
     .writeImage{
       max-width: 50rpx;
       max-height: 50rpx;
@@ -164,6 +193,19 @@
       padding-top: 10rpx;
     
     }
+    .writeComButton2{
+      position: absolute;
+      top: 60rpx;
+      right: 30rpx;
+      height: 60rpx;
+      width: 130rpx;
+      background-color: #00c758;
+      border-radius: 20rpx;
+      padding-top: 10rpx;
+    
+    }
+
+
     .commentTitle{
        margin: auto;
     }

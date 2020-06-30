@@ -188,6 +188,12 @@ Page({
           myAPP.globalData.myInfo.id=(body.data.nickname==""||body.data.nickname==null)?myAPP.globalData.userInfo.nickName:res.data.nickname
           myAPP.globalData.myInfo.School=(body.data.school==null)?"":body.data.school
           myAPP.globalData.myInfo.motto  = (body.data.signature==null)?"":body.data.signature
+          if(body.data.imageUrl==null||body.data.imageUrl=='')
+          {
+            myAPP.globalData.myInfo.userImageSrc=myAPP.globalData.userInfo.avatarUrl
+          }else{
+            myAPP.globalData.myInfo.userImageSrc=myAPP.globalData.host+'/user/getUserImage/'+body.data.id
+          }
           console.log(myAPP.globalData.myInfo.motto)
           that.setData({
             studyStatus:[ 
@@ -241,17 +247,17 @@ Page({
       this.setData({
         haslogin:myAPP.globalData.haslogin
       })
-      var userImageSrc='myInfo.userImageSrc'
-      this.setData({
-        [userImageSrc]:myAPP.globalData.userInfo.avatarUrl
-      })
+      // var userImageSrc='myInfo.userImageSrc'
+      // this.setData({
+      //   [userImageSrc]:myAPP.globalData.userInfo.avatarUrl
+      // })
       //可以拉取所有的学生信息
     }else  if(this.data.canIUse){
       myAPP.userInfoReadyCallback= res=>{
-        var userImageSrc='myInfo.userImageSrc'
+        // var userImageSrc='myInfo.userImageSrc'
         myAPP.globalData.haslogin=true
         this.setData({
-          [userImageSrc]:myAPP.globalData.userInfo.avatarUrl,
+          // [userImageSrc]:myAPP.globalData.userInfo.avatarUrl,
           haslogin: myAPP.globalData.haslogin
         })
       }
