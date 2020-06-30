@@ -10,24 +10,14 @@ Page({
     postId:null,
     inputBottom:0,
     postId:null,
-
-    message:[{
-      id:0,
-      Text:'dwdwdewfewfewfewfewfewfewfewfefewfefewf',
-      date:'2020-06-28',
-      imageSrc:[
-        "/images/messageTest.png",
-        "/images/messageTest2.png"
-      ],
-      master:{
-        masterID:0,
-        masterNickName:'小王',
-        masterSchool:'',
-        masterImgSrc:''
-   
-      }
-     },
-     ]
+    masterName:'',
+    masterSchool:'',
+    content:'',
+    commentsNum:'',
+    likesNum:'',
+    joinTime:'',
+    postImages:[],
+    postComments:[]
   },
 
 
@@ -35,7 +25,6 @@ Page({
 
   requestForPost:function()
   {
-
     wx.request({
       url:  myAPP.globalData.host+'/post/getAllPost',
       header:{

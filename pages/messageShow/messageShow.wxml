@@ -1,19 +1,19 @@
 <!--pages/messageShow/messageShow.wxml-->
 <view class="messageContainer">
-<view class="messageItem" wx:for="{{message}}" wx:key="item" bindtap="tapMessage">
-
+<view class="messageItem" >
 <view class="title">
-<image class="messageImg" src="/images/fail.png"></image>
+<!-- master的头像 -->
+<image class="messageImg" src=""></image>
 <view class="messageInfo">
-<view class="userName">小王</view>
-<view class="userSchool">北京大学</view>
+<view class="userName">{{masterName}}</view>
+<view class="userSchool">{{masterSchool}}</view>
 </view>
-<view class="date">{{item.date}}</view>
+<view class="date">{{joinTime}}</view>
 </view>
 
-<text class="messageText">{{item.Text}}</text>
+<text class="messageText">{{content}}</text>
 <view class="messagePhotoContainer"> 
-<view class="messagePhotoItem" wx:for="{{item.imageSrc}}" wx:key="item">
+<view class="messagePhotoItem" wx:for="{{postImages}}" wx:key="item">
 <image src="" class="messagePhoto" src="{{item}}"></image>
 </view>
 </view>
@@ -35,16 +35,15 @@
 </view>
 </view>
 </view>
-<view class="commentTitle"><view>评论</view></view>
-<view class="commentItem">
+<view class="commentItem" wx:for="{{postComments}}" wx:key="item">
 <view class="commentContainer">
-<image class="commentImg" src="/images/fail.png"></image>
+<image class="commentImg" src=''></image>
 <view class="commentInfo">
-<view class="commentName">小李</view>
-<view class="commentDate">2020-6-17</view>
+<view class="commentName">{{item.data.nickName}}</view>
+<view class="commentDate">{{item.data.joinTime}}</view>
 </view>
 </view>
-<text class="commentText"></text>
+<text class="commentText">{{item.data.content}}</text>
 </view>
 
 
@@ -66,5 +65,4 @@
 <image class="writeImage" src="/images/editGreen.png"></image>
 <view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
 </view>
-
 
