@@ -227,3 +227,13 @@ flex-direction: row;
   max-height: 30rpx;
   margin-left: 275rpx;
 }
+
+.uploadspace{
+  height: 30rpx;
+}
+.moment_img{
+  width: 40px;
+  height: 40px;
+ }
+
+ 

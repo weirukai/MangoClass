@@ -45,6 +45,11 @@ Page({
     data: {
       fileList: [],
     },
+    postContentName:'',//上传的课程名称
+    postContentType:'',//上传的课程类型
+    postContentDes:'', //上传的课程描述
+    videoUrl:[]
+
   },
   showStudyPlan:function()
   {
@@ -232,6 +237,80 @@ Page({
       this.setData({myInfo:myAPP.globalData.myInfo})
   },
 
+inputClassName:function(e){
+  this.setData({
+    postContentName:e.detail.value
+   })
+   console.log("上传的课程名称"+this.data.postContentName)//最后注释掉
+},
+inputClassDes:function(e){
+  this.setData({
+    postContentDes:e.detail.value
+  })
+  console.log("上传的课程描述"+this.data.postContentDes)//最后注释掉
+},
+
+chooseVideo:function(){
+  var that = this;
+   wx.chooseVideo({
+    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有 
+    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有 
+    success: function (res) {
+      let videoUrl=that.data.videoUrl
+      videoUrl.push(res.tempFilePath)
+      that.setData({
+      videoUrl: videoUrl
+      })
+      console.log(videoUrl)
+    }
+   })
+},
+/**
+ * 上传课程的发送函数
+ */
+send:function(){
+  this.contentRequest()
+
+},
+contentRequest:function(){
+  var that=this
+  var token=null
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+  //显示在上传中
+  wx.showLoading({
+    title: '上传中',
+   })
+
+  wx.request({
+    url: myApp.globalData.host+'',//这里待填
+    header: {
+      'content-type': 'application/json', // 默认值
+      'Authorization':token
+    },
+    method:'POST',
+      data: {
+     postContentName:this.data.postContentName,
+     postContentType:this.data.postContentType,
+     postContentDes:this.data.postContentDes
+      },
+      success:res=>{
+        if(res.statusCode==200&&res.data.code==200)
+        {
+          //上传成功后的处理
+          
+
+        }
+      }
+  })
+
+  
+},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -332,6 +411,18 @@ Page({
     this.setData({
       radio: event.detail,
     });
+    if(this.data.radio==1){
+      this.setData({
+        postContentType:'初中课程'
+      })
+      //console.log(this.data.postContentType)
+    }else if(this.data.radio==2){
+      this.setData({
+        postContentType:'高中课程'
+      })
+      //console.log(this.data.postContentType)
+    }
+
   },
   afterRead(event) {
     const { file } = event.detail;
@@ -349,8 +440,4 @@ Page({
       },
     });
   },
-
-
-
-
 })
