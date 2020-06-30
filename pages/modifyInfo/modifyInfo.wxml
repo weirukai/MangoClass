@@ -1,9 +1,9 @@
 <!--pages/modifyInfo.wxml-->
 <view  class="containerOut">
-<view class="modifyItem">
+<view class="modifyItem" bindtap="changeImg">
 <!--头像-->
 <view>头像</view>
-<view class="detail">
+<view class="detail" >
 <image class="userImage" src="{{myInfo.userImageSrc}}"></image>
 <van-icon name="arrow" color="#00c758" />
 </view>

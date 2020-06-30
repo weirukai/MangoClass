@@ -48,8 +48,42 @@ Page({
     postContentName:'',//上传的课程名称
     postContentType:'',//上传的课程类型
     postContentDes:'', //上传的课程描述
+<<<<<<< HEAD
     videoUrl:''
+=======
+    videoUrl:[],
+    changePlan:true,
+    inputTime:'',
+    inputPlan:''
+  },
+  changePlan:function(){
+     this.setData({
+      changePlan:false
+     })
+  },
+  inputTime:function(e){
+     this.setData({
+       inputTime:e.detail.value
+     })
+     console.log(this.data.inputTime)
+  },
+  inputPlan:function(e){
+    this.setData({
+       inputPlan:e.detail.value
+      })
+      console.log(this.data.inputkPlan)
+  },
+  inputSure:function(){
+    this.setData({
+      showStudyPlan:true,
+      changePlan:true
+    })
+    this.data.studyPlan.push({
+      desc:this.data.inputTime,
+        text:this.data.inputPlan
+>>>>>>> zhang
 
+    })
   },
   showStudyPlan:function()
   {

@@ -45,8 +45,13 @@
 </view>
 <!---这里是学习计划弹出页-->
 <van-popup show="{{showStudyPlan}}"   bind:close="closeStudyPlan">
-<view class="studyPlanPage">
-<image src='/images/editGreen.png' class="editPlan"></image>
+<view class="changePlan" wx:if="{{!changePlan}}">
+<view class="updateName"><view class="updateText">计划时间</view><input class="updateInput" bindinput="inputTime"></input></view>
+<view class="updateName"><view class="updateText">计划内容</view><input class="updateInput" bindinput="inputPlan"></input></view>
+<button bindtap="inputSure" style="margin-left:200rpx" size='mini'>确定修改</button>
+</view>
+<view class="studyPlanPage"  wx:if="{{changePlan}}">
+<image src='/images/editGreen.png' class="editPlan" bindtap="changePlan"></image>
 <view  class="stepsContainer" style="border-radius:20rpx">
 <van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
 </view>

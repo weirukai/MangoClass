@@ -124,6 +124,12 @@ width: 600rpx;
 background-color: #fff;
 border-radius: 30rpx;
 }
+.changePlan{
+height: 300rpx;
+width: 600rpx;
+background-color: #fff;
+border-radius: 30rpx;
+}
 .stepsContainer{
   border-radius:20rpx ;
   background-color: #fff;
