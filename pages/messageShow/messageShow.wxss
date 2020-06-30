@@ -3,10 +3,7 @@
   display: flex;
   flex-direction: column;
   background-color :#eee;
-  
-  
   }
-  
   
   .messageItem{
     background-color: #fff;
@@ -170,3 +167,59 @@
     .commentTitle{
        margin: auto;
     }
+    .inputBottom{
+
+      width: 100%;
+      
+      position: fixed;
+      
+      left: 0rpx;
+      
+      bottom: 0rpx;
+      
+      background: #fff;
+      
+      height: 200rpx;
+      
+      box-sizing: border-box;
+      
+      padding: 18rpx 10rpx;
+      
+      }
+      
+      .inputBottom .textInput{
+      
+      /* border-bottom: 2rpx solid #000; */
+      
+      display: inline-block;
+      height: 120rpx;
+      border:2rpx solid #eee;
+      border-radius: 30rpx;
+      width: 80%;
+      margin-top: 20rpx;
+      background-color: #eee;
+      }
+      
+      .inputBottom .textInputPlaceHolder{
+      
+      font-size: 30rpx;
+      
+      }
+      
+      .inputBottom .submit{
+      
+      font-size: 18px;
+      
+      display: inline-block;
+      
+      text-align: center;
+      margin-top: 50rpx;
+      float: right;
+      margin-right: 20rpx;
+      background: #00c758;
+      border-radius: 10rpx;
+      color: #fff;
+      padding: 2rpx 8rpx;
+      
+      }
+   

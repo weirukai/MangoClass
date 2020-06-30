@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showInput:false,
     postId:null,
+    inputBottom:0,
     message:[{
       id:0,
       Text:'dwdwdewfewfewfewfewfewfewfewfefewfefewf',
@@ -37,6 +39,21 @@ Page({
     
   },
 
+
+  focused:function(e)
+  {
+    
+    this.setData({
+      inputBottom:e.detail.height,
+      showInput:true
+    })
+  },
+  blur:function()
+  {
+    this.setData({
+      showInput:false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

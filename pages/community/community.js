@@ -35,7 +35,7 @@ wx.navigateTo({
 })
 },
 
-tapMessage:function(){
+tapMessage:function(e){
   wx.navigateTo({
     url: '/pages/messageShow/messageShow?id='+e.currentTarget.dataset.id
   })

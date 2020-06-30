@@ -46,9 +46,16 @@
 </view>
 <text class="commentText"></text>
 </view>
-<view class="docommentsCon">
-<input class="writeCom" bindinput="getInputValue"></input>
+
+
+<view   wx:if="{{!showInput}}"   class="docommentsCon">
+<input class="writeCom" bindinput="getInputValue" bindfocus="focused"></input>
 <image class="writeImage" src="/images/editGreen.png"></image>
-<view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
+<view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view>
+</view>
 </view>
 
+<view wx:if="{{showInput}}" class='inputBottom' style='bottom:{{inputBottom}}px'>
+<input type='text' class='textInput' value='{{inputText}}' placeholder-class='textInputPlaceHolder' placeholder='输入你想要说的...' bindinput='getInputText' bindfocus="foucus" bindblur="blur" bindconfirm='submit' adjust-position='{{false}}'></input>
+<text bindtap='submit' class='submit'>发送</text>
+</view>
