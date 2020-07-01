@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    testSwiperUrls:['https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+    postClasses:[],
+    SwiperUrls:['https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
     'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
     'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'], //循环轮播的课程的地址
     interval: 5000,
@@ -29,7 +30,36 @@ Page({
       url: '/pages/classShow/classShow?id='+e.currentTarget.dataset.id
     })
   },
-
+/**
+ * 获取封面循环的海报课程Id
+ */
+requestForPostId:function(){
+  var that = this
+  wx.request({
+    url: myApp.globalData.host+'',//请求的地址
+    header:{
+      'content-type': 'application/json'
+    },
+    success:res=>{
+      if(res.statusCode==200){
+        var tempClasses=[]
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        for(var index =0,max =jsonObj.data.length;index<max;index++){
+          var tempClass = jsonObj[index]
+          var classItem={
+            ImagePath:myApp.globalData.host+"/class/getClassImage/"+tempClass.id,
+            id:tempClass.id
+          }
+          tempClasses.push(classItem)
+        }
+        that.setData({
+          postClasses:tempClasses
+        })
+      }
+    }
+  })
+},
   /**获取推荐视频的请求*/
   requestForRecommendClass:function()
   {
@@ -242,7 +272,7 @@ onLoad: function () {
   },
   onShow()
   {
-
+    this.requestForPostId()
   },
 
 })
