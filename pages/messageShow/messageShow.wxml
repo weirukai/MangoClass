@@ -51,7 +51,7 @@
 
 
 <view class="{{showInput?'docommentsCon2':'docommentsCon'}}">
-<input class="{{showInput?'writeCom2':'writeCom'}}" bindinput="getInputValue" bindfocus="focused" bindblur="blured" value="{{inputTxt}}"></input>
+<input class="{{showInput?'writeCom2':'writeCom'}}" bindinput="getInputValue" bindfocus="focused" bindblur="blured" value="{{inputTxt}}" ></input>
 <image class="writeImage" src="/images/editGreen.png" wx:if='{{!showInput}}'></image>
 <view class="{{showInput?'writeComButton2':'writeComButton'}}" bindtap="doComment"><view style="text-align:center">发送</view>
 </view>

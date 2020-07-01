@@ -75,12 +75,12 @@ color="#00c758" />
     <view class="block" >
       <view class="updateInfoContainer">
          <view class="updateTitle updateName">上传课程</view>   
-         <view class="updateName"><view class="updateText">课程名称</view><input class="updateInput" bindinput="inputClassName"></input></view>
+         <view class="updateName"><view class="updateText">课程名称</view><input class="updateInput" bindinput="inputClassName" maxlength="10"></input></view>
           <van-radio-group value="{{ radio }}" bind:change="onChange" color="#00c758" class="radioGroup updateName">
             <van-radio name="1" shape="square" class="radio" label-position="left">初中课程</van-radio>
             <van-radio name="2" shape="square" class="radio" label-position="left">高中课程</van-radio>
           </van-radio-group>
-        <view class="updateName"><view class="updateText">课程简介</view>
+        <view class="updateName"><view class="updateText" value="{{inputTxt}}">课程简介</view>
         <textarea class="updateTextArea" bindinput="inputClassDes"></textarea>
         </view>
       </view>

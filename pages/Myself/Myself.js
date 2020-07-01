@@ -73,6 +73,9 @@ Page({
       console.log(this.data.inputkPlan)
   },
   inputSure:function(){
+    if(this.data.inputkPlan==''||this.data.inputTime==''){
+      return
+    }else{
     this.setData({
       showStudyPlan:true,
       changePlan:true
@@ -85,7 +88,9 @@ Page({
       studyPlan:this.data.studyPlan,
       inputTxt:''
     })
+  }
   },
+
   showStudyPlan:function()
   {
     //处理让学习计划显示出来的函数
@@ -300,7 +305,11 @@ chooseVideo:function(){
  * 上传课程的发送函数
  */
 send:function(){
+  if(that.data.postContentName==''||that.data.postContentDes==''){
+    return
+  }else{
   this.contentRequest()
+  }
 },
 
 contentRequest:function(){

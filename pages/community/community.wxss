@@ -47,6 +47,11 @@ itemContainer{
     padding-left: 40rpx;
 
   }
+  .messageInfoItem{
+
+    padding-left: 40rpx;
+
+  }
   .userName{
     font-size: 35rpx;
     margin-bottom: 5rpx

@@ -92,6 +92,9 @@ Page({
   },
   changeGrade:function(e)
   {
+    if(this.data.inputValue==null||this.data.inputValue==''){
+      return
+    }else{
     var that=this
     wx.setStorage({
       data: this.data.inputValue,
@@ -113,8 +116,12 @@ Page({
        })
       }
     })
+  }
   },
   changeBookType:function(e){
+    if(this.data.inputValue==null||this.data.inputValue==''){
+      return
+    }else{
     var that=this
     wx.setStorage({
       data: this.data.inputValue,
@@ -137,6 +144,7 @@ Page({
         })
       }
     })
+  }
   },
 
 /*更改信息的点击响应，然后再调用各个信息的具体更改事件，最后刷新*/
@@ -160,6 +168,9 @@ changeInfo:function(e)
 },
 
 changeNickName:function(e){
+  if(this.data.inputValue==null||this.data.inputValue==''){
+    return
+  }else{
   var token
   var that =this
   wx.getStorage({
@@ -197,10 +208,13 @@ changeNickName:function(e){
          }
       })
 
-      
+    }
 },
 
 changeMotto:function(e){
+  if(this.data.inputValue==null||this.data.inputValue==''){
+    return
+  }else{
   var token
   var that =this
   wx.getStorage({
@@ -236,9 +250,13 @@ changeMotto:function(e){
           })
          }
       })
+    }
 },
 
 changeShool:function(){
+  if(this.data.inputValue==null||this.data.inputValue==''){
+    return
+  }else{
   var token
   var that =this
   wx.getStorage({
@@ -273,6 +291,7 @@ wx.request({
           })
          }
       })
+      }
 },
 
 

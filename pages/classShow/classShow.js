@@ -72,6 +72,9 @@ getInputValue:function(e)
 },
 doComment:function()
 {
+  if(this.data.commentInput==''){
+    return
+  }else{
   //首先判断用户是否登录
   var that=this
   var token=null
@@ -115,7 +118,7 @@ doComment:function()
   }
   else{
     //请先登录
-  }
+  }}
 },
 
 /**

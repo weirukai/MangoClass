@@ -129,7 +129,7 @@ getInputValue:function(e)
   doComment:function()
 {
   if(this.data.inputValue=='')
-  {return}
+  {return}else{
   var that=this
   var token=null
   wx.getStorage({
@@ -189,7 +189,7 @@ wx.showModal({
     }
   }
 })
-  }
+  }}
 },
   /**
    * 生命周期函数--监听页面加载
