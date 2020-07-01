@@ -1,14 +1,17 @@
 <!--pages/community.wxml-->
 <view class="messageContainer">
-<view class="messageItem" wx:for="{{message}}" wx:key="item" bindtap="tapMessage" data-id="{{item.id}}">
 
+
+<view class=" itemContainer" wx:for="{{message}}" wx:key="item" >
+<view class="messageItem"  bindtap="tapMessage" data-id="{{item.id}}">
 <view class="title">
-<image class="messageImg" src="/images/fail.png"></image>
+<image class="messageImg" src="{{item.master.masterImageSrc}}"></image>
 <view class="messageInfo">
-<view class="userName">{{item.master.masterNickName}}</view>
-<view class="userSchool">{{item.master.masterSchool}}</view>
+
+<view class="messageInfoItem"><view class="userName">{{item.master.masterNickName}}</view>  </view>
+<view class="messageInfoItem"> <view class="userSchool">{{item.master.masterSchool}}</view> </view>
+<view class="messageInfoItem"> <view class="date">{{item.date}}</view> </view>
 </view>
-<view class="date">{{item.date}}</view>
 </view>
 <text class="messageText">{{item.Text}}</text>
 <view class="messagePhotoContainer"> 
@@ -30,8 +33,13 @@
 <text class="actionText">点赞</text>
 </view>
 </view>
+
+</view>
+
+<view class="space"></view>
 </view>
 </view>
+
 <view class="addPost" bindtap="toEditPost">
 <image src="/images/add.png" class="addImage"></image>
 </view>

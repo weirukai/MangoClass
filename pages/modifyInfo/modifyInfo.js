@@ -314,6 +314,7 @@ refreshMyInfo:function()
           [motto]:jsonObj.data.signature==null?'':jsonObj.data.signature,
           [school]:jsonObj.data.school==null?'':jsonObj.data.school,
           //注意头像信息需要额外进行申请，目前后台还没有处理头像的逻辑
+          
         })
         if(jsonObj.data.imageUrl==null||jsonObj.data.imageUrl=='')
         {

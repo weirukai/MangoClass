@@ -89,3 +89,13 @@ padding-top: 10rpx;
       padding-left: 10rpx;
       width: 350rpx;
       }
+
+      .signinContainer{
+      position: fixed;
+      bottom: 80rpx;
+      right: 80rpx;
+      }
+      .signinImg{
+        max-width: 90rpx;
+        max-height: 90rpx;
+      }

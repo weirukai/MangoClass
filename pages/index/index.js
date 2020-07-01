@@ -21,7 +21,7 @@ Page({
     juniorClasses:[],
 
     RecommendedClasses:[],
-
+    signin:true
   },
   toClassShow:function(e)
   {
@@ -81,6 +81,59 @@ Page({
     })
 
   },
+
+  signin:function(){
+    if(myApp.globalData.hasLogin)
+    {
+      this.setData({
+        signin:false
+      })
+      this.sendSign()
+    }
+    else{
+      wx.showModal({
+        title: '请先登录',
+        showCancel: false,
+        success:res=> {
+         if (res.confirm) {
+         wx.navigateTo({
+          url: '/pages/Myself/Myself',
+         })
+         }
+        }
+        })
+    } 
+  },
+  sendSign(){
+    var that=this
+    var token=null
+    wx.getStorage({
+      key: 'token',
+      success:res=>
+      {
+        token=res.data
+      }
+    })
+    wx.request({
+      url:myApp.globalData.host+'/user/userCheckIn',
+      header: {
+        'content-type': 'application/json' ,// 默认值
+        'Authorization':token
+      },
+      data:{
+      //签到成功后的发送数据 还没写
+      },
+       method:"POST",
+       success:res=>
+       {
+        wx.showToast({
+          title: '签到成功',
+        })
+
+       }
+    })
+  },
+
   /*获取高中课程的请求*/
   requestForSeniorClass:function()
   {
@@ -171,10 +224,16 @@ clickForSwitchClass:function(title)
 },
 refreshAllClasses:function()
 {
+  wx.showLoading({
+    title: '正在加载',
+  })
   //跟新课程
   this.requestForRecommendClass()
   this.requestForSeniorClass()
   this.requestForJuniorClasses()
+  wx.hideLoading({
+    complete: (res) => {},
+  })
 },
 
 onLoad: function () {

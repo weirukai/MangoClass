@@ -1,6 +1,9 @@
 <!--index.wxml-->
 <!--<view class="container">-->
 <!--这里是滚动推荐课程-->
+<view class="signinContainer">
+<image class="signinImg" wx:if="{{signin}}" class="signinImg" src="/images/signin.png" bindtap="signin"></image>
+</view>
 <view class=".swiperContainer">
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activecolor}}" class="swiper">
   <swiper-item wx:for="{{testSwiperUrls}}" wx:key ="*this">
@@ -14,21 +17,7 @@
 <view class="classOutContainer">
 <view class="classInContainer">
 <van-tab2s color="#00c758" style="border-radius:30rpx" model:value="{{tabActiveName}}" bindtap="clickForSwitchClass">
-<van-tab2 title="推荐课程" bintap="clickForSwitchClass" name="recommandedClass">
 
-<view class="container" >
-<view class="classItemContainer">
-<view class="classItem" wx:for="{{RecommendedClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
-<image src="{{item.ImagePath}}" class="classImage"></image>
-<view class="classIntroduce">
-<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
-<view style="font-size:16px;color:#808080">{{item.origin}}</view>
-<view style="margin-top:80rpx">{{item.date}}</view>
-</view>
-</view>
-</view>
-</view>
-</van-tab2>
 <van-tab2 title="初中课程" name="juniorClass">
 <view class="container" >
 <view class="classItemContainer">
@@ -61,6 +50,23 @@
 </view>
 </view>
 </van-tab2>
+
+<van-tab2 title="推荐课程" bintap="clickForSwitchClass" name="recommandedClass">
+
+<view class="container" >
+<view class="classItemContainer">
+<view class="classItem" wx:for="{{RecommendedClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
+<view style="font-size:16px;color:#808080">{{item.origin}}</view>
+<view style="margin-top:80rpx">{{item.date}}</view>
+</view>
+</view>
+</view>
+</view>
+</van-tab2>
+
 </van-tab2s>
 </view>
 </view>

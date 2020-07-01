@@ -7,13 +7,25 @@ padding-left: 10rpx;
 padding-top: 20rpx;
 padding-right: 10rpx;
 }
+itemContainer{
+
+
+
+}
 .messageItem{
   background-color: #fff;
  
   display: flex;
   flex-direction: column;
   border-bottom: 20rpx solid #eee;
-  padding: 10rpx;
+  padding: 20rpx;
+  border-radius:30rpx ;
+  box-shadow: 1px 1px 10px 1px #707070;
+}
+.space{
+  height: 60rpx;
+  width: 750rpx;
+  background-color: #eee;
 }
 .title{
   display: flex;
@@ -21,13 +33,20 @@ padding-right: 10rpx;
   border-bottom: 20rpx solid #fff;
 }
 .messageImg{
-  max-height: 100rpx;
-  max-width: 100rpx;
+  max-height: 150rpx;
+  max-width: 150rpx;
+  border-radius: 50%;
+  border: 1rpx solid #eee;
   }
   .messageInfo{
-    padding-left: 20rpx;
+    padding-left: 40rpx;
     display: flex;
     flex-direction: column;
+  }
+  .messageInfoItem{
+
+    padding-left: 40rpx;
+
   }
   .userName{
     font-size: 35rpx;
@@ -48,12 +67,14 @@ padding-right: 10rpx;
     padding-bottom: 10rpx;
     word-break: keep-all;
     word-wrap: break-word;
+    min-height: 100rpx;
     
   }
   .messagePhotoContainer{
   display: flex;
   flex-direction: row;
   border-bottom: 5rpx solid #eee;
+  min-height: 100rpx;
   }
   .messagePhotoItem{
     padding: 10rpx;

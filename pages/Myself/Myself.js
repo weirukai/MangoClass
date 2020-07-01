@@ -77,12 +77,10 @@ Page({
     })
     this.data.studyPlan.push({
       desc:this.data.inputTime,
-
       text:this.data.inputPlan
     })
     this.setData({
       studyPlan:this.data.studyPlan,
-
     })
   },
   showStudyPlan:function()
