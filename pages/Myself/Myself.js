@@ -216,6 +216,9 @@ Page({
         token = res.data
       }
     })
+    wx.showLoading({
+      title: '正在加载',
+    })
     wx.request({
       url: myAPP.globalData.host+'/user/getUserAllInfo',
       header: {
@@ -229,7 +232,7 @@ Page({
         {
           var jsonStr=JSON.stringify(res.data)
           var body=JSON.parse(jsonStr)
-          myAPP.globalData.myInfo.id=(body.data.nickname==""||body.data.nickname==null)?myAPP.globalData.userInfo.nickName:res.data.nickname
+          myAPP.globalData.myInfo.id=((body.data.nickname==""||body.data.nickname==null)?myAPP.globalData.userInfo.nickName:body.data.nickname)
           myAPP.globalData.myInfo.School=(body.data.school==null)?"":body.data.school
           myAPP.globalData.myInfo.motto  = (body.data.signature==null)?"":body.data.signature
           if(body.data.imageUrl==null||body.data.imageUrl=='')
@@ -253,6 +256,9 @@ Page({
       complete:res=>
       {
         that.updateInfo()
+        wx.hideLoading({
+          complete: (res) => {},
+        })
       }
     })
   },
@@ -403,6 +409,7 @@ uploadVideo:function(classId){
    */
   onLoad: function (options) {
     /**用户登录*/
+
     console.log("onload")
     this.setData({haslogin:myAPP.globalData.hasLogin})
     this.setData({myInfo:myAPP.globalData.myInfo})

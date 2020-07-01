@@ -4,6 +4,8 @@
 var myApp = getApp()
 Page({
   data: {
+    searchValue:'',
+    inputValue:'',
     tabActiveName:0,
     userInfo: {},
     hasUserInfo: false,
@@ -24,6 +26,24 @@ Page({
     RecommendedClasses:[],
     signin:true
   },
+  inpuSearch:function(e)
+  {
+ this.setData({
+  inputValue:e.detail.value
+})
+  },
+
+  toSearch:function()
+  {
+    wx.navigateTo({
+      url: '/pages/search/list',
+    })
+
+
+  },
+
+
+
   toClassShow:function(e)
   {
     wx.navigateTo({
@@ -271,12 +291,13 @@ refreshAllClasses:function()
 },
 
 onLoad: function () {
-  this.refreshAllClasses()
+
+  this.requestForPostId()
 
   },
-  onShow()
+  onShow:function()
   {
-    this.requestForPostId()
+    this.refreshAllClasses()
   },
 
 })

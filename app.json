@@ -10,7 +10,8 @@
     "miniprogram_npm/dialog2",
     "pages/classShow/classShow",
     "pages/editPost/editPost",
-    "pages/messageShow/messageShow"
+    "pages/messageShow/messageShow",
+    "pages/search/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

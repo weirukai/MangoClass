@@ -12,7 +12,8 @@
   </swiper-item>
 </swiper>
 <view class="searchClass">
-<input placeholder="SearchClass" class="input"></input>
+<input placeholder="SearchClass" class="input" bindinput="inputSearch" value="{{searchValue}}"></input>
+<image src="/images/search.png" class="search" bindtap="toSearch"></image>
 </view>
 </view>
 <view class="classOutContainer">
