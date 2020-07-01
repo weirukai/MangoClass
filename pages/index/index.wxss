@@ -94,6 +94,7 @@ padding-top: 10rpx;
       position: fixed;
       bottom: 80rpx;
       right: 80rpx;
+      z-index: 1;
       }
       .signinImg{
         max-width: 90rpx;

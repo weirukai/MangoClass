@@ -407,14 +407,14 @@ uploadVideo:function(classId){
       // })
       //可以拉取所有的学生信息
     }else  if(this.data.canIUse){
-      myAPP.userInfoReadyCallback= res=>{
-        // var userImageSrc='myInfo.userImageSrc'
-        myAPP.globalData.haslogin=true
-        this.setData({
-          // [userImageSrc]:myAPP.globalData.userInfo.avatarUrl,
-          haslogin: myAPP.globalData.haslogin
-        })
-      }
+      // myAPP.userInfoReadyCallback= res=>{
+      //   // var userImageSrc='myInfo.userImageSrc'
+      //   myAPP.globalData.haslogin=true
+      //   this.setData({
+      //     // [userImageSrc]:myAPP.globalData.userInfo.avatarUrl,
+      //     haslogin: myAPP.globalData.haslogin
+      //   })
+      // }
     }
     
   },

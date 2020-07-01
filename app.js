@@ -34,42 +34,46 @@ App({
               }
             }
           })
+
           //假如获得了授权就直接登录
           var that=this
-          wx.login({
-            success(res){
-              wx.request({
-                url: that.globalData.host+'/user/login',
-                data:{
-                  code:res.code,
-                  roles:"commom_user",
-                  nickName:that.globalData.userInfo.nickName
-                },
-                method:'POST',
-                header: {
-                  'content-type': 'application/json' // 默认值
-                },
-                success:res=>
-              {
-                //网络请求发送成功
-                if(res.statusCode==200)
+          that.userInfoReadyCallback=res=>{
+            wx.login({
+              success(res){
+                wx.request({
+                  url: that.globalData.host+'/user/login',
+                  data:{
+                    code:res.code,
+                    roles:"commom_user",
+                    nickName:that.globalData.userInfo.nickName
+                  },
+                  method:'POST',
+                  header: {
+                    'content-type': 'application/json' // 默认值
+                  },
+                  success:res=>
                 {
-                  //登录成功
-                  that.globalData.hasLogin=true;
-                  //解析token
-                  console.log(res.data)
-                  var jsonstr=JSON.stringify(res.data)
-                  var jsonObj=JSON.parse(jsonstr)
-                  var token=jsonObj.data.token
-                  wx.setStorage({
-                    data: token,
-                    key: 'token',
-                  })
+                  //网络请求发送成功
+                  if(res.statusCode==200)
+                  {
+                    //登录成功
+                    that.globalData.hasLogin=true;
+                    //解析token
+                    console.log(res.data)
+                    var jsonstr=JSON.stringify(res.data)
+                    var jsonObj=JSON.parse(jsonstr)
+                    var token=jsonObj.data.token
+                    wx.setStorage({
+                      data: token,
+                      key: 'token',
+                    })
+                  }
                 }
+                })
               }
-              })
-            }
-          })
+            })
+          }
+          
         }
       }
     })
