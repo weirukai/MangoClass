@@ -277,7 +277,6 @@ onLoad: function () {
   onShow()
   {
     this.requestForPostId()
-
   },
 
 })

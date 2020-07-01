@@ -42,6 +42,7 @@ itemContainer{
     padding-left: 40rpx;
     display: flex;
     flex-direction: column;
+    padding-top: 20rpx;
   }
   .messageInfoItem{
 

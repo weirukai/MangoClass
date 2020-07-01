@@ -69,7 +69,7 @@
 <van-dialog2 show="{{showDialog}}"  bindtap="closeDialog">
 <view class="inputContainer">
 <view class="dialogFlexItem"><view class="dialogTitle">修改{{dialogTitle}}</view></view>
-<view class="dialogFlexItem"><input  class="input" placeholder="请输入" bindinput="bindInput"></input></view>
+<view class="dialogFlexItem"><input  class="input" placeholder="请输入" bindinput="bindInput" value="{{inputTxt}}"></input></view>
 <view class="dialogFlexItem">
 <view class="dialogButtonContainer">
 <view class="dialogButton" bindtap="closeDialog">取消</view>

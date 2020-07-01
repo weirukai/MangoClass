@@ -16,7 +16,8 @@ Page({
     comments_num :0,
     description : '',
     joinTime:null,
-    comments:[]
+    comments:[],
+    inputTxt:''
   },
 /**根据课程id拉取对应得评论*/
 getClassComments:function()
@@ -102,7 +103,8 @@ doComment:function()
           {
             //刷新评论
             that.setData({
-              commentInput:''
+              commentInput:'',
+              inputTxt:''
             })
             that.getClassComments()
           }

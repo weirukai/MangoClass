@@ -17,7 +17,8 @@ Page({
       bookType:"",
       motto:"",
       userImageSrc:"",
-      School:""
+      School:"",
+      inputTxt:''
     },
   },
   showDialog:function(e)
@@ -129,7 +130,8 @@ Page({
           key: 'bookType',
           success:res=>{
             this.setData({
-              [bookTypePath]:res.data
+              [bookTypePath]:res.data,
+              inputTxt:''
             })
           }
         })
@@ -164,6 +166,7 @@ changeNickName:function(e){
   key: 'token',
   success:res=>{
     that.token = res.data
+    
   }
 })
       wx.request({
@@ -188,7 +191,8 @@ changeNickName:function(e){
          {
            that.closeDialog()
            that.setData({
-             inputValue:""
+             inputValue:"",
+             inputTxt:''
            })
          }
       })
@@ -203,6 +207,7 @@ changeMotto:function(e){
   key: 'token',
   success:res=>{
     that.token = res.data
+    
   }
 })
       wx.request({
@@ -226,7 +231,8 @@ changeMotto:function(e){
          {
            that.closeDialog()
            that.setData({
-            inputValue:""
+            inputValue:"",
+            inputTxt:''
           })
          }
       })
@@ -262,7 +268,8 @@ wx.request({
          {
            that.closeDialog()
            that.setData({
-            inputValue:""
+            inputValue:"",
+            inputTxt:''
           })
          }
       })

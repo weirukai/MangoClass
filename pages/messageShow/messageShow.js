@@ -19,7 +19,8 @@ Page({
     likesNum:'',
     joinTime:'',
     postImages:[],
-    postComments:[]
+    postComments:[],
+    inputTxt:''
   },
 
   /******向后台获取post****/
@@ -43,7 +44,7 @@ Page({
           that.setData({
             masterName:jsonObj.data.masterNickName,
             masterSchool:jsonObj.data.masterSchool,
-            masterImageSrc:'',////////////待做
+            masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+jsonObj.data.postData.masterId,
             content:jsonObj.data.postData.content,
             commentsNum:jsonObj.data.postData.commentsNum,
             likesNum:jsonObj.data.postData.likesNum,
@@ -163,6 +164,7 @@ getInputValue:function(e)
             complete: (res) => {
               this.setData({
                 inputValue:'',
+                inputTxt:''
               })
               wx.showToast({
                 title: '发送成功',

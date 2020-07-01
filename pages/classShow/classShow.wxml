@@ -74,7 +74,7 @@ src="{{videoSrc}}">
 </van-tabs>
 </view>
 <view class="docommentsCon">
-<input class="writeCom" bindinput="getInputValue"></input>
+<input class="writeCom" bindinput="getInputValue" value="{{inputTxt}}"></input>
 <image class="writeImage" src="/images/editGreen.png"></image>
 <view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
 </view>

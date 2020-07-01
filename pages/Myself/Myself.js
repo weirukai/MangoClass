@@ -51,7 +51,9 @@ Page({
     videoUrl:'',
     changePlan:true,
     inputTime:'',
-    inputPlan:''
+    inputPlan:'',
+    inputTxt:''
+
   },
   changePlan:function(){
      this.setData({
@@ -81,6 +83,7 @@ Page({
     })
     this.setData({
       studyPlan:this.data.studyPlan,
+      inputTxt:''
     })
   },
   showStudyPlan:function()
@@ -488,12 +491,12 @@ uploadVideo:function(classId){
     });
     if(this.data.radio==1){
       this.setData({
-        postContentType:'初中课程'
+        postContentType:'junior'
       })
       //console.log(this.data.postContentType)
     }else if(this.data.radio==2){
       this.setData({
-        postContentType:'高中课程'
+        postContentType:'senoir'
       })
       //console.log(this.data.postContentType)
     }

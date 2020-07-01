@@ -81,7 +81,7 @@ requestForPost:function()
                 masterId:element.postData.masterId,
                 masterNickName:element.masterNickName==''?'匿名用户':element.masterNickName,
                 masterSchool:element.masterSchool,
-                masterImageSrc:'',///////////保留待做
+                masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+element.postData.masterId
               }
             }
             tempPostList.push(post)
