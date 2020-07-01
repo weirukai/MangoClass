@@ -104,14 +104,20 @@
     }
 
     .commentImg{
-      max-height: 70rpx;
-      max-width: 70rpx;
+      max-height: 120rpx;
+      max-width: 120rpx;
+      border: 3rpx solid #eee;
+      border-radius: 50%;
     }
 
     .commentInfo{
-      padding-left: 20rpx;
+      padding-left: 40rpx;
       display: flex;
+      padding-top: 30rpx;
       flex-direction: column;
+    }
+    .commentInfoItem{
+      min-height: 50rpx;
     }
 
     .commentName{
@@ -124,9 +130,10 @@
     color: rgb(127, 126, 126);
     }
     .commentText{
-      padding-bottom: 10rpx;
+      padding-top: 40rpx;
       word-break: keep-all;
       word-wrap: break-word;
+      min-height: 60rpx;
     }
 
     .commentItem{

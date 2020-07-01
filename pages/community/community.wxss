@@ -9,8 +9,6 @@ padding-right: 10rpx;
 }
 itemContainer{
 
-
-
 }
 .messageItem{
   background-color: #fff;

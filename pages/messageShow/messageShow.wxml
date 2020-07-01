@@ -37,10 +37,12 @@
 </view>
 <view class="commentItem" wx:for="{{postComments}}" wx:key="item">
 <view class="commentContainer">
-<image class="commentImg" src='{{item.imagesSrc}}'></image>
+<image class="commentImg" src='{{item.imageSrc}}'></image>
 <view class="commentInfo">
-<view class="commentName">{{item.nickName}}</view>
-<view class="commentDate">{{item.joinTime}}</view>
+<view class="commentInfoItem"><view class="commentName">{{item.nickName}}</view></view>
+<view class="commentInfoItem"><view class="commentDate">{{item.joinTime}}</view></view>
+
+
 </view>
 </view>
 <text class="commentText">{{item.content}}</text>

@@ -42,7 +42,7 @@ Page({
           var jsonstr=JSON.stringify(res.data)
           var jsonObj=JSON.parse(jsonstr)
           that.setData({
-            masterName:jsonObj.data.masterNickName,
+            masterName:jsonObj.data.masterNickName=='',
             masterSchool:jsonObj.data.masterSchool,
             masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+jsonObj.data.postData.masterId,
             content:jsonObj.data.postData.content,
@@ -108,10 +108,10 @@ getInputValue:function(e)
             for (let index = 0; index < jsonObj.data.length; index++) {
               const element = jsonObj.data[index];
              var comment={
-                NickName:element.nickName,
+                nickName:(element.nickName==null||element.nickName=='')?'匿名用户':element.nickName,
                 joinTime:element.postComment.joinTime.split("T")[0],
                 content:element.postComment.content,
-                ImageSrc:'',
+                imageSrc:myApp.globalData.host+'/user/getUserImage/'+element.postComment.userId,
               }
               comments.push(comment)
             }
