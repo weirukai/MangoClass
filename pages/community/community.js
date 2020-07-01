@@ -81,7 +81,7 @@ requestForPost:function()
                 masterId:element.postData.masterId,
                 masterNickName:element.masterNickName==''?'匿名用户':element.masterNickName,
                 masterSchool:element.masterSchool,
-                masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+element.postData.masterId
+                masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+element.postData.masterId+'/'+Math.floor(Math.random()*100)
               }
             }
             tempPostList.push(post)

@@ -350,7 +350,7 @@ refreshMyInfo:function()
         }
         else{
           that.setData({
-            [userImageSrc]:myAPP.globalData.host+'/user/getUserImage/'+jsonObj.data.id
+            [userImageSrc]:myAPP.globalData.host+'/user/getUserImage/'+jsonObj.data.id+'/'+Math.floor(Math.random()*10)
           })
         }
       }

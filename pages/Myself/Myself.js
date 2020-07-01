@@ -239,8 +239,11 @@ Page({
           {
             myAPP.globalData.myInfo.userImageSrc=myAPP.globalData.userInfo.avatarUrl
           }else{
-            myAPP.globalData.myInfo.userImageSrc=myAPP.globalData.host+'/user/getUserImage/'+body.data.id
+            myAPP.globalData.myInfo.userImageSrc=myAPP.globalData.host+'/user/getUserImage/'+body.data.id+'/'+Math.floor(Math.random()*100)
           }
+          that.setData({
+            myInfo:myAPP.globalData.myInfo
+          })
           console.log(myAPP.globalData.myInfo.motto)
           that.setData({
             studyStatus:[ 
@@ -255,7 +258,7 @@ Page({
       },
       complete:res=>
       {
-        that.updateInfo()
+        that.updateInfo(that)
         wx.hideLoading({
           complete: (res) => {},
         })
@@ -279,7 +282,7 @@ Page({
         myAPP.globalData.myInfo.bookType = res.data
       }
     })
-      this.setData({myInfo:myAPP.globalData.myInfo})
+      e.setData({myInfo:myAPP.globalData.myInfo})
   },
 
 inputClassName:function(e){

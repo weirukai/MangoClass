@@ -44,7 +44,7 @@ Page({
           that.setData({
             masterName:jsonObj.data.masterNickName=='',
             masterSchool:jsonObj.data.masterSchool,
-            masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+jsonObj.data.postData.masterId,
+            masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+jsonObj.data.postData.masterId+'/'+Math.floor(Math.random()*100),
             content:jsonObj.data.postData.content,
             commentsNum:jsonObj.data.postData.commentsNum,
             likesNum:jsonObj.data.postData.likesNum,
@@ -111,7 +111,7 @@ getInputValue:function(e)
                 nickName:(element.nickName==null||element.nickName=='')?'匿名用户':element.nickName,
                 joinTime:element.postComment.joinTime.split("T")[0],
                 content:element.postComment.content,
-                imageSrc:myApp.globalData.host+'/user/getUserImage/'+element.postComment.userId,
+                imageSrc:myApp.globalData.host+'/user/getUserImage/'+element.postComment.userId+'/'+Math.floor(Math.random()*100),
               }
               comments.push(comment)
             }

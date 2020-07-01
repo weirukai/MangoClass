@@ -51,7 +51,7 @@ getClassComments:function()
             'nickName': (jsonObj.data[index].nickName=='')?'匿名用户':jsonObj.data[index].nickName,
             'content': jsonObj.data[index].classComments.content,
             'date': jsonObj.data[index].classComments.joinTime.split("T")[0],
-            'masterImageSrc':myApp.globalData.host+'/user/getUserImage/'+ jsonObj.data[index].classComments.userId
+            'masterImageSrc':myApp.globalData.host+'/user/getUserImage/'+ jsonObj.data[index].classComments.userId+'/'+Math.floor(Math.random()*100)
           }
           commentsResp.push(comment)
         }
