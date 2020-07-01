@@ -17,7 +17,7 @@ itemContainer{
  
   display: flex;
   flex-direction: column;
-  border-bottom: 20rpx solid #eee;
+ 
   padding: 20rpx;
   border-radius:30rpx ;
   box-shadow: 1px 1px 10px 1px #707070;
@@ -81,8 +81,8 @@ itemContainer{
   }
 
   .messagePhoto{
-   max-width: 200rpx;
-   max-height: 200rpx;
+   max-width: 144rpx;
+   max-height: 256rpx;
    border-radius: 10rpx;
   }
   .addPost{

@@ -161,7 +161,8 @@ Page({
                     url: myAPP.globalData.host+'/user/login',
                     data:{
                       code:res.code,
-                      roles:"common_user"
+                      roles:"common_user",
+                      nickName:myAPP.globalData.userInfo.nickName
                     },
                     method:'POST',
                     header: {

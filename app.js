@@ -42,7 +42,8 @@ App({
                 url: that.globalData.host+'/user/login',
                 data:{
                   code:res.code,
-                  roles:"commom_user"
+                  roles:"commom_user",
+                  nickName:that.globalData.userInfo.nickName
                 },
                 method:'POST',
                 header: {

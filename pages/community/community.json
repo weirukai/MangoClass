@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "社区交流",
   "usingComponents": {
     "van-tab2":"/miniprogram_npm/vant-weapp/tab/index",
     "van-tab2s":"/miniprogram_npm/vant-weapp/tabs/index"
