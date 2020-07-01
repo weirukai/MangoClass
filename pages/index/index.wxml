@@ -7,8 +7,8 @@
 <view class=".swiperContainer">
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activecolor}}" class="swiper">
 <!--此处还要等后台数据完善后补充-->
-  <swiper-item wx:for="{{postClasses}}" wx:key ="*this">
-    <image src="{{}}"style="width:100%;height:200px" class="slide-image" mode="widthFix" data-id="{{item.id}}"  bindtap="toClassShow"></image>
+  <swiper-item wx:for="{{postClasses}}" wx:key ="item">
+    <image src="{{item.ImagePath}}"style="width:100%;height:200px" class="slide-image" mode="widthFix" data-id="{{item.id}}"  bindtap="toClassShow"></image>
   </swiper-item>
 </swiper>
 <view class="searchClass">

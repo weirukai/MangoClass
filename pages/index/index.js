@@ -36,7 +36,7 @@ Page({
 requestForPostId:function(){
   var that = this
   wx.request({
-    url: myApp.globalData.host+'',//请求的地址
+    url: myApp.globalData.host+'/class/getSwiperClass',//请求的地址
     header:{
       'content-type': 'application/json'
     },
@@ -45,8 +45,12 @@ requestForPostId:function(){
         var tempClasses=[]
         var jsonStr=JSON.stringify(res.data)
         var jsonObj=JSON.parse(jsonStr)
+        if(jsonObj==null)
+        {
+          return
+        }
         for(var index =0,max =jsonObj.data.length;index<max;index++){
-          var tempClass = jsonObj[index]
+          var tempClass = jsonObj.data[index]
           var classItem={
             ImagePath:myApp.globalData.host+"/class/getClassImage/"+tempClass.id,
             id:tempClass.id
@@ -273,6 +277,7 @@ onLoad: function () {
   onShow()
   {
     this.requestForPostId()
+
   },
 
 })
