@@ -9,8 +9,8 @@ Page({
       {
         iconPath:"../../images/marker.png",
         id:0,
-        longitude:119.4093,
-        latitude:189.0980,
+        longitude:114.43472,
+        latitude:30.5113,
         width:50,
         height:50,
         callout:{
