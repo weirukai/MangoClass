@@ -272,6 +272,17 @@
       
       }
    
-.shareBotton{
-  z-index: 3;
-}
+
+      .shareButton{
+        z-index: 1;
+        height: 100rpx;
+        position: absolute;
+        top: 550rpx;
+        width: 90rpx;
+        background-color: transparent;
+        
+      }
+      .shareButton::after{
+        border: none;
+      }
+      

@@ -18,7 +18,7 @@ src="{{videoSrc}}">
 <view class="actionCount">收藏</view>
 </view>
 <view class="imageContainer" bindtap="doLike">
-<image src="/images/likes.png" class="actionImage" ></image>
+<image src="{{likeImg}}" class="actionImage" ></image>
 <view class="actionCount">{{likes_num}}</view>
 </view>
 <view class="shareContainer" bindtap="shareClick">

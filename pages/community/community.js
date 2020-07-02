@@ -86,6 +86,7 @@ requestForPost:function()
             }
             tempPostList.push(post)
           }
+          tempPostList.reverse()
           that.setData({
             message:tempPostList
           })

@@ -17,7 +17,8 @@ Page({
     description : '',
     joinTime:null,
     comments:[],
-    inputTxt:''
+    inputTxt:'',
+    likeImg:'/images/like.png'
   },
   doLike:function(){
     //如果没登陆提示先登陆
@@ -46,7 +47,7 @@ wx.request({
     if(res.statusCode==200){
       var jsonStr=JSON.stringify(res.data)
       var jsonObj=JSON.parse(jsonStr)
-      var tempLike =jsonObj.data.likeNum
+      var tempLike =jsonObj.data.likesNum
     }
     if(tempLike==null){
       that.setData({
@@ -54,11 +55,42 @@ wx.request({
         })
     }else{
     that.setData({
-    likes_num:tempLike
+    likes_num:tempLike,
+    likeImg:'/images/doLike.png'
     })}
   }
 
 })
+  },
+  refreshForLike:function(){
+    var that =this
+    wx.request({
+      url: myApp.globalData.host+'/class/like', 
+      header:{
+        'content-type': 'application/json' // 默认值
+      },
+      method:"POST",
+      data:{
+        'classId':that.data.classId
+      },
+      success:res=>{
+        if(res.statusCode==200){
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          var tempLike =jsonObj.data.likesNum
+        }
+        tempLike=tempLike-1
+        if(tempLike==null){
+          that.setData({
+            likes_num:0
+            })
+        }else{
+        that.setData({
+        likes_num:tempLike
+        })}
+      }
+    
+    })
   },
 /**根据课程id拉取对应得评论*/
 getClassComments:function()
@@ -279,7 +311,7 @@ shareClick:function()
   onShow: function () {
     this.getClassComments()
     this.getClassInfo()
-    this.requestforLike()
+   
   },
 
   /**
