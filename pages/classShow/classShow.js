@@ -19,6 +19,37 @@ Page({
     comments:[],
     inputTxt:''
   },
+  doLike:function(){
+    //如果没登陆提示先登陆
+     if(!myApp.globalData.hasLogin){
+      wx.showModal({
+        title: '请先登录',
+        showCancel: false,
+      })
+     }else{
+  //根据课程id拉去点赞数
+  var that =this
+  wx.request({
+    url: myApp.globalData.host+'/class/', 
+    header:{
+      'content-type': 'application/json' // 默认值
+    },
+    method:"POST",
+    data:{
+      'classID':that.data.classId
+    },
+    success:res=>{
+      if(res.statusCode==200){
+        //处理 获取点赞数
+      }
+      that.setData({
+      likesNum:''
+      })
+    }
+ 
+  })
+     }
+  },
 /**根据课程id拉取对应得评论*/
 getClassComments:function()
 {
@@ -199,8 +230,9 @@ if(myApp.globalData.hasLogin)
     }) 
   }else{
     //轻提示，提示用户请先登录*****************待做****/
-    wx.showToast({
+    wx.showModal({
       title: '请先登录',
+      showCancel: false,
     })
   }
 
