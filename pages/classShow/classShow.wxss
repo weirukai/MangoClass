@@ -25,6 +25,11 @@ width: 750rpx;
   min-width: 187rpx;
   flex-direction: column;
 }
+.shareContainer{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
 .actionImage{
   max-width: 60rpx;
   max-height: 60rpx;
@@ -124,4 +129,16 @@ width: 750rpx;
   border-radius: 20rpx;
   padding-top: 10rpx;
 
+}
+.shareButton{
+  z-index: 1;
+  height: 100rpx;
+  position: absolute;
+  top: 550rpx;
+  width: 90rpx;
+  background-color: transparent;
+  
+}
+.shareButton::after{
+  border: none;
 }

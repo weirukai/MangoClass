@@ -15,7 +15,7 @@ Page({
     'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
     'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'], //循环轮播的课程的地址
     interval: 5000,
-    duration: 1000,
+    duration: 500,
     indicatorDots: true,
     indicatorColor: "#ffffff",
     activecolor:"#00c758",

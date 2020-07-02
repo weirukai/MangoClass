@@ -273,3 +273,8 @@ page,view,image,input {
       padding-left: 10rpx;
       width: 350rpx;
       }
+.searchNotFound{
+  width: 200rpx;
+  height: 200rpx;
+  margin: auto;
+}

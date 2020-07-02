@@ -23,13 +23,14 @@
 <view class="actionContainer">
 <image class="actionPhoto" src="/images/share2.png"></image>
 <text class="actionText">分享</text>
+<button open-type="share" class="shareButton"></button>
 </view>
 <view class="actionContainer">
 <image class="actionPhoto" src="/images/comment.png"></image>
 <text class="actionText">评论</text>
 </view>
 <view class="actionContainer">
-<image class="actionPhoto" src="/images/likes.png"></image>
+<image class="actionPhoto" src="/images/like.png"></image>
 <text class="actionText">点赞</text>
 </view>
 </view>

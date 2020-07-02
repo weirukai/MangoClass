@@ -52,10 +52,8 @@
 </view>
 <view class="studyPlanPage"  wx:if="{{changePlan}}">
 <image src='/images/editGreen.png' class="editPlan" bindtap="changePlan"></image>
-<view  class="stepsContainer" style="border-radius:20rpx">
-
-<van-steps steps="{{studyPlan}}" active="0" direction="vertical" click-step="toDeleteStudyItem"/>
-
+<view  class="stepsContainer" style="border-radius:20rpx" bindtap="planOver">
+<van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
 </view>
 <!---->
 </view>
@@ -104,8 +102,8 @@ color="#00c758" />
 <!---课程管理-->
 <view class="menuItem" bindtap="gotoModifyInfo"><view>修改信息</view><van-icon name="arrow" color="#00c758"/></view>
 <!--隐私设置-->
-<view class="space2"></view>
-<view class="menuItem"><view>隐私设置</view><van-icon name="arrow" color="#00c758"/></view>
+<!-- <view class="space2"></view>
+<view class="menuItem"><view>隐私设置</view><van-icon name="arrow" color="#00c758"/></view> -->
 <view class="space2"></view>
 
 
@@ -114,12 +112,9 @@ color="#00c758" />
 
 
 <view class="space1"></view>
-<view class="menuItem"><view>联系我们</view><van-icon name="arrow" color="#00c758"/></view>
+<view class="menuItem" bindtap="findUs"><view>联系我们</view><van-icon name="arrow" color="#00c758"/></view>
 <view class="space2"></view>
-
 </view>
-
-
 <van-dialog2 show="{{showPhoneDialog}}"  bindtap="closePhoneDialog">
 <view class="inputContainer">
 <view class="dialogFlexItem"><view class="dialogTitle">修改手机号码</view></view>
@@ -132,6 +127,4 @@ color="#00c758" />
 </view>
 </view>
 </van-dialog2>
-
-
 </view>

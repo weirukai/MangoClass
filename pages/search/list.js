@@ -9,7 +9,8 @@ Page({
     searchClasses:[],
     inputValue:'',
     value:'',
-    className:''
+    className:'',
+    searchNotFound:false
   },
 //点击每个课程的事件
   toClassShow:function(e)
@@ -36,8 +37,16 @@ Page({
               var jsonStr=JSON.stringify(res.data)
               var jsonObj=JSON.parse(jsonStr)
               var tempClasses=[]
+              
               if(jsonObj.data==null)
-              {return}
+              {
+                
+                return}
+                if(jsonObj.data.length==0){
+                  that.setData({
+                    searchNotFound:true,
+                  })
+                }
               for( var index=0 ,max=jsonObj.data.length;index<max;index++)
               {
                 var seniorClass=jsonObj.data[index]
