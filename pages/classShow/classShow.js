@@ -30,7 +30,7 @@ Page({
   //根据课程id拉去点赞数
   var that =this
   wx.request({
-    url: myApp.globalData.host+'/class/', 
+    url: myApp.globalData.host+'/class/like', 
     header:{
       'content-type': 'application/json' // 默认值
     },
@@ -40,11 +40,16 @@ Page({
     },
     success:res=>{
       if(res.statusCode==200){
-        //处理 获取点赞数
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        var tempLike =jsonObj.data.likesNum
       }
+      if(tempLike==null){
+        return
+      }else{
       that.setData({
-      likesNum:''
-      })
+      likes_num:tempLike
+      })}
     }
  
   })
