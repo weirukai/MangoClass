@@ -53,7 +53,9 @@
 <view class="studyPlanPage"  wx:if="{{changePlan}}">
 <image src='/images/editGreen.png' class="editPlan" bindtap="changePlan"></image>
 <view  class="stepsContainer" style="border-radius:20rpx">
-<van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
+
+<van-steps steps="{{studyPlan}}" active="0" direction="vertical" click-step="toDeleteStudyItem"/>
+
 </view>
 <!---->
 </view>

@@ -23,22 +23,22 @@ Page({
       value:'0'}
     ],
     studyPlan:[
-      {
-        text:"洗脸",
-        desc:"5:30"
-      },
-      {
-        desc:"7:30",
-        text:"看报纸"
-      },
-      {
-        desc:"8:30",
-        text:"看电视"
-      },
-      {
-        desc:"12:00",
-        text:"吃中饭"
-      }
+      // {
+      //   text:"洗脸",
+      //   desc:"5:30"
+      // },
+      // {
+      //   desc:"7:30",
+      //   text:"看报纸"
+      // },
+      // {
+      //   desc:"8:30",
+      //   text:"看电视"
+      // },
+      // {
+      //   desc:"12:00",
+      //   text:"吃中饭"
+      // }
     ],
     show: false,
     radio: '1',
@@ -73,6 +73,7 @@ Page({
       console.log(this.data.inputkPlan)
   },
   inputSure:function(){
+    var that=this
     if(this.data.inputkPlan==''||this.data.inputTime==''){
       return
     }else{
@@ -81,12 +82,18 @@ Page({
       changePlan:true
     })
     this.data.studyPlan.push({
+      id:this.data.studyPlan.length,
       desc:this.data.inputTime,
       text:this.data.inputPlan
-    })
+    },
+    )
     this.setData({
       studyPlan:this.data.studyPlan,
       inputTxt:''
+    })
+    wx.setStorage({
+      data: that.data.studyPlan,
+      key: 'studyPlan',
     })
   }
   },
@@ -94,9 +101,28 @@ Page({
   showStudyPlan:function()
   {
     //处理让学习计划显示出来的函数
-    this.setData({
-      showStudyPlan:true
+    var myStudyPlan=null
+    wx.getStorage({
+      key: 'studyPlan',
+      success:res=>{
+        myStudyPlan=res.data
+      }
     })
+    this.setData({
+      showStudyPlan:true,
+    })
+    if(myStudyPlan!=null)
+    {
+      this.setData({
+        studyPlan:myStudyPlan
+      })
+    }
+    
+  },
+  toDeleteStudyItem:function()
+  {
+      console.log(12)
+
   },
   closeStudyPlan:function()
   {

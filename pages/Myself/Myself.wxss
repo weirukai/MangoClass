@@ -229,8 +229,8 @@ display: flex;
 flex-direction: row;
 }
 .editPlan{
-  max-width: 30rpx;
-  max-height: 30rpx;
+  max-width: 60rpx;
+  max-height: 60rpx;
   margin-left: 275rpx;
 }
 
