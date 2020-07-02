@@ -36,7 +36,7 @@
   width: 750;
   height: 375rpx;
   position: relative;
-  background-color: rosybrown;
+  background-color: #fff;
 
 }
 .searchClass{

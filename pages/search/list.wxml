@@ -6,9 +6,6 @@
   
 </view>
 <view class="line"></view>
-
-
-
 <view class="container" >
 <view class="classItemContainer">
 <view class="classItem" wx:for="{{searchClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
@@ -21,3 +18,4 @@
 </view>
 </view>
 </view>
+<image wx:if="{{searchNotFound}}" src="/images/searchNotFound.png" class="searchNotFound"></image>

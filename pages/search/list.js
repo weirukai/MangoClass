@@ -9,7 +9,8 @@ Page({
     searchClasses:[],
     inputValue:'',
     value:'',
-    className:''
+    className:'',
+    searchNotFound:true
   },
 //点击每个课程的事件
   toClassShow:function(e)
@@ -37,7 +38,9 @@ Page({
               var jsonObj=JSON.parse(jsonStr)
               var tempClasses=[]
               if(jsonObj.data==null)
-              {return}
+              {
+             
+                return}
               for( var index=0 ,max=jsonObj.data.length;index<max;index++)
               {
                 var seniorClass=jsonObj.data[index]
@@ -51,6 +54,7 @@ Page({
                 tempClasses.push(classItem)
             }
             that.setData({
+              searchNotFound:false,
               searchClasses:tempClasses
             })
             }
