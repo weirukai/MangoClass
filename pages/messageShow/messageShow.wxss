@@ -272,3 +272,6 @@
       
       }
    
+.shareBotton{
+  z-index: 3;
+}

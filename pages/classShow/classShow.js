@@ -315,8 +315,8 @@ shareClick:function()
    */
   onShareAppMessage: function () {
     return {
-      title: '弹出分享时显示的分享标题',
-      desc: '分享页面的内容',
+      title: "我正在学习",
+      desc: this.data.description,
       path: '/page/classShow' // 路径，传递参数到指定页面。
      }
 

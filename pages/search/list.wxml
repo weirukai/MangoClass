@@ -18,4 +18,5 @@
 </view>
 </view>
 </view>
-<image wx:if="{{searchNotFound}}" src="/images/searchNotFound.png" class="searchNotFound"></image>
+<view wx:if="{{searchNotFound}}">
+<image src="/images/searchNotFound.png" class="searchNotFound"></image></view>

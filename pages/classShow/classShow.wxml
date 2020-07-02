@@ -21,10 +21,10 @@ src="{{videoSrc}}">
 <image src="/images/likes.png" class="actionImage" ></image>
 <view class="actionCount">{{likes_num}}</view>
 </view>
-<view class="imageContainer" bindtap="shareClick">
-<button class="button"></button>
+<view class="shareContainer" bindtap="shareClick">
 <image src="/images/share.png" class="actionImage" ></image>
 <view class="actionCount">分享</view>
+<button open-type="share" class="shareButton"></button>
 </view>
 </view>
 <van-tabs color="#00c758">

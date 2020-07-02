@@ -23,6 +23,7 @@
 <view class="actionContainer">
 <image class="actionPhoto" src="/images/share2.png"></image>
 <text class="actionText">分享</text>
+
 </view>
 <view class="actionContainer">
 <image class="actionPhoto" src="/images/comment.png"></image>
