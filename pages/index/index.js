@@ -96,21 +96,13 @@ requestForPostId:function(){
   {
 
     var that=this
-    var token
-    wx.getStorage({
-      key: 'token',
-      success:res=>
-      {
-        token=res.data
-      }
-    })
+
     wx.request({
       url: myApp.globalData.host+'/class/getRecommendClasses',
       header: {
           'content-type': 'application/json', // 默认值
-          'Authorization':token
         },
-      method:"GET",
+      method:"POST",
       success:res=>{
         if(res.statusCode==200)
         {

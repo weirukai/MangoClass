@@ -190,7 +190,7 @@ doComment:function()
               className :body.data.name,
               classType:body.data.classType,
               classOrigin:body.data.origin,
-              likes_num:body.data.likesNum,
+              likes_num:body.data.likeNum,
               watch_num:body.data.watchNum,
               description:(body.data.description==null)?'暂无介绍':body.data.description,
               comments_num:body.data.commentsNum,
