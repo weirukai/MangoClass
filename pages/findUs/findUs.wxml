@@ -1,0 +1,2 @@
+<!--pages/findUs/findUs.wxml-->
+<map class="bgMap" longitude="116.46" latitude="39.92" markers="{{marker}}"></map> 

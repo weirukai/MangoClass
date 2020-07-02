@@ -11,7 +11,8 @@
     "pages/classShow/classShow",
     "pages/editPost/editPost",
     "pages/messageShow/messageShow",
-    "pages/search/list"
+    "pages/search/list",
+    "pages/findUs/findUs"
   ],
   "window": {
     "backgroundTextStyle": "light",

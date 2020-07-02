@@ -1,0 +1,5 @@
+/* pages/findUs/findUs.wxss */
+.bgMap{
+	width:100%;
+	height:100vh;
+}

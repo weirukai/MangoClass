@@ -118,6 +118,13 @@ Page({
     })
   }
   },
+  findUs:function()
+  {
+    wx.navigateTo({
+      url: '/pages/findUs/findUs',
+    })
+
+  },
 
   showStudyPlan:function()
   {
