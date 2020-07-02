@@ -29,6 +29,7 @@ page,view,image,input {
   position: absolute;
   top: 16rpx;
   right: 40rpx;
+  z-index: 2;
 }
 .header .show-type {
   width: 40rpx;
@@ -240,3 +241,35 @@ page,view,image,input {
   left: 0;
   text-align: center;
 }
+.container{
+  width: 750rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+  padding: 30rpx;
+  }
+  
+.classItemContainer{
+  background-color: #fff;
+  border-radius: 40rpx;
+  padding: 20rpx;
+  }
+  .classItem{
+    height: 250rpx;
+    width: 600rpx;
+    padding: 20rpx;
+    display: flex;
+    flex-direction: row;
+  border-bottom: 2rpx solid #eee;
+  }
+  .classImage{
+    max-height: 200rpx;
+    max-width: 250rpx;
+    border-radius: 10rpx;
+    }
+    .classIntroduce{
+      align-items: center;
+      padding-left: 50rpx;
+      padding-left: 10rpx;
+      width: 350rpx;
+      }

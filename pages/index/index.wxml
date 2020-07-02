@@ -12,7 +12,7 @@
   </swiper-item>
 </swiper>
 <view class="searchClass">
-<input placeholder="SearchClass" class="input" bindinput="inputSearch" value="{{searchValue}}"></input>
+<input placeholder="搜索课程" class="input" bindinput="inputSearch" value="{{searchValue}}" maxlength="10"></input>
 <image src="/images/search.png" class="search" bindtap="toSearch"></image>
 </view>
 </view>

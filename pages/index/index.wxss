@@ -45,12 +45,14 @@
   left: 75rpx;
   width: 600rpx;
   height: 66rpx;
-  display: block;
+  display: flex;
+  flex-direction:row;
+  border-radius: 30rpx;
+border: 1rpx solid #e3e3e3;
 }
 .input{
 box-sizing: border-box;
-border-radius: 30rpx;
-border: 1rpx solid #e3e3e3;
+
 padding-left: 32rpx;
 height: 66rpx;
 }

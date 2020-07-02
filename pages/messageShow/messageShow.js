@@ -42,7 +42,7 @@ Page({
           var jsonstr=JSON.stringify(res.data)
           var jsonObj=JSON.parse(jsonstr)
           that.setData({
-            masterName:jsonObj.data.masterNickName=='',
+            masterName:jsonObj.data.masterNickName,
             masterSchool:jsonObj.data.masterSchool,
             masterImageSrc:myApp.globalData.host+'/user/getUserImage/'+jsonObj.data.postData.masterId+'/'+Math.floor(Math.random()*100),
             content:jsonObj.data.postData.content,
@@ -50,6 +50,17 @@ Page({
             likesNum:jsonObj.data.postData.likesNum,
             joinTime:jsonObj.data.postData.joinTime.split("T")[0],
           })
+          if(this.data.masterSchool==null){
+             that.setData({
+               masterSchool:''
+             })
+          }
+          if(this.data.masterName==null){
+            that.setData({
+              masterName:''
+            })
+          }
+          console.log(this.data.masterSchool)
           var images=[]
           for (let index = 0; index < jsonObj.data.postImages.length; index++) {
             const image = jsonObj.data.postImages[index];

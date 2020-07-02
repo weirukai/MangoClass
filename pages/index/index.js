@@ -24,9 +24,10 @@ Page({
     juniorClasses:[],
 
     RecommendedClasses:[],
-    signin:true
+    signin:true,
+    searchValue:''
   },
-  inpuSearch:function(e)
+  inputSearch:function(e)
   {
  this.setData({
   inputValue:e.detail.value
@@ -35,10 +36,16 @@ Page({
 
   toSearch:function()
   {
+    if(this.data.inputValue==''){
+      return
+    }else{
     wx.navigateTo({
-      url: '/pages/search/list',
+      url: '/pages/search/list?searchClass='+this.data.inputValue
     })
-
+    this.setData({
+      searchValue:''
+    })
+  }
 
   },
 
