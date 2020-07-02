@@ -11,7 +11,7 @@ Page({
     className :'',//课程名称
     classOrigin :'',
     classType :'',
-    likes_num :0,
+    likes_num :'',
     watch_num :0,
     comments_num :0,
     description : '',
@@ -27,33 +27,36 @@ Page({
         showCancel: false,
       })
      }else{
-  //根据课程id拉去点赞数
-  var that =this
-  wx.request({
-    url: myApp.globalData.host+'/class/like', 
-    header:{
-      'content-type': 'application/json' // 默认值
-    },
-    method:"POST",
-    data:{
-      'classID':that.data.classId
-    },
-    success:res=>{
-      if(res.statusCode==200){
-        var jsonStr=JSON.stringify(res.data)
-        var jsonObj=JSON.parse(jsonStr)
-        var tempLike =jsonObj.data.likesNum
-      }
-      if(tempLike==null){
-        return
-      }else{
-      that.setData({
-      likes_num:tempLike
-      })}
-    }
- 
-  })
+  this.requestforLike()
      }
+  },
+  requestforLike:function(){
+//根据课程id拉去点赞数
+var that =this
+wx.request({
+  url: myApp.globalData.host+'/class/like', 
+  header:{
+    'content-type': 'application/json' // 默认值
+  },
+  method:"POST",
+  data:{
+    'classId':that.data.classId
+  },
+  success:res=>{
+    if(res.statusCode==200){
+      var jsonStr=JSON.stringify(res.data)
+      var jsonObj=JSON.parse(jsonStr)
+      var tempLike =jsonObj.data.likesNum
+    }
+    if(tempLike==null){d
+      return
+    }else{
+    that.setData({
+    likes_num:tempLike
+    })}
+  }
+
+})
   },
 /**根据课程id拉取对应得评论*/
 getClassComments:function()
@@ -274,6 +277,7 @@ shareClick:function()
   onShow: function () {
     this.getClassComments()
     this.getClassInfo()
+    this.requestforLike()
   },
 
   /**
