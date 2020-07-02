@@ -46,7 +46,7 @@ wx.request({
     if(res.statusCode==200){
       var jsonStr=JSON.stringify(res.data)
       var jsonObj=JSON.parse(jsonStr)
-      var tempLike =jsonObj.data.likesNum
+      var tempLike =jsonObj.data.likeNum
     }
     if(tempLike==null){d
       return
