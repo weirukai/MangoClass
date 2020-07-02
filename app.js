@@ -2,7 +2,7 @@
 App({
   globalData: {
 
-    host:"http://192.168.0.106:8080",
+    host:"http://192.168.2.102:8080",
     userInfo: null,
     hasLogin : false,
     myInfo:{
