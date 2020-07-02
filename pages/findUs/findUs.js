@@ -13,6 +13,12 @@ Page({
         latitude:189.0980,
         width:50,
         height:50,
+        callout:{
+
+        },
+        label:{
+          content:"华中科技大学"
+        }
       }
     ]
   },
