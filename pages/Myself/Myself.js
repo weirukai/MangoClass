@@ -55,6 +55,27 @@ Page({
     inputTxt:''
 
   },
+
+  planOver:function(){
+    var that =this
+     wx.showModal({
+        title: '当前任务已完成？',
+        showCancel: true,
+        success:res=> {
+         if (res.confirm) {
+          that.deletePlan()
+         }
+        }
+        }
+     )
+  },
+  deletePlan:function(){
+    var tempPlan = this.data.studyPlan
+    tempPlan.shift()
+    this.setData({
+      studyPlan:tempPlan
+    })
+  },
   changePlan:function(){
      this.setData({
       changePlan:false

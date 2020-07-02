@@ -52,7 +52,7 @@
 </view>
 <view class="studyPlanPage"  wx:if="{{changePlan}}">
 <image src='/images/editGreen.png' class="editPlan" bindtap="changePlan"></image>
-<view  class="stepsContainer" style="border-radius:20rpx">
+<view  class="stepsContainer" style="border-radius:20rpx" bindtap="planOver">
 <van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
 </view>
 <!---->

@@ -48,8 +48,10 @@ wx.request({
       var jsonObj=JSON.parse(jsonStr)
       var tempLike =jsonObj.data.likeNum
     }
-    if(tempLike==null){d
-      return
+    if(tempLike==null){
+      that.setData({
+        likes_num:0
+        })
     }else{
     that.setData({
     likes_num:tempLike
