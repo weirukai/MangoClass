@@ -3,12 +3,12 @@
 <view class="userInfoOut ">
 <view class="userInfo">
 
-<image class="userImage" wx:if="{{hasLogin}}" src="{{myInfo.userImageSrc}}"></image>
-<image class="userImage" wx:if="{{!hasLogin}}" src="../../images/nologin.png"></image>
+<image class="userImage" wx:if="{{haslogin}}" src="{{myInfo.userImageSrc}}"></image>
+<image class="userImage" wx:if="{{!haslogin}}" src="../../images/nologin.png"></image>
 <view class="login">
 <!---没有登录提示登录，登录之后这里提示学生相关信息--->
-<button wx:if="{{!hasLogin}}" class="loginNow"  open-type="getUserInfo" bindgetuserinfo="loginNow">立即登录</button>
-<view wx:if="{{hasLogin}}" class="detailInfo">
+<button wx:if="{{!haslogin}}" class="loginNow"  open-type="getUserInfo" bindgetuserinfo="loginNow">立即登录</button>
+<view wx:if="{{haslogin}}" class="detailInfo">
 <view class="infoItem userId"><image src="/images/id.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.id}}</view></view>
 <view class="infoItem"><image src="/images/motto2.png" class="infoItemImage"></image><view class="infoItemText">{{myInfo.motto}}</view></view>
 <!---年级和教材版本-->
@@ -45,9 +45,14 @@
 </view>
 <!---这里是学习计划弹出页-->
 <van-popup show="{{showStudyPlan}}"   bind:close="closeStudyPlan">
-<view class="studyPlanPage">
-<image src='/images/editGreen.png' class="editPlan"></image>
-<view  class="stepsContainer" style="border-radius:20rpx">
+<view class="changePlan" wx:if="{{!changePlan}}">
+<view class="updateName"><view class="updateText">计划时间</view><input class="updateInput" bindinput="inputTime" value="{{inputTxt}}"></input></view>
+<view class="updateName"><view class="updateText">计划内容</view><input class="updateInput" bindinput="inputPlan" value="{{inputTxt}}"></input></view>
+<button bindtap="inputSure" style="margin-left:200rpx" size='mini'>确定修改</button>
+</view>
+<view class="studyPlanPage"  wx:if="{{changePlan}}">
+<image src='/images/editGreen.png' class="editPlan" bindtap="changePlan"></image>
+<view  class="stepsContainer" style="border-radius:20rpx" bindtap="planOver">
 <van-steps steps="{{studyPlan}}" active="0" direction="vertical"/>
 </view>
 <!---->
@@ -70,21 +75,23 @@ color="#00c758" />
     <view class="block" >
       <view class="updateInfoContainer">
          <view class="updateTitle updateName">上传课程</view>   
-         <view class="updateName"><view class="updateText">课程名称</view><input class="updateInput"></input></view>
+         <view class="updateName"><view class="updateText">课程名称</view><input class="updateInput" bindinput="inputClassName" maxlength="10"></input></view>
           <van-radio-group value="{{ radio }}" bind:change="onChange" color="#00c758" class="radioGroup updateName">
             <van-radio name="1" shape="square" class="radio" label-position="left">初中课程</van-radio>
             <van-radio name="2" shape="square" class="radio" label-position="left">高中课程</van-radio>
           </van-radio-group>
-        <view class="updateName"><view class="updateText">课程简介</view>
-        <textarea class="updateTextArea"></textarea>
+        <view class="updateName"><view class="updateText" value="{{inputTxt}}">课程简介</view>
+        <textarea class="updateTextArea" bindinput="inputClassDes"></textarea>
         </view>
       </view>
-      <view class="uploader">
-      
-         <van-uploader  file-list="{{ fileList }}" bind:after-read="afterRead" >
-       
-      </van-uploader></view>
-   
+      <view class="uploader"  style='display:{{hideAdd?"none":"block"}}'>
+       <!-- <van-uploader  file-list="{{ fileList }}" bind:after-read="afterRead" >
+      </van-uploader> -->
+      <image bindtap="chooseVideo" class="moment_img" src='/images/uploadVideo.png'></image>
+      </view>
+     <button bindtap="send" style='margin-right:40px;margin-left:40px'>上传</button>
+     <view class="uploadspace"></view>
+     
     </view>
   </view>
 </van-popup>

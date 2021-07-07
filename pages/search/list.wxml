@@ -1,0 +1,22 @@
+<view class="header">
+  <view class="search">
+    <input type="text" placeholder="输入搜索关键词" value="{{value}}" bindinput="bindinput" bindconfirm="bindconfirm"></input>
+    <image src="/images/search.png" bindtap="toSearch"></image>
+  </view>
+  
+</view>
+<view class="line"></view>
+<view class="container" >
+<view class="classItemContainer">
+<view class="classItem" wx:for="{{searchClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
+<view style="font-size:16px;color:#808080">{{item.origin}}</view>
+<view style="margin-top:80rpx">{{item.date}}</view>
+</view>
+</view>
+</view>
+</view>
+<view wx:if="{{searchNotFound}}">
+<image src="/images/searchNotFound.png" class="searchNotFound"></image></view>

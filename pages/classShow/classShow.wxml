@@ -4,33 +4,58 @@
 enable-progress-gesture="true"
 enable-play-gesture="true"
 vslide-gesture="true"
-src="http://192.168.2.100:8080/class/getPlayResource/123">
+src="{{videoSrc}}">
 </video>
 </view>
-
 <view  class="othersContainer">
-
 <view class="actions">
 <view class="imageContainer">
 <image src="/images/download.png" class="actionImage" ></image>
 <view class="actionCount">下载</view>
 </view>
-<view class="imageContainer">
+<view class="imageContainer" bindtap="doCollectClass">
 <image src="/images/collection.png" class="actionImage" ></image>
 <view class="actionCount">收藏</view>
 </view>
-<view class="imageContainer">
-<image src="/images/likes.png" class="actionImage" ></image>
-<view class="actionCount">34</view>
+<view class="imageContainer" bindtap="doLike">
+<image src="{{likeImg}}" class="actionImage" ></image>
+<view class="actionCount">{{likes_num}}</view>
 </view>
-<view class="imageContainer">
+<view class="shareContainer" bindtap="shareClick">
 <image src="/images/share.png" class="actionImage" ></image>
 <view class="actionCount">分享</view>
+<button open-type="share" class="shareButton"></button>
 </view>
 </view>
-
 <van-tabs color="#00c758">
 <van-tab title="简介"> 
+<view class="info">
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/className.png"></image>
+<view class="infoText">{{className}}</view>
+</view>
+</view>
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/origin.png"></image>
+<view class="infoText">{{classOrigin}}</view>
+</view>
+</view>
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/classType.png"></image>
+<view class="infoText">{{classType}}</view>
+</view>
+</view>
+<view class="infoContainer">
+<view class="infoItem">
+<image class="infoItemImage" src = "/images/description.png"></image>
+<view class="infoText">{{description}}</view>
+</view>
+</view>
+</view>
+<view class="infoContainer"></view>
 
 </van-tab>
 <van-tab  title="评论">
@@ -38,20 +63,19 @@ src="http://192.168.2.100:8080/class/getPlayResource/123">
 <view wx:for="{{comments}}" wx:key="item" class="commentItem">
 <image class="commentItemImage" src="{{item.masterImageSrc}}"></image>
 <view class="content">
-<view style="color:#808080">{{item.id}}</view>
+<view style="color:#808080">{{item.nickName}}</view>
 <view>{{item.content}}</view>
 <view style="color:#808080;font-size:12px">{{item.date}}</view>
 </view>
 </view>
+<view class="commentItem"></view>
 </view>
 </van-tab>
 </van-tabs>
-
-
 </view>
 <view class="docommentsCon">
-<input class="writeCom"></input>
+<input class="writeCom" bindinput="getInputValue" value="{{inputTxt}}"></input>
 <image class="writeImage" src="/images/editGreen.png"></image>
-<view class="writeComButton" ><view style="text-align:center">发送</view></view>
+<view class="writeComButton" bindtap="doComment"><view style="text-align:center">发送</view></view>
 </view>
 </view>

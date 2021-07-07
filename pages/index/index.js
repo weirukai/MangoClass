@@ -1,138 +1,302 @@
 //index.js
 //获取应用实例
 //搜索课程，查看课程推荐，课程排行等等功能
-const app = getApp()
+var myApp = getApp()
 Page({
   data: {
+    searchValue:'',
+    inputValue:'',
+    tabActiveName:0,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    testSwiperUrls:['https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+    postClasses:[],
+    SwiperUrls:['https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
     'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
     'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'], //循环轮播的课程的地址
     interval: 5000,
-    duration: 1000,
+    duration: 500,
     indicatorDots: true,
     indicatorColor: "#ffffff",
     activecolor:"#00c758",
     autoplay: true,
-    myClass:[
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/9F990399C7DDB0F19396B0E0D5872923.png?imageView&thumbnail=510y288&quality=100",
-        title:"大学体育（二）",
-        origin:"华中科技大学",
-        length:18,
-        hasLearn:9,
-        id:1234
-      },
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/43BBDC4553C3CDE714C01755B5050CAF.jpg?imageView&thumbnail=510y288&quality=100",
-        title:"操作系统原理",
-        origin:"华中科技大学",
-        length:18,
-        hasLearn:9,
-        id:2345
-      },
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/8D3B8E93CE2B6A73BD1454FEA9E0C290.png?imageView&thumbnail=510y288&quality=100",
-        title:"数字电路与逻辑设计",
-        origin:"华中科技大学",
-        length:18,
-        hasLearn:9,
-        id:1213
-      },
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/5A6CD2B488E9A1EF5D969D2A02673517.jpg?imageView&thumbnail=510y288&quality=100",
-        title:"大学体育",
-        origin:"华中科技大学",
-        length:18,
-        hasLearn:9,
-        id:1433
-      },
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/B83E6EA37EFEFF83775BA11BA020FAD4.jpg?imageView&thumbnail=510y288&quality=100",
-        title:"工程制图（五）",
-        origin:"华中科技大学",
-        length:18,
-        hasLearn:9,
-        id:1542
-      }
-    ]
+    seniorClasses:[],
+    juniorClasses:[],
+
+    RecommendedClasses:[],
+    signin:true,
+    searchValue:''
   },
+  inputSearch:function(e)
+  {
+ this.setData({
+  inputValue:e.detail.value
+})
+  },
+
+  toSearch:function()
+  {
+    if(this.data.inputValue==''){
+      return
+    }else{
+    wx.navigateTo({
+      url: '/pages/search/list?searchClass='+this.data.inputValue
+    })
+    this.setData({
+      searchValue:''
+    })
+  }
+
+  },
+
+
 
   toClassShow:function(e)
   {
-
     wx.navigateTo({
       url: '/pages/classShow/classShow?id='+e.currentTarget.dataset.id
     })
-
   },
-
-
-
-
-  //事件处理函数
-  /*bindViewTap: function() {
-    // wx.navigateTo({
-    //   url: '../logs/logs'
-    // })
-    /*var that=this
-    wx.request({
-      url:'http://111.173.220.16:8080/Login_war_exploded/getString',
-      success(res){
-        console.log(res.data)
-        console.log(1)
-         that.setData(
-           {motto: res.data}
-         )
-      },
-      fail(res)
-      {
-        console.log(12)
-      },
-      finally(res){
-        console.log(11)
-      }
-    })
-    
-   
-  },*/
-
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+/**
+ * 获取封面循环的海报课程Id
+ */
+requestForPostId:function(){
+  var that = this
+  wx.request({
+    url: myApp.globalData.host+'/class/getSwiperClass',//请求的地址
+    header:{
+      'content-type': 'application/json'
+    },
+    success:res=>{
+      if(res.statusCode==200){
+        var tempClasses=[]
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        if(jsonObj==null)
+        {
+          return
+        }
+        for(var index =0,max =jsonObj.data.length;index<max;index++){
+          var tempClass = jsonObj.data[index]
+          var classItem={
+            ImagePath:myApp.globalData.host+"/class/getClassImage/"+tempClass.id,
+            id:tempClass.id
+          }
+          tempClasses.push(classItem)
+        }
+        that.setData({
+          postClasses:tempClasses
         })
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  })
+},
+  /**获取推荐视频的请求*/
+  requestForRecommendClass:function()
+  {
+
+    var that=this
+
+    wx.request({
+      url: myApp.globalData.host+'/class/getRecommendClasses',
+      header: {
+          'content-type': 'application/json', // 默认值
+        },
+      method:"POST",
+      success:res=>{
+        if(res.statusCode==200)
+        {
+          var tempClasses=[]
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          if(jsonObj.data==null)
+          {return}
+          for( var index=0 ,max=jsonObj.data.length;index<max;index++)
+          {
+            var seniorClass=jsonObj.data[index]
+            var classItem={
+              ImagePath:myApp.globalData.host+"/class/getClassImage/"+seniorClass.id,
+              title:seniorClass.name,
+              origin:seniorClass.origin,
+              id:seniorClass.id,
+              date:seniorClass.joinTime.split("T")[0]
+            }
+            tempClasses.push(classItem)
+        }
+        }
+        that.setData({
+          RecommendedClasses:tempClasses
+        })
+      },
+      complete:res=>
+      {
+      }
     })
-  }
+
+  },
+
+  signin:function(){
+    if(myApp.globalData.hasLogin)
+    {
+      this.setData({
+        signin:false
+      })
+      this.sendSign()
+    }
+    else{
+      wx.showModal({
+        title: '请先登录',
+        showCancel: false,
+        success:res=> {
+         if (res.confirm) {
+         wx.navigateTo({
+          url: '/pages/Myself/Myself',
+         })
+         }
+        }
+        })
+    } 
+  },
+  sendSign(){
+    var that=this
+    var token=null
+    wx.getStorage({
+      key: 'token',
+      success:res=>
+      {
+        token=res.data
+      }
+    })
+    wx.request({
+      url:myApp.globalData.host+'/user/userCheckIn',
+      header: {
+        'content-type': 'application/json' ,// 默认值
+        'Authorization':token
+      },
+      data:{
+      //签到成功后的发送数据 还没写
+      },
+       method:"POST",
+       success:res=>
+       {
+        wx.showToast({
+          title: '签到成功',
+        })
+
+       }
+    })
+  },
+
+  /*获取高中课程的请求*/
+  requestForSeniorClass:function()
+  {
+    var that=this
+    wx.request({
+      url: myApp.globalData.host+'/class/getSeniorClasses',
+      header: {
+          'content-type': 'application/json' // 默认值
+        },
+      method:"GET",
+      success:res=>{
+        if(res.statusCode==200)
+        {
+          var tempClasses=[]
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          if(jsonObj.data==null)
+          {return}
+          for( var index=0 ,max=jsonObj.data.length;index<max;index++)
+          {
+            var seniorClass=jsonObj.data[index]
+            var classItem={
+              ImagePath:myApp.globalData.host+"/class/getClassImage/"+seniorClass.id,
+              title:seniorClass.name,
+              origin:seniorClass.origin,
+              id:seniorClass.id,
+              date:seniorClass.joinTime.split("T")[0]
+            }
+            tempClasses.push(classItem)
+        }
+        }
+        console.log(tempClasses)
+        that.setData({
+          seniorClasses:tempClasses
+        })
+      },
+      complete:res=>
+      {
+      }
+    })
+  },
+/**获取初中课程的请求*/
+requestForJuniorClasses:function(){
+  var that=this
+  wx.request({
+    url: myApp.globalData.host+'/class/getJuniorClasses',
+    header: {
+        'content-type': 'application/json' // 默认值
+      },
+    method:"GET",
+    success:res=>{
+      if(res.statusCode==200)
+      {
+        var tempClasses=[]
+        var jsonStr=JSON.stringify(res.data)
+        var jsonObj=JSON.parse(jsonStr)
+        if(jsonObj.data==null)
+          {return}
+        for( var index=0 ,max=jsonObj.data.length;index<max;index++)
+        {
+          var seniorClass=jsonObj.data[index]
+          var classItem={
+            ImagePath:myApp.globalData.host+"/class/getClassImage/"+seniorClass.id,
+            title:seniorClass.name,
+            origin:seniorClass.origin,
+            id:seniorClass.id,
+            date:seniorClass.joinTime.split("T")[0]
+          }
+          tempClasses.push(classItem)
+      }
+      }
+      that.setData({
+        juniorClasses:tempClasses
+      })
+    },
+    complete:res=>
+    {
+    }
+  })
+},
+/**van-tabs的切换点击事件**/
+clickForSwitchClass:function(title)
+{
+  //这里实际上有一点浪费网络资源
+  this.requestForJuniorClasses()
+  this.requestForRecommendClass()
+  this.requestForSeniorClass()
+},
+refreshAllClasses:function()
+{
+  wx.showLoading({
+    title: '正在加载',
+  })
+  //跟新课程
+  this.requestForRecommendClass()
+  this.requestForSeniorClass()
+  this.requestForJuniorClasses()
+  wx.hideLoading({
+    complete: (res) => {},
+  })
+},
+
+onLoad: function () {
+
+  this.requestForPostId()
+
+  },
+  onShow:function()
+  {
+    this.refreshAllClasses()
+  },
+
 })

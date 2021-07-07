@@ -25,6 +25,11 @@ width: 750rpx;
   min-width: 187rpx;
   flex-direction: column;
 }
+.shareContainer{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
 .actionImage{
   max-width: 60rpx;
   max-height: 60rpx;
@@ -59,17 +64,45 @@ margin-left: 30rpx;
 width: 650rpx;
 border-bottom: 3rpx solid #eee;
 }
+.info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.infoContainer{
+display: flex;
+flex-direction: row;
+min-height: 100rpx;
+width: 750rpx;
+}
+
+.infoItem{
+  display: flex;
+  flex-direction: row;
+  min-height: 80rpx;
+  align-items: center;
+}
+
+.infoItemImage{
+  margin-left: 10rpx;
+  max-height: 50rpx;
+  max-width: 50rpx;
+}
+.infoText{
+  margin-left: 30rpx;
+}
+
 .docommentsCon{
   position: fixed;
   bottom: 0rpx;
   width: 750rpx;
   height: 100rpx;
-  background-color: #eee;
+  background-color: #fff;
 }
 .writeCom{
   width: 500rpx;
   height: 60rpx;
-  border: 2rpx solid #808080;
+  border: 2rpx solid #eee;
   background-color: #fff;
   border-radius: 100rpx;
   position: absolute;
@@ -96,4 +129,16 @@ border-bottom: 3rpx solid #eee;
   border-radius: 20rpx;
   padding-top: 10rpx;
 
+}
+.shareButton{
+  z-index: 1;
+  height: 100rpx;
+  position: absolute;
+  top: 550rpx;
+  width: 90rpx;
+  background-color: transparent;
+  
+}
+.shareButton::after{
+  border: none;
 }

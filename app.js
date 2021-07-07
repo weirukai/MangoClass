@@ -1,15 +1,17 @@
 //app.js
 App({
   globalData: {
+
+    host:"http://39.97.189.99:8080",
     userInfo: null,
     hasLogin : false,
     myInfo:{
-    id:"一叶知秋",
-    grade:"高三",
-    bookType:"人教版",
-    motto:"书山有路勤为径",
+    id:"",
+    grade:"",
+    bookType:"",
+    motto:"",
     userImageSrc:"",
-    School:"华中科技大学"}
+    School:""}
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -32,42 +34,46 @@ App({
               }
             }
           })
+
           //假如获得了授权就直接登录
           var that=this
-          wx.login({
-            success(res){
-              wx.request({
-                url: 'http://192.168.2.100:8080/user/login',
-                data:{
-                  code:res.code,
-                  roles:"commom_user"
-                },
-                method:'POST',
-                header: {
-                  'content-type': 'application/json' // 默认值
-                },
-                success:res=>
-              {
-                //网络请求发送成功
-                if(res.statusCode==200)
+          that.userInfoReadyCallback=res=>{
+            wx.login({
+              success(res){
+                wx.request({
+                  url: that.globalData.host+'/user/login',
+                  data:{
+                    code:res.code,
+                    roles:"commom_user",
+                    nickName:that.globalData.userInfo.nickName
+                  },
+                  method:'POST',
+                  header: {
+                    'content-type': 'application/json' // 默认值
+                  },
+                  success:res=>
                 {
-                  //登录成功
-                  that.globalData.hasLogin=true;
-                  //解析token
-                  console.log(res.data)
-                  var jsonstr=JSON.stringify(res.data)
-                  var jsonObj=JSON.parse(jsonstr)
-                  var token=jsonObj.data.token
-                  wx.setStorage({
-                    data: token,
-                    key: 'token',
-                  })
+                  //网络请求发送成功
+                  if(res.statusCode==200)
+                  {
+                    //登录成功
+                    that.globalData.hasLogin=true;
+                    //解析token
+                    console.log(res.data)
+                    var jsonstr=JSON.stringify(res.data)
+                    var jsonObj=JSON.parse(jsonstr)
+                    var token=jsonObj.data.token
+                    wx.setStorage({
+                      data: token,
+                      key: 'token',
+                    })
+                  }
                 }
+                })
               }
-              })
-            }
-          })
-
+            })
+          }
+          
         }
       }
     })

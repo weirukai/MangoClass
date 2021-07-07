@@ -11,7 +11,13 @@
   flex-direction: column;
   align-items: center;
 }
-
+.search{
+  max-width: 50rpx;
+  max-height: 50rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 10rpx;
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -30,7 +36,7 @@
   width: 750;
   height: 375rpx;
   position: relative;
-  background-color: rosybrown;
+  background-color: #fff;
 
 }
 .searchClass{
@@ -39,12 +45,14 @@
   left: 75rpx;
   width: 600rpx;
   height: 66rpx;
-  display: block;
+  display: flex;
+  flex-direction:row;
+  border-radius: 30rpx;
+border: 1rpx solid #e3e3e3;
 }
 .input{
 box-sizing: border-box;
-border-radius: 30rpx;
-border: 1rpx solid #e3e3e3;
+
 padding-left: 32rpx;
 height: 66rpx;
 }
@@ -87,4 +95,16 @@ padding-top: 10rpx;
       align-items: center;
       padding-left: 50rpx;
       padding-left: 10rpx;
+      width: 350rpx;
+      }
+
+      .signinContainer{
+      position: fixed;
+      bottom: 80rpx;
+      right: 80rpx;
+      z-index: 1;
+      }
+      .signinImg{
+        max-width: 90rpx;
+        max-height: 90rpx;
       }

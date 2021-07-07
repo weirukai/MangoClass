@@ -1,29 +1,102 @@
 // pages/collectClass/collectClass.js
+var myApp=getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    collectClassNum:5,
-    myClass:[
-      
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/8D3B8E93CE2B6A73BD1454FEA9E0C290.png?imageView&thumbnail=510y288&quality=100",
-        title:"数字电路与逻辑设计",
-        origin:"华中科技大学",
-        
-      },
-      {
-        ImagePath:"http://edu-image.nosdn.127.net/5A6CD2B488E9A1EF5D969D2A02673517.jpg?imageView&thumbnail=510y288&quality=100",
-        title:"大学体育",
-        origin:"华中科技大学",
-        
-      }
-
-
-    ]
+    collectClassNum:0,
+    myClass:[]
   },
+  requestForCollectedClasses:function()
+  {
+    var that=this
+    var token=null
+    wx.getStorage({
+      key: 'token',
+      success:res=>
+      {
+        token=res.data
+      }
+    })
+    wx.request({
+      url: myApp.globalData.host+'/user/getUserCollectedClasses',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization':token
+      },
+      method:'POST',
+      success:res=>
+      {
+        if(res.statusCode==200&&res.data.code==200)
+        {
+          var jsonStr=JSON.stringify(res.data)
+          var jsonObj=JSON.parse(jsonStr)
+          var tempClasses=[]
+          if(jsonObj.data==null)
+          {return}
+          let index=0
+          for ( index = 0; index < jsonObj.data.length; index++) {
+            var classItem={
+              'ImagePath':myApp.globalData.host+'/class/getClassImage/'+jsonObj.data[index].id,
+              'title':jsonObj.data[index].name,
+              'origin':jsonObj.data[index].origin,
+              'date':jsonObj.data[index].joinTime.split("T")[0],
+              'id':jsonObj.data[index].id
+            }
+            tempClasses.push(classItem)
+          }
+          that.setData({
+            myClass:tempClasses,
+            collectClassNum:index
+          })
+        }
+      }
+    })
+  },
+
+deleteCollectedClass:function(e)
+{
+  //获取到的课程的id
+  var classID=e.currentTarget.dataset.id
+  var that=this
+  var  token=null
+  wx.getStorage({
+    key: 'token',
+    success:res=>
+    {
+      token=res.data
+    }
+  })
+  wx.request({
+    url: myApp.globalData.host+'/class/cancelCollectedClass',
+    header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization':token
+      },
+      method:'POST',
+    data:
+    {
+      'classID':classID
+    },
+    success:res=>
+    {
+      if(res.statusCode==200&&res.data.code==200)
+      {
+        //删除成功
+        wx.showToast({
+          title: '已取消收藏',
+        })
+        that.requestForCollectedClasses()
+      }
+    }
+  })
+
+},
+
+
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -43,7 +116,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.requestForCollectedClasses()
   },
 
   /**

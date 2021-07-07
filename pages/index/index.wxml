@@ -1,42 +1,74 @@
 <!--index.wxml-->
 <!--<view class="container">-->
 <!--这里是滚动推荐课程-->
+<view class="signinContainer">
+<image class="signinImg" wx:if="{{signin}}" class="signinImg" src="/images/signin.png" bindtap="signin"></image>
+</view>
 <view class=".swiperContainer">
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{activecolor}}" class="swiper">
-  <swiper-item wx:for="{{testSwiperUrls}}" wx:key ="*this">
-    <image src="{{item}}"style="width:100%;height:200px" class="slide-image" mode="widthFix"></image>
+<!--此处还要等后台数据完善后补充-->
+  <swiper-item wx:for="{{postClasses}}" wx:key ="item">
+    <image src="{{item.ImagePath}}"style="width:100%;height:200px" class="slide-image" mode="widthFix" data-id="{{item.id}}"  bindtap="toClassShow"></image>
   </swiper-item>
 </swiper>
 <view class="searchClass">
-<input placeholder="SearchClass" class="input"></input>
+<input placeholder="搜索课程" class="input" bindinput="inputSearch" value="{{searchValue}}" maxlength="10"></input>
+<image src="/images/search.png" class="search" bindtap="toSearch"></image>
 </view>
 </view>
 <view class="classOutContainer">
 <view class="classInContainer">
-<van-tab2s color="#00c758" style="border-radius:30rpx">
-<van-tab2 title="推荐课程" bintap="" name="recommandedClass">
+<van-tab2s color="#00c758" style="border-radius:30rpx" model:value="{{tabActiveName}}" bindtap="clickForSwitchClass">
 
+<van-tab2 title="初中课程" name="juniorClass">
+<view class="container" >
+<view class="classItemContainer">
+
+<view class="classItem" wx:for="{{juniorClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
+<view style="font-size:16px;color:#808080">{{item.origin}}</view>
+<view style="margin-top:80rpx">{{item.date}}</view>
+
+</view>
+</view>
+</view>
+</view>
+</van-tab2>
+<van-tab2 title="高中课程" name="highClass">  
+<view class="container" >
+<view class="classItemContainer">
+
+<view class="classItem" wx:for="{{seniorClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
+<image src="{{item.ImagePath}}" class="classImage"></image>
+<view class="classIntroduce">
+<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
+<view style="font-size:16px;color:#808080">{{item.origin}}</view>
+<view style="margin-top:80rpx">{{item.date}}</view>
+
+</view>
+</view>
+</view>
+</view>
+</van-tab2>
+
+<van-tab2 title="推荐课程" bintap="clickForSwitchClass" name="recommandedClass">
 
 <view class="container" >
 <view class="classItemContainer">
-<view class="classItem" wx:for="{{myClass}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
+<view class="classItem" wx:for="{{RecommendedClasses}}" wx:key="item" data-id="{{item.id}}" bindtap="toClassShow">
 <image src="{{item.ImagePath}}" class="classImage"></image>
 <view class="classIntroduce">
-<view style="font-size:18px">{{item.title}}</view>
-<view style="font-size:14px;color:#808080">{{item.origin}}</view>
+<view style="font-size:17px;white-space:nowrap">{{item.title}}</view>
+<view style="font-size:16px;color:#808080">{{item.origin}}</view>
+<view style="margin-top:80rpx">{{item.date}}</view>
 </view>
 </view>
 </view>
 </view>
-
-
 </van-tab2>
-<van-tab2 title="初中课程" name="juniorClass">
 
-</van-tab2>
-<van-tab2 title="高中课程" name="highClass">  
-
-</van-tab2>
 </van-tab2s>
 </view>
 </view>
